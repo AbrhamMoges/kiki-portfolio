@@ -2,6 +2,7 @@
   "name": "ssgi-spheres-with-rapier-physics",
   "version": "1.0.0",
   "description": "",
+  "license": "MIT",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
