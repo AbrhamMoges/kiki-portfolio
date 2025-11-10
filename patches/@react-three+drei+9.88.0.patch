@@ -1,0 +1,15 @@
+diff --git a/node_modules/@react-three/drei/core/SpotLight.js b/node_modules/@react-three/drei/core/SpotLight.js
+index a1b2c3d..e4f5g6h 100644
+--- a/node_modules/@react-three/drei/core/SpotLight.js
++++ b/node_modules/@react-three/drei/core/SpotLight.js
+@@ -1,4 +1,4 @@
+-import { Vector3, CylinderGeometry, Matrix4, WebGLRenderTarget, RGBAFormat, LinearEncoding, ShaderMaterial, DoubleSide, RepeatWrapping } from 'three';
++import { Vector3, CylinderGeometry, Matrix4, WebGLRenderTarget, RGBAFormat, NoColorSpace, ShaderMaterial, DoubleSide, RepeatWrapping } from 'three';
+ import _extends from '@babel/runtime/helpers/esm/extends';
+ import * as React from 'react';
+ import { useThree, useFrame } from '@react-three/fiber';
+@@ -95,7 +95,7 @@ export function SpotLight({
+     format: RGBAFormat,
+-    encoding: LinearEncoding,
++    encoding: NoColorSpace,
+   }), [width, height]);

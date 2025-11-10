@@ -19,11 +19,15 @@
     "@use-gesture/react": "10.2.24",
     "@use-gesture/core": "10.2.24"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "postinstall": "patch-package",
     "eject": "react-scripts eject"
   },
   "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
