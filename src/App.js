@@ -177,11 +177,27 @@ function Sphere({ position, children, vec = new THREE.Vector3(), scale, r = THRE
   }, [scene])
   
   const pos = useMemo(() => position || [r(10), r(10), r(10)], [])
+  const velocityRef = useRef(new THREE.Vector3(
+    r(0.5),
+    r(0.5),
+    r(0.5)
+  ))
   
   useFrame((state, delta) => {
     delta = Math.min(0.1, delta)
-    // Increase interaction force for better responsiveness
-    api.current?.applyImpulse(vec.copy(api.current.translation()).negate().multiplyScalar(0.5))
+    if (api.current) {
+      // Increase interaction force for better responsiveness
+      api.current.applyImpulse(vec.copy(api.current.translation()).negate().multiplyScalar(0.5))
+      
+      // Add continuous floating movement
+      const time = state.clock.elapsedTime
+      const floatForce = new THREE.Vector3(
+        Math.sin(time * 0.5 + pos[0]) * 0.02,
+        Math.cos(time * 0.7 + pos[1]) * 0.02,
+        Math.sin(time * 0.6 + pos[2]) * 0.02
+      )
+      api.current.applyImpulse(floatForce)
+    }
     // No color/material changes - preserve original materials
   })
   
