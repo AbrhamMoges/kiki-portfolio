@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { useRef, useReducer, useMemo } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Environment, Lightformer, useGLTF } from '@react-three/drei'
 import { BallCollider, Physics, RigidBody } from '@react-three/rapier'
 import { easing } from 'maath'
@@ -39,8 +39,10 @@ const shuffle = (accent = 0) => [
 export default function App(props) {
   const [accent, click] = useReducer((state) => ++state % accents.length, 0)
   const connectors = useMemo(() => shuffle(accent), [accent])
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+  
   return (
-    <Canvas shadows onClick={click} dpr={[1, 1.5]} gl={{ antialias: false, outputColorSpace: THREE.SRGBColorSpace, toneMapping: THREE.ACESFilmicToneMapping }} camera={{ position: [0, 0, 30], fov: 17.5, near: 10, far: 40 }} {...props}>
+    <Canvas shadows onClick={click} dpr={[1, 1.5]} gl={{ antialias: false, outputColorSpace: THREE.SRGBColorSpace, toneMapping: THREE.ACESFilmicToneMapping }} camera={{ position: [0, 0, isMobile ? 25 : 30], fov: isMobile ? 20 : 17.5, near: 10, far: 40 }} {...props}>
       <color attach="background" args={['white']} />
       {/* Lighting setup */}
       <ambientLight intensity={0.5} />
@@ -75,6 +77,8 @@ let cachedCenterOffset = null
 
 function CenterModel() {
   const { scene } = useGLTF(CENTER_MODEL_PATH)
+  const { viewport } = useThree()
+  const isMobile = viewport.width < 10 // Mobile viewport is typically smaller
   
   // Calculate center model scale and center offset once and cache it
   const { modelScale, centerOffset } = useMemo(() => {
@@ -91,6 +95,9 @@ function CenterModel() {
     cachedCenterOffset = center.clone().negate()
     return { modelScale: cachedCenterModelScale, centerOffset: cachedCenterOffset }
   }, [scene])
+  
+  // Adjust scale for mobile
+  const mobileScale = isMobile ? 0.4 : 1
   
   const clonedScene = useMemo(() => {
     const cloned = scene.clone()
@@ -121,7 +128,7 @@ function CenterModel() {
   }, [scene])
   
   return (
-    <group position={[0, 0, 0]} scale={modelScale * 8}>
+    <group position={[0, 0, 0]} scale={modelScale * 8 * mobileScale}>
       <group position={[centerOffset.x, centerOffset.y, centerOffset.z]}>
         <primitive object={clonedScene} />
       </group>
@@ -133,6 +140,8 @@ function Sphere({ position, children, vec = new THREE.Vector3(), scale, r = THRE
   const api = useRef()
   const groupRef = useRef()
   const { scene } = useGLTF(MODEL_PATH)
+  const { viewport } = useThree()
+  const isMobile = viewport.width < 10 // Mobile viewport is typically smaller
   
   // Calculate model scale once and cache it
   const modelScale = useMemo(() => {
@@ -144,6 +153,9 @@ function Sphere({ position, children, vec = new THREE.Vector3(), scale, r = THRE
     cachedModelScale = maxSize > 0 ? 1 / maxSize : 1
     return cachedModelScale
   }, [scene])
+  
+  // Adjust scale for mobile
+  const mobileScale = isMobile ? 0.4 : 1
   
   const clonedScene = useMemo(() => {
     const cloned = scene.clone()
@@ -173,12 +185,15 @@ function Sphere({ position, children, vec = new THREE.Vector3(), scale, r = THRE
     // No color/material changes - preserve original materials
   })
   
-  // Make flying logos bigger
-  const finalScale = (scale || 1) * modelScale * 2
+  // Make flying logos bigger, adjust for mobile
+  const finalScale = (scale || 1) * modelScale * 2 * mobileScale
+  
+  // Adjust collider size for mobile
+  const colliderSize = isMobile ? 0.8 : 2
   
   return (
     <RigidBody linearDamping={4} angularDamping={1} friction={0.1} position={pos} ref={api} colliders={false}>
-      <BallCollider args={[2]} />
+      <BallCollider args={[colliderSize]} />
       <group ref={groupRef} castShadow receiveShadow scale={finalScale}>
         <primitive object={clonedScene} />
         {children}
@@ -189,10 +204,12 @@ function Sphere({ position, children, vec = new THREE.Vector3(), scale, r = THRE
 
 function Pointer({ vec = new THREE.Vector3() }) {
   const ref = useRef()
+  const { viewport } = useThree()
+  const isMobile = viewport.width < 10
   useFrame(({ mouse, viewport }) => ref.current?.setNextKinematicTranslation(vec.set((mouse.x * viewport.width) / 2, (mouse.y * viewport.height) / 2, 0)))
   return (
     <RigidBody position={[0, 0, 0]} type="kinematicPosition" colliders={false} ref={ref}>
-      <BallCollider args={[3]} />
+      <BallCollider args={[isMobile ? 1.2 : 3]} />
     </RigidBody>
   )
 }
