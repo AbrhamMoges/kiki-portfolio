@@ -6,19 +6,20 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@react-three/drei": "9.88.0",
+    "@react-three/fiber": "8.13.4",
+    "@react-three/postprocessing": "2.15.11",
+    "@react-three/rapier": "1.1.0",
+    "@types/three": "0.164.0",
+    "@use-gesture/core": "10.2.24",
+    "@use-gesture/react": "10.2.24",
+    "maath": "0.10.4",
+    "postprocessing": "6.38.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-router-dom": "^7.9.5",
     "react-scripts": "5.0.1",
-    "three": "0.164.1",
-    "@types/three": "0.164.0",
-    "@react-three/fiber": "8.13.4",
-    "@react-three/drei": "9.88.0",
-    "@react-three/rapier": "1.1.0",
-    "@react-three/postprocessing": "2.15.11",
-    "postprocessing": "6.38.0",
-    "maath": "0.10.4",
-    "@use-gesture/react": "10.2.24",
-    "@use-gesture/core": "10.2.24"
+    "three": "0.164.1"
   },
   "devDependencies": {
     "patch-package": "^8.0.0",
@@ -31,5 +32,10 @@
     "postinstall": "patch-package",
     "eject": "react-scripts eject"
   },
-  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

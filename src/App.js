@@ -1,61 +1,42 @@
 import * as THREE from 'three'
-import { useRef, useReducer, useMemo } from 'react'
+import { useRef, useMemo, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Environment, Lightformer, useGLTF } from '@react-three/drei'
-import { BallCollider, Physics, RigidBody } from '@react-three/rapier'
-import { easing } from 'maath'
+import { useNavigate } from 'react-router-dom'
 import { Effects } from './Effects'
 
 const MODEL_PATH = '/kiki logo 2.glb'
-const CENTER_MODEL_PATH = '/KALKIDANE.glb'
 const MODEL_COLOR = '#4060ff'
 
-// Preload the models
+// Preload the model
 useGLTF.preload(MODEL_PATH)
-useGLTF.preload(CENTER_MODEL_PATH)
-
-const accents = ['#ff4060', '#ffcc00', '#20ffa0', '#4060ff']
-const shuffle = (accent = 0) => [
-  { color: '#444', roughness: 0.1, metalness: 0.5 },
-  { color: '#444', roughness: 0.1, metalness: 0.5 },
-  { color: '#444', roughness: 0.1, metalness: 0.5 },
-  { color: 'white', roughness: 0.1, metalness: 0.1 },
-  { color: 'white', roughness: 0.1, metalness: 0.1 },
-  { color: 'white', roughness: 0.1, metalness: 0.1 },
-  { color: accents[accent], roughness: 0.1, accent: true },
-  { color: accents[accent], roughness: 0.1, accent: true },
-  { color: accents[accent], roughness: 0.1, accent: true },
-  { color: '#444', roughness: 0.1 },
-  { color: '#444', roughness: 0.3 },
-  { color: '#444', roughness: 0.3 },
-  { color: 'white', roughness: 0.1 },
-  { color: 'white', roughness: 0.2 },
-  { color: 'white', roughness: 0.1 },
-  { color: accents[accent], roughness: 0.1, accent: true, transparent: true, opacity: 0.5 },
-  { color: accents[accent], roughness: 0.3, accent: true },
-  { color: accents[accent], roughness: 0.1, accent: true }
-]
 
 export default function App(props) {
-  const [accent, click] = useReducer((state) => ++state % accents.length, 0)
-  const connectors = useMemo(() => shuffle(accent), [accent])
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
   
   return (
-    <Canvas shadows onClick={click} dpr={[1, 1.5]} gl={{ antialias: false, outputColorSpace: THREE.SRGBColorSpace, toneMapping: THREE.ACESFilmicToneMapping }} camera={{ position: [0, 0, isMobile ? 25 : 30], fov: isMobile ? 20 : 17.5, near: 10, far: 40 }} {...props}>
+    <Canvas shadows dpr={[1, 1.5]} gl={{ antialias: false, outputColorSpace: THREE.SRGBColorSpace, toneMapping: THREE.ACESFilmicToneMapping }} camera={{ position: [0, 0, isMobile ? 25 : 30], fov: isMobile ? 20 : 17.5, near: 10, far: 40 }} {...props} onCreated={({ gl }) => { gl.domElement.style.cursor = 'default' }}>
       <color attach="background" args={['white']} />
       {/* Lighting setup */}
       <ambientLight intensity={0.5} />
       <directionalLight position={[10, 10, 5]} intensity={1} castShadow />
       <directionalLight position={[-10, -10, -5]} intensity={0.5} />
       <pointLight position={[0, 10, 0]} intensity={0.8} />
-      <CenterModel />
-      <Physics /*debug*/ timeStep="vary" gravity={[0, 0, 0]}>
-        <Pointer />
-        {connectors.map((props, i) => (
-          <Sphere key={i} {...props} />
-        ))}
-      </Physics>
+      {/* Front-facing light for the logo with blue tint */}
+      <FrontSpotLight />
+      <pointLight position={[0, 0, 15]} intensity={2.5} color="#4060ff" />
+      {/* Blue tint lights around the logo */}
+      <pointLight position={[5, 0, 0]} intensity={1.5} color="#4060ff" />
+      <pointLight position={[-5, 0, 0]} intensity={1.5} color="#4060ff" />
+      <pointLight position={[0, 5, 0]} intensity={1.5} color="#4060ff" />
+      <pointLight position={[0, -5, 0]} intensity={1.5} color="#4060ff" />
+      {/* Additional lights for right and center areas */}
+      <pointLight position={[8, 0, 10]} intensity={2.5} color="#4060ff" />
+      <pointLight position={[10, 5, 5]} intensity={2} color="#4060ff" />
+      <pointLight position={[0, 0, 12]} intensity={3} color="#4060ff" />
+      <directionalLight position={[15, 0, 10]} intensity={1.5} color="#4060ff" />
+      <pointLight position={[6, 3, 8]} intensity={2} color="#4060ff" />
+      <KikiLogo />
       <Environment resolution={256}>
         <group rotation={[-Math.PI / 3, 0, 1]}>
           <Lightformer form="circle" intensity={100} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={2} />
@@ -72,18 +53,44 @@ export default function App(props) {
 
 // Shared model scale calculation (calculated once, cached)
 let cachedModelScale = null
-let cachedCenterModelScale = null
 let cachedCenterOffset = null
 
-function CenterModel() {
-  const { scene } = useGLTF(CENTER_MODEL_PATH)
+function FrontSpotLight() {
+  const lightRef = useRef()
+  useFrame(() => {
+    if (lightRef.current) {
+      lightRef.current.target.position.set(0, 0, 0)
+      lightRef.current.target.updateMatrixWorld()
+    }
+  })
+  return (
+    <spotLight
+      ref={lightRef}
+      position={[0, 0, 20]}
+      intensity={3}
+      angle={0.6}
+      penumbra={0.3}
+      color="#4060ff"
+    />
+  )
+}
+
+function KikiLogo() {
+  const { scene } = useGLTF(MODEL_PATH)
   const { viewport } = useThree()
-  const isMobile = viewport.width < 10 // Mobile viewport is typically smaller
+  const groupRef = useRef()
+  const scaleRef = useRef(0)
+  const startTimeRef = useRef(null)
+  const [isClicked, setIsClicked] = useState(false)
+  const [scaleDownStart, setScaleDownStart] = useState(null)
+  const hasNavigatedRef = useRef(false)
+  const navigate = useNavigate()
+  const isMobile = viewport.width < 10
   
-  // Calculate center model scale and center offset once and cache it
+  // Calculate model scale and center offset once and cache it
   const { modelScale, centerOffset } = useMemo(() => {
-    if (cachedCenterModelScale !== null) {
-      return { modelScale: cachedCenterModelScale, centerOffset: cachedCenterOffset }
+    if (cachedModelScale !== null) {
+      return { modelScale: cachedModelScale, centerOffset: cachedCenterOffset }
     }
     const box = new THREE.Box3().setFromObject(scene)
     const size = box.getSize(new THREE.Vector3())
@@ -91,67 +98,9 @@ function CenterModel() {
     box.getCenter(center)
     const maxSize = Math.max(size.x, size.y, size.z)
     // Scale to match original sphere size of 1
-    cachedCenterModelScale = maxSize > 0 ? 1 / maxSize : 1
-    cachedCenterOffset = center.clone().negate()
-    return { modelScale: cachedCenterModelScale, centerOffset: cachedCenterOffset }
-  }, [scene])
-  
-  // Adjust scale for mobile
-  const mobileScale = isMobile ? 0.4 : 1
-  
-  const clonedScene = useMemo(() => {
-    const cloned = scene.clone()
-    // Enable shadows and make materials shiny
-    cloned.traverse((child) => {
-      if (child.isMesh) {
-        child.castShadow = true
-        child.receiveShadow = true
-        const mat = child.material
-        if (mat) {
-          if (Array.isArray(mat)) {
-            mat.forEach((m) => {
-              if (m.isMeshStandardMaterial || m.isMeshPhysicalMaterial) {
-                m.metalness = Math.max(m.metalness || 0, 0.9)
-                m.roughness = Math.min(m.roughness || 0.5, 0.1)
-                m.needsUpdate = true
-              }
-            })
-          } else if (mat.isMeshStandardMaterial || mat.isMeshPhysicalMaterial) {
-            mat.metalness = Math.max(mat.metalness || 0, 0.9)
-            mat.roughness = Math.min(mat.roughness || 0.5, 0.1)
-            mat.needsUpdate = true
-          }
-        }
-      }
-    })
-    return cloned
-  }, [scene])
-  
-  return (
-    <group position={[0, 0, 0]} scale={modelScale * 8 * mobileScale}>
-      <group position={[centerOffset.x, centerOffset.y, centerOffset.z]}>
-        <primitive object={clonedScene} />
-      </group>
-    </group>
-  )
-}
-
-function Sphere({ position, children, vec = new THREE.Vector3(), scale, r = THREE.MathUtils.randFloatSpread, accent, color = 'white', ...props }) {
-  const api = useRef()
-  const groupRef = useRef()
-  const { scene } = useGLTF(MODEL_PATH)
-  const { viewport } = useThree()
-  const isMobile = viewport.width < 10 // Mobile viewport is typically smaller
-  
-  // Calculate model scale once and cache it
-  const modelScale = useMemo(() => {
-    if (cachedModelScale !== null) return cachedModelScale
-    const box = new THREE.Box3().setFromObject(scene)
-    const size = box.getSize(new THREE.Vector3())
-    const maxSize = Math.max(size.x, size.y, size.z)
-    // Scale to match original sphere size of 1
     cachedModelScale = maxSize > 0 ? 1 / maxSize : 1
-    return cachedModelScale
+    cachedCenterOffset = center.clone().negate()
+    return { modelScale: cachedModelScale, centerOffset: cachedCenterOffset }
   }, [scene])
   
   // Adjust scale for mobile
@@ -159,7 +108,7 @@ function Sphere({ position, children, vec = new THREE.Vector3(), scale, r = THRE
   
   const clonedScene = useMemo(() => {
     const cloned = scene.clone()
-    // Only enable shadows, preserve original materials; optionally tint if no texture map
+    // Only enable shadows, preserve original materials
     cloned.traverse((child) => {
       if (child.isMesh) {
         child.castShadow = true
@@ -176,56 +125,109 @@ function Sphere({ position, children, vec = new THREE.Vector3(), scale, r = THRE
     return cloned
   }, [scene])
   
-  const pos = useMemo(() => position || [r(10), r(10), r(10)], [])
-  const velocityRef = useRef(new THREE.Vector3(
-    r(0.5),
-    r(0.5),
-    r(0.5)
-  ))
-  
-  useFrame((state, delta) => {
-    delta = Math.min(0.1, delta)
-    if (api.current) {
-      // Increase interaction force for better responsiveness
-      api.current.applyImpulse(vec.copy(api.current.translation()).negate().multiplyScalar(0.5))
-      
-      // Add continuous floating movement
-      const time = state.clock.elapsedTime
-      const floatForce = new THREE.Vector3(
-        Math.sin(time * 0.5 + pos[0]) * 0.02,
-        Math.cos(time * 0.7 + pos[1]) * 0.02,
-        Math.sin(time * 0.6 + pos[2]) * 0.02
-      )
-      api.current.applyImpulse(floatForce)
+  // Animation: scale from 0 to 1, or scale down from 1 to 0 if clicked
+  useFrame((state) => {
+    if (isClicked && scaleDownStart === null) {
+      setScaleDownStart(state.clock.elapsedTime)
     }
-    // No color/material changes - preserve original materials
+    
+    if (isClicked && scaleDownStart !== null) {
+      // Scale down animation
+      const elapsed = state.clock.elapsedTime - scaleDownStart
+      const duration = 1 // 1 second
+      
+      if (elapsed < duration) {
+        const progress = elapsed / duration
+        // Reverse smooth step: from 1 to 0
+        scaleRef.current = 1 - (progress * progress * (3 - 2 * progress))
+      } else {
+        scaleRef.current = 0
+        // Navigate after animation completes (only once)
+        if (!hasNavigatedRef.current) {
+          hasNavigatedRef.current = true
+          setTimeout(() => {
+            navigate('/page2')
+          }, 100)
+        }
+      }
+    } else {
+      // Scale up animation (initial)
+      if (startTimeRef.current === null) {
+        startTimeRef.current = state.clock.elapsedTime
+      }
+      
+      const elapsed = state.clock.elapsedTime - startTimeRef.current
+      const duration = 2.5 // 2.5 seconds
+      
+      if (elapsed < duration) {
+        // Ease out animation
+        const progress = elapsed / duration
+        scaleRef.current = progress * progress * (3 - 2 * progress) // Smooth step interpolation
+      } else {
+        scaleRef.current = 1
+      }
+    }
+    
+    if (groupRef.current) {
+      groupRef.current.scale.setScalar(scaleRef.current)
+    }
   })
   
-  // Make flying logos bigger, adjust for mobile
-  const finalScale = (scale || 1) * modelScale * 2 * mobileScale
+  // Handle click
+  const handleClick = (e) => {
+    e.stopPropagation()
+    if (!isClicked) {
+      setIsClicked(true)
+    }
+  }
   
-  // Adjust collider size for mobile
-  const colliderSize = isMobile ? 0.8 : 2
+  const rotationGroupRef = useRef()
+  
+  // Gentle floating animation and mouse following
+  useFrame((state) => {
+    if (groupRef.current) {
+      const time = state.clock.elapsedTime
+      groupRef.current.position.y = Math.sin(time * 0.5) * 0.3
+    }
+    
+    // Make logo's face follow the mouse accurately across the screen (horizontal and vertical)
+    if (rotationGroupRef.current) {
+      const mouse = state.mouse
+      
+      // Convert mouse position to world coordinates for accurate following
+      const mouseX = mouse.x * viewport.width / 2
+      const mouseY = mouse.y * viewport.height / 2
+      
+      // Calculate direction vector from logo center to mouse position
+      const direction = new THREE.Vector3(mouseX, mouseY, 10).normalize()
+      
+      // Calculate Y rotation to face the mouse horizontally
+      const angleY = Math.atan2(direction.x, direction.z)
+      
+      // Calculate X rotation to follow mouse vertically (up and down)
+      // Tilt down by 5 degrees (-5 * Math.PI / 180) and add vertical following
+      const baseTilt = -5 * Math.PI / 180 // -5 degrees down
+      const verticalFollow = -Math.asin(direction.y) * 0.5 // Follow mouse up/down
+      const angleX = baseTilt + verticalFollow
+      
+      // Apply rotation with smooth following
+      rotationGroupRef.current.rotation.y = angleY
+      rotationGroupRef.current.rotation.x = angleX
+      rotationGroupRef.current.rotation.z = 0 // No Z rotation
+    }
+  })
+  
+  const finalScale = modelScale * 6 * mobileScale
   
   return (
-    <RigidBody linearDamping={4} angularDamping={1} friction={0.1} position={pos} ref={api} colliders={false}>
-      <BallCollider args={[colliderSize]} />
-      <group ref={groupRef} castShadow receiveShadow scale={finalScale}>
-        <primitive object={clonedScene} />
-        {children}
+    <group ref={groupRef} position={[0, 0, 0]} scale={0} rotation={[0, 0, 0]} onClick={handleClick} onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = 'pointer' }} onPointerOut={(e) => { e.stopPropagation(); document.body.style.cursor = 'default' }}>
+      <group ref={rotationGroupRef} scale={finalScale}>
+        <group rotation={[-Math.PI / 9, Math.PI / 3, 0]}>
+          <group position={[centerOffset.x, centerOffset.y, centerOffset.z]}>
+            <primitive object={clonedScene} />
+          </group>
+        </group>
       </group>
-    </RigidBody>
-  )
-}
-
-function Pointer({ vec = new THREE.Vector3() }) {
-  const ref = useRef()
-  const { viewport } = useThree()
-  const isMobile = viewport.width < 10
-  useFrame(({ mouse, viewport }) => ref.current?.setNextKinematicTranslation(vec.set((mouse.x * viewport.width) / 2, (mouse.y * viewport.height) / 2, 0)))
-  return (
-    <RigidBody position={[0, 0, 0]} type="kinematicPosition" colliders={false} ref={ref}>
-      <BallCollider args={[isMobile ? 1.2 : 3]} />
-    </RigidBody>
+    </group>
   )
 }
