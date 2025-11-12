@@ -15,7 +15,7 @@ export default function App(props) {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
   
   return (
-    <Canvas shadows dpr={[1, 1.5]} gl={{ antialias: false, outputColorSpace: THREE.SRGBColorSpace, toneMapping: THREE.ACESFilmicToneMapping }} camera={{ position: [0, 0, isMobile ? 25 : 30], fov: isMobile ? 20 : 17.5, near: 10, far: 40 }} {...props} onCreated={({ gl }) => { gl.domElement.style.cursor = 'default' }}>
+    <Canvas shadows dpr={[1, 1.5]} gl={{ antialias: false, outputColorSpace: THREE.SRGBColorSpace, toneMapping: THREE.ACESFilmicToneMapping }} camera={{ position: [0, 0, isMobile ? 25 : 30], fov: isMobile ? 20 : 17.5, near: 10, far: 40 }} {...props} onCreated={({ gl }) => { gl.domElement.style.cursor = 'default'; gl.domElement.style.touchAction = 'none' }}>
       <color attach="background" args={['white']} />
       {/* Lighting setup */}
       <ambientLight intensity={0.5} />
@@ -182,15 +182,17 @@ function KikiLogo() {
   }
   
   const rotationGroupRef = useRef()
+  const targetRotationY = useRef(0)
+  const targetRotationX = useRef(-5 * Math.PI / 180)
   
   // Gentle floating animation and mouse following
-  useFrame((state) => {
+  useFrame((state, delta) => {
     if (groupRef.current) {
       const time = state.clock.elapsedTime
       groupRef.current.position.y = Math.sin(time * 0.5) * 0.3
     }
     
-    // Make logo's face follow the mouse accurately across the screen (horizontal and vertical)
+    // Make logo's face follow the mouse/touch accurately across the screen (horizontal and vertical)
     if (rotationGroupRef.current) {
       const mouse = state.mouse
       
@@ -201,18 +203,23 @@ function KikiLogo() {
       // Calculate direction vector from logo center to mouse position
       const direction = new THREE.Vector3(mouseX, mouseY, 10).normalize()
       
-      // Calculate Y rotation to face the mouse horizontally
-      const angleY = Math.atan2(direction.x, direction.z)
+      // Calculate target Y rotation to face the mouse horizontally
+      const targetY = Math.atan2(direction.x, direction.z)
       
-      // Calculate X rotation to follow mouse vertically (up and down)
+      // Calculate target X rotation to follow mouse vertically (up and down)
       // Tilt down by 5 degrees (-5 * Math.PI / 180) and add vertical following
       const baseTilt = -5 * Math.PI / 180 // -5 degrees down
       const verticalFollow = -Math.asin(direction.y) * 0.5 // Follow mouse up/down
-      const angleX = baseTilt + verticalFollow
+      const targetX = baseTilt + verticalFollow
       
-      // Apply rotation with smooth following
-      rotationGroupRef.current.rotation.y = angleY
-      rotationGroupRef.current.rotation.x = angleX
+      // Smooth interpolation for mobile (lerp with delta time for consistent smoothing)
+      const lerpFactor = isMobile ? Math.min(delta * 8, 1) : Math.min(delta * 12, 1) // Faster smoothing on mobile
+      targetRotationY.current = THREE.MathUtils.lerp(targetRotationY.current, targetY, lerpFactor)
+      targetRotationX.current = THREE.MathUtils.lerp(targetRotationX.current, targetX, lerpFactor)
+      
+      // Apply smoothed rotation
+      rotationGroupRef.current.rotation.y = targetRotationY.current
+      rotationGroupRef.current.rotation.x = targetRotationX.current
       rotationGroupRef.current.rotation.z = 0 // No Z rotation
     }
   })
