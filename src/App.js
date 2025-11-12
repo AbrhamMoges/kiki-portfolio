@@ -15,7 +15,7 @@ export default function App(props) {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
   
   return (
-    <Canvas shadows dpr={[1, 1.5]} gl={{ antialias: false, outputColorSpace: THREE.SRGBColorSpace, toneMapping: THREE.ACESFilmicToneMapping }} camera={{ position: [0, 0, isMobile ? 25 : 30], fov: isMobile ? 20 : 17.5, near: 10, far: 40 }} {...props} onCreated={({ gl }) => { gl.domElement.style.cursor = 'default'; gl.domElement.style.touchAction = 'none' }}>
+    <Canvas shadows dpr={[1, 1.5]} gl={{ antialias: false, outputColorSpace: THREE.SRGBColorSpace, toneMapping: THREE.ACESFilmicToneMapping }} camera={{ position: [0, 0, isMobile ? 25 : 30], fov: isMobile ? 20 : 17.5, near: 10, far: 40 }} {...props} onCreated={({ gl }) => { gl.domElement.style.cursor = 'default'; gl.domElement.style.touchAction = 'none'; gl.domElement.style.userSelect = 'none'; gl.domElement.style.webkitUserSelect = 'none' }}>
       <color attach="background" args={['white']} />
       {/* Lighting setup */}
       <ambientLight intensity={0.5} />
@@ -192,28 +192,33 @@ function KikiLogo() {
       groupRef.current.position.y = Math.sin(time * 0.5) * 0.3
     }
     
-    // Make logo's face follow the mouse/touch accurately across the screen (horizontal and vertical)
+    // Make logo's face follow the mouse/touch accurately across the entire screen (left to right, top to bottom)
     if (rotationGroupRef.current) {
       const mouse = state.mouse
       
-      // Convert mouse position to world coordinates for accurate following
-      const mouseX = mouse.x * viewport.width / 2
-      const mouseY = mouse.y * viewport.height / 2
+      // Use full viewport range for accurate following across entire screen
+      // Map mouse position (-1 to 1) to full viewport range
+      const mouseX = mouse.x * (viewport.width / 2)
+      const mouseY = mouse.y * (viewport.height / 2)
       
-      // Calculate direction vector from logo center to mouse position
-      const direction = new THREE.Vector3(mouseX, mouseY, 10).normalize()
+      // Calculate direction vector from logo center to mouse/touch position
+      // Use a closer Z distance for more responsive following
+      const zDistance = isMobile ? 8 : 10
+      const direction = new THREE.Vector3(mouseX, mouseY, zDistance).normalize()
       
-      // Calculate target Y rotation to face the mouse horizontally
+      // Calculate target Y rotation to face the mouse horizontally (full left to right range)
       const targetY = Math.atan2(direction.x, direction.z)
       
-      // Calculate target X rotation to follow mouse vertically (up and down)
+      // Calculate target X rotation to follow mouse vertically (full top to bottom range)
       // Tilt down by 5 degrees (-5 * Math.PI / 180) and add vertical following
       const baseTilt = -5 * Math.PI / 180 // -5 degrees down
-      const verticalFollow = -Math.asin(direction.y) * 0.5 // Follow mouse up/down
+      // Increase vertical follow sensitivity for better top to bottom tracking
+      const verticalFollow = -Math.asin(direction.y) * (isMobile ? 0.7 : 0.5)
       const targetX = baseTilt + verticalFollow
       
-      // Smooth interpolation for mobile (lerp with delta time for consistent smoothing)
-      const lerpFactor = isMobile ? Math.min(delta * 8, 1) : Math.min(delta * 12, 1) // Faster smoothing on mobile
+      // Smooth interpolation optimized for mobile touch following
+      // More responsive on mobile for better touch tracking
+      const lerpFactor = isMobile ? Math.min(delta * 10, 1) : Math.min(delta * 12, 1)
       targetRotationY.current = THREE.MathUtils.lerp(targetRotationY.current, targetY, lerpFactor)
       targetRotationX.current = THREE.MathUtils.lerp(targetRotationX.current, targetX, lerpFactor)
       
