@@ -26,8 +26,8 @@ function KalkidaneModel({ isMobile, opacity, onHover }) {
     const maxSize = Math.max(size.x, size.y, size.z)
     // Base scale to normalize the model
     const baseScale = maxSize > 0 ? 1 / maxSize : 1
-    // Scale to match About.PNG visual size, plus 5 inches bigger (desktop) or match mobile size (mobile)
-    const visualScale = isMobile ? 1.5 : 5.5
+    // Scale to match About.PNG visual size, plus 5 inches bigger
+    const visualScale = isMobile ? 4.5 : 5.5
     return { 
       modelScale: baseScale * visualScale, 
       centerOffset: center.clone().negate() 
@@ -187,222 +187,123 @@ export default function Page2Home(props) {
       {/* Header section with logo */}
       <header style={{
         width: '100%',
-        padding: isMobile ? '0px 10px' : '0px 40px',
+        padding: isMobile ? '0px 20px' : '0px 40px',
         paddingTop: isMobile ? '0px' : '0px',
         marginTop: isMobile ? '-24px' : '-24px',
         display: 'flex',
-        justifyContent: isMobile ? 'space-evenly' : 'space-between',
+        justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: 'white',
         position: 'relative',
         zIndex: 10,
-        boxSizing: 'border-box',
-        flexWrap: isMobile ? 'nowrap' : 'nowrap'
+        boxSizing: 'border-box'
       }}>
-        {isMobile ? (
-          /* Mobile: All 4 elements evenly spaced */
-          <>
-            {/* KALKIDANE.glb */}
-            <div style={{
-              width: '60px',
-              height: '60px',
-              position: 'relative',
+        {/* Left: KALKIDANE.glb */}
+        <div style={{ 
+          flex: 1, 
+          display: 'flex', 
+          justifyContent: 'flex-start', 
+          alignItems: 'center',
+          paddingLeft: '0px',
+          opacity: opacity,
+          transition: 'opacity 2s ease-in-out'
+        }}>
+          <div style={{
+            width: isMobile ? '102px' : '152px',
+            height: isMobile ? '102px' : '152px',
+            position: 'relative',
+            marginTop: '-48px',
+            marginLeft: '-24px',
+            cursor: 'pointer'
+          }}>
+            <Canvas
+              camera={{ position: [0, 0, 8], fov: 50, near: 0.1, far: 100 }}
+              gl={{ antialias: true, outputColorSpace: THREE.SRGBColorSpace }}
+              style={{ width: '100%', height: '100%', background: 'transparent' }}
+            >
+              <color attach="background" args={['transparent']} />
+              <ambientLight intensity={1} />
+              <KalkidaneModel isMobile={isMobile} opacity={opacity} />
+            </Canvas>
+          </div>
+        </div>
+        
+        {/* Center: Kstaura Logo */}
+        <img 
+          src="/Kstaura Black logo.png" 
+          alt="Kstaura Logo" 
+          onError={(e) => {
+            console.error('Image failed to load:', e.target.src);
+            e.target.style.border = '2px solid red';
+          }}
+          onLoad={() => console.log('Image loaded successfully')}
+          style={{ 
+            maxWidth: isMobile ? '126px' : '176px', 
+            width: isMobile ? '50%' : 'auto',
+            minWidth: isMobile ? '76px' : '150px',
+            height: 'auto',
+            objectFit: 'contain',
+            opacity: opacity,
+            transition: 'opacity 2s ease-in-out',
+            display: 'block'
+          }} 
+        />
+        
+        {/* Right: About.PNG and Contact.PNG */}
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: isMobile ? '10px' : '20px', paddingRight: isMobile ? '0px' : '20px' }}>
+          <img 
+            src="/About.PNG" 
+            alt="About" 
+            onError={(e) => {
+              console.error('Image failed to load:', e.target.src);
+              e.target.style.border = '2px solid red';
+            }}
+            onLoad={() => console.log('About image loaded successfully')}
+            onMouseEnter={() => setIsAboutHovered(true)}
+            onMouseLeave={() => setIsAboutHovered(false)}
+            onTouchStart={() => setIsAboutHovered(true)}
+            onTouchEnd={() => setIsAboutHovered(false)}
+            style={{ 
+              maxWidth: isMobile ? '102px' : '152px', 
+              width: isMobile ? '50%' : 'auto',
+              minWidth: isMobile ? '52px' : '102px',
+              height: 'auto',
+              objectFit: 'contain',
               opacity: opacity,
-              transition: 'opacity 2s ease-in-out',
-              cursor: 'pointer',
-              flex: '0 0 auto'
-            }}>
-              <Canvas
-                camera={{ position: [0, 0, 8], fov: 50, near: 0.1, far: 100 }}
-                gl={{ antialias: true, outputColorSpace: THREE.SRGBColorSpace }}
-                style={{ width: '100%', height: '100%', background: 'transparent' }}
-              >
-                <color attach="background" args={['transparent']} />
-                <ambientLight intensity={1} />
-                <KalkidaneModel isMobile={isMobile} opacity={opacity} />
-              </Canvas>
-            </div>
-            
-            {/* Kiki Logo 2.glb */}
-            <div style={{
-              width: '60px',
-              height: '60px',
-              position: 'relative',
+              transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
+              transform: `scale(${isAboutHovered ? 1.3 : 1})`,
+              display: 'block',
+              marginTop: '-48px',
+              cursor: 'pointer'
+            }} 
+          />
+          <img 
+            src="/Contact.PNG" 
+            alt="Contact" 
+            onError={(e) => {
+              console.error('Image failed to load:', e.target.src);
+              e.target.style.border = '2px solid red';
+            }}
+            onLoad={() => console.log('Contact image loaded successfully')}
+            onMouseEnter={() => setIsContactHovered(true)}
+            onMouseLeave={() => setIsContactHovered(false)}
+            onTouchStart={() => setIsContactHovered(true)}
+            onTouchEnd={() => setIsContactHovered(false)}
+            style={{ 
+              maxWidth: isMobile ? '102px' : '152px', 
+              width: isMobile ? '50%' : 'auto',
+              minWidth: isMobile ? '52px' : '102px',
+              height: 'auto',
+              objectFit: 'contain',
               opacity: opacity,
-              transition: 'opacity 2s ease-in-out',
-              cursor: 'pointer',
-              flex: '0 0 auto'
-            }}>
-              <Canvas
-                camera={{ position: [0, 0, 8], fov: 50, near: 0.1, far: 100 }}
-                gl={{ antialias: true, outputColorSpace: THREE.SRGBColorSpace }}
-                style={{ width: '100%', height: '100%', background: 'transparent' }}
-              >
-                <color attach="background" args={['transparent']} />
-                <ambientLight intensity={1} />
-                <KikiLogoModel isMobile={isMobile} opacity={opacity} />
-              </Canvas>
-            </div>
-            
-            {/* About.PNG */}
-            <img 
-              src="/About.PNG" 
-              alt="About" 
-              onError={(e) => {
-                console.error('Image failed to load:', e.target.src);
-                e.target.style.border = '2px solid red';
-              }}
-              onLoad={() => console.log('About image loaded successfully')}
-              onMouseEnter={() => setIsAboutHovered(true)}
-              onMouseLeave={() => setIsAboutHovered(false)}
-              onTouchStart={() => setIsAboutHovered(true)}
-              onTouchEnd={() => setIsAboutHovered(false)}
-              style={{ 
-                width: '60px',
-                height: '60px',
-                objectFit: 'contain',
-                opacity: opacity,
-                transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
-                transform: `scale(${isAboutHovered ? 1.3 : 1})`,
-                display: 'block',
-                cursor: 'pointer',
-                flex: '0 0 auto'
-              }} 
-            />
-            
-            {/* Contact.PNG */}
-            <img 
-              src="/Contact.PNG" 
-              alt="Contact" 
-              onError={(e) => {
-                console.error('Image failed to load:', e.target.src);
-                e.target.style.border = '2px solid red';
-              }}
-              onLoad={() => console.log('Contact image loaded successfully')}
-              onMouseEnter={() => setIsContactHovered(true)}
-              onMouseLeave={() => setIsContactHovered(false)}
-              onTouchStart={() => setIsContactHovered(true)}
-              onTouchEnd={() => setIsContactHovered(false)}
-              style={{ 
-                width: '60px',
-                height: '60px',
-                objectFit: 'contain',
-                opacity: opacity,
-                transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
-                transform: `scale(${isContactHovered ? 1.3 : 1})`,
-                display: 'block',
-                cursor: 'pointer',
-                flex: '0 0 auto'
-              }} 
-            />
-          </>
-        ) : (
-          /* Desktop: Original layout */
-          <>
-            {/* Left: KALKIDANE.glb */}
-            <div style={{ 
-              flex: 1, 
-              display: 'flex', 
-              justifyContent: 'flex-start', 
-              alignItems: 'center',
-              paddingLeft: '0px',
-              opacity: opacity,
-              transition: 'opacity 2s ease-in-out'
-            }}>
-              <div style={{
-                width: '152px',
-                height: '152px',
-                position: 'relative',
-                marginTop: '-48px',
-                marginLeft: '-24px',
-                cursor: 'pointer'
-              }}>
-                <Canvas
-                  camera={{ position: [0, 0, 8], fov: 50, near: 0.1, far: 100 }}
-                  gl={{ antialias: true, outputColorSpace: THREE.SRGBColorSpace }}
-                  style={{ width: '100%', height: '100%', background: 'transparent' }}
-                >
-                  <color attach="background" args={['transparent']} />
-                  <ambientLight intensity={1} />
-                  <KalkidaneModel isMobile={isMobile} opacity={opacity} />
-                </Canvas>
-              </div>
-            </div>
-            
-            {/* Center: Kstaura Logo */}
-            <img 
-              src="/Kstaura Black logo.png" 
-              alt="Kstaura Logo" 
-              onError={(e) => {
-                console.error('Image failed to load:', e.target.src);
-                e.target.style.border = '2px solid red';
-              }}
-              onLoad={() => console.log('Image loaded successfully')}
-              style={{ 
-                maxWidth: '176px', 
-                width: 'auto',
-                minWidth: '150px',
-                height: 'auto',
-                objectFit: 'contain',
-                opacity: opacity,
-                transition: 'opacity 2s ease-in-out',
-                display: 'block'
-              }} 
-            />
-            
-            {/* Right: About.PNG and Contact.PNG */}
-            <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '20px', paddingRight: '20px' }}>
-              <img 
-                src="/About.PNG" 
-                alt="About" 
-                onError={(e) => {
-                  console.error('Image failed to load:', e.target.src);
-                  e.target.style.border = '2px solid red';
-                }}
-                onLoad={() => console.log('About image loaded successfully')}
-                onMouseEnter={() => setIsAboutHovered(true)}
-                onMouseLeave={() => setIsAboutHovered(false)}
-                style={{ 
-                  maxWidth: '152px', 
-                  width: 'auto',
-                  minWidth: '102px',
-                  height: 'auto',
-                  objectFit: 'contain',
-                  opacity: opacity,
-                  transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
-                  transform: `scale(${isAboutHovered ? 1.3 : 1})`,
-                  display: 'block',
-                  marginTop: '-48px',
-                  cursor: 'pointer'
-                }} 
-              />
-              <img 
-                src="/Contact.PNG" 
-                alt="Contact" 
-                onError={(e) => {
-                  console.error('Image failed to load:', e.target.src);
-                  e.target.style.border = '2px solid red';
-                }}
-                onLoad={() => console.log('Contact image loaded successfully')}
-                onMouseEnter={() => setIsContactHovered(true)}
-                onMouseLeave={() => setIsContactHovered(false)}
-                style={{ 
-                  maxWidth: '152px', 
-                  width: 'auto',
-                  minWidth: '102px',
-                  height: 'auto',
-                  objectFit: 'contain',
-                  opacity: opacity,
-                  transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
-                  transform: `scale(${isContactHovered ? 1.3 : 1})`,
-                  display: 'block',
-                  marginTop: '-48px',
-                  cursor: 'pointer'
-                }} 
-              />
-            </div>
-          </>
-        )}
+              transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
+              transform: `scale(${isContactHovered ? 1.3 : 1})`,
+              display: 'block',
+              marginTop: '-48px',
+              cursor: 'pointer'
+            }} 
+          />
+        </div>
       </header>
     </div>
   )
