@@ -157,6 +157,8 @@ export default function Page2Home(props) {
   const [isMobile, setIsMobile] = useState(false)
   const [isAboutHovered, setIsAboutHovered] = useState(false)
   const [isContactHovered, setIsContactHovered] = useState(false)
+  const [horizontalOffset, setHorizontalOffset] = useState(0)
+  const imagesContainerRef = useRef(null)
   
   useEffect(() => {
     // Check if mobile on mount and window resize
@@ -172,19 +174,48 @@ export default function Page2Home(props) {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
   
+  useEffect(() => {
+    // Convert vertical scroll to horizontal movement for images
+    const handleScroll = () => {
+      const scrollY = window.scrollY || window.pageYOffset
+      // Convert vertical scroll to horizontal offset
+      // Adjust the multiplier to control scroll sensitivity
+      const offset = scrollY * 1.5
+      setHorizontalOffset(offset)
+    }
+    
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+  
   return (
-    <div style={{ 
-      width: '100%', 
-      height: '100vh', 
-      minHeight: '100vh',
-      backgroundColor: 'white', 
-      display: 'flex', 
-      flexDirection: 'column', 
-      position: 'relative',
-      overflow: 'visible',
-      boxSizing: 'border-box'
-    }}>
-      {/* Header section with logo */}
+    <>
+      {/* Fixed background */}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'white',
+        zIndex: 0,
+        pointerEvents: 'none'
+      }} />
+      <div style={{ 
+        width: '100%', 
+        minHeight: '300vh', // Make page scrollable
+        backgroundColor: 'transparent', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        position: 'relative',
+        zIndex: 1,
+        boxSizing: 'border-box'
+      }}>
+      {/* Header section with logo - Fixed in place */}
       <header style={{
         width: '100%',
         padding: isMobile ? '0px 20px' : '0px 40px',
@@ -194,7 +225,10 @@ export default function Page2Home(props) {
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: 'white',
-        position: 'relative',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
         zIndex: 10,
         boxSizing: 'border-box'
       }}>
@@ -305,6 +339,100 @@ export default function Page2Home(props) {
           />
         </div>
       </header>
-    </div>
+      
+      {/* Images Section Below Header - Moves horizontally with scroll */}
+      <div 
+        ref={imagesContainerRef}
+        style={{
+          position: 'fixed',
+          top: isMobile ? '120px' : '140px',
+          left: 0,
+          right: 0,
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: isMobile ? '10px' : '20px',
+          padding: isMobile ? '20px 10px' : '40px 20px',
+          opacity: opacity,
+          transition: 'opacity 2s ease-in-out',
+          flexWrap: 'nowrap',
+          boxSizing: 'border-box',
+          transform: `translateX(${horizontalOffset}px) translateY(0)`,
+          willChange: 'transform',
+          zIndex: 5
+        }}
+      >
+        <img 
+          src="/Writing Cover.jpg" 
+          alt="Writing Cover" 
+          onError={(e) => {
+            console.error('Image failed to load:', e.target.src);
+            e.target.style.border = '2px solid red';
+          }}
+          onLoad={() => console.log('Writing Cover loaded successfully')}
+          style={{ 
+            width: isMobile ? '30%' : 'auto',
+            maxWidth: isMobile ? 'none' : '500px',
+            height: 'auto',
+            objectFit: 'cover',
+            display: 'block',
+            flex: '1 1 0'
+          }} 
+        />
+        <img 
+          src="/Photography Cover.jpg" 
+          alt="Photography Cover" 
+          onError={(e) => {
+            console.error('Image failed to load:', e.target.src);
+            e.target.style.border = '2px solid red';
+          }}
+          onLoad={() => console.log('Photography Cover loaded successfully')}
+          style={{ 
+            width: isMobile ? '30%' : 'auto',
+            maxWidth: isMobile ? 'none' : '500px',
+            height: 'auto',
+            objectFit: 'cover',
+            display: 'block',
+            flex: '1 1 0'
+          }} 
+        />
+        <img 
+          src="/k star logo white.jpg" 
+          alt="K Star Logo" 
+          onError={(e) => {
+            console.error('Image failed to load:', e.target.src);
+            e.target.style.border = '2px solid red';
+          }}
+          onLoad={() => console.log('K star logo loaded successfully')}
+          style={{ 
+            width: isMobile ? '30%' : 'auto',
+            maxWidth: isMobile ? 'none' : '500px',
+            height: 'auto',
+            objectFit: 'cover',
+            display: 'block',
+            flex: '1 1 0'
+          }} 
+        />
+        <img 
+          src="/About me cover.jpg" 
+          alt="About me Cover" 
+          onError={(e) => {
+            console.error('Image failed to load:', e.target.src);
+            e.target.style.border = '2px solid red';
+          }}
+          onLoad={() => console.log('About me cover loaded successfully')}
+          style={{ 
+            width: isMobile ? '30%' : 'auto',
+            maxWidth: isMobile ? 'none' : '500px',
+            height: 'auto',
+            objectFit: 'cover',
+            display: 'block',
+            flex: '1 1 0'
+          }} 
+        />
+      </div>
+      </div>
+    </>
   )
 }
