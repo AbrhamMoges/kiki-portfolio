@@ -37,67 +37,57 @@ export default function App(props) {
       <directionalLight position={[15, 0, 10]} intensity={1.5} color="#4060ff" />
       <pointLight position={[6, 3, 8]} intensity={2} color="#4060ff" />
       <KikiLogo />
-      {/* 50 small kiki logos orbiting around the big one like planets */}
-      {/* Inner orbit - XY plane (12 logos, evenly spaced) */}
-      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={0} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={Math.PI / 6} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={Math.PI / 3} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={Math.PI / 2} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={2 * Math.PI / 3} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={5 * Math.PI / 6} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={Math.PI} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={7 * Math.PI / 6} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={4 * Math.PI / 3} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={3 * Math.PI / 2} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={5 * Math.PI / 3} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={11 * Math.PI / 6} orbitPlane="xy" />
-      
-      {/* Middle orbit - XZ plane (12 logos, evenly spaced) */}
-      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={0} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={Math.PI / 6} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={Math.PI / 3} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={Math.PI / 2} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={2 * Math.PI / 3} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={5 * Math.PI / 6} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={Math.PI} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={7 * Math.PI / 6} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={4 * Math.PI / 3} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={3 * Math.PI / 2} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={5 * Math.PI / 3} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={11 * Math.PI / 6} orbitPlane="xz" />
-      
-      {/* Outer orbit - YZ plane (12 logos, evenly spaced) */}
-      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={0} orbitPlane="yz" />
-      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={Math.PI / 6} orbitPlane="yz" />
-      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={Math.PI / 3} orbitPlane="yz" />
-      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={Math.PI / 2} orbitPlane="yz" />
-      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={2 * Math.PI / 3} orbitPlane="yz" />
-      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={5 * Math.PI / 6} orbitPlane="yz" />
-      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={Math.PI} orbitPlane="yz" />
-      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={7 * Math.PI / 6} orbitPlane="yz" />
-      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={4 * Math.PI / 3} orbitPlane="yz" />
-      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={3 * Math.PI / 2} orbitPlane="yz" />
-      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={5 * Math.PI / 3} orbitPlane="yz" />
-      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={11 * Math.PI / 6} orbitPlane="yz" />
-      
-      {/* Additional orbits to reach viewport corners (14 logos) */}
-      {/* Diagonal orbit - XY plane at 45 degrees (7 logos) */}
-      <FloatingKikiLogo orbitRadius={18} orbitSpeed={0.05} orbitAngle={0} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={18} orbitSpeed={0.05} orbitAngle={2 * Math.PI / 7} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={18} orbitSpeed={0.05} orbitAngle={4 * Math.PI / 7} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={18} orbitSpeed={0.05} orbitAngle={6 * Math.PI / 7} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={18} orbitSpeed={0.05} orbitAngle={8 * Math.PI / 7} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={18} orbitSpeed={0.05} orbitAngle={10 * Math.PI / 7} orbitPlane="xy" />
-      <FloatingKikiLogo orbitRadius={18} orbitSpeed={0.05} orbitAngle={12 * Math.PI / 7} orbitPlane="xy" />
-      
-      {/* Corner-reaching orbit - XZ plane (7 logos) */}
-      <FloatingKikiLogo orbitRadius={20} orbitSpeed={0.04} orbitAngle={0} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={20} orbitSpeed={0.04} orbitAngle={2 * Math.PI / 7} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={20} orbitSpeed={0.04} orbitAngle={4 * Math.PI / 7} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={20} orbitSpeed={0.04} orbitAngle={6 * Math.PI / 7} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={20} orbitSpeed={0.04} orbitAngle={8 * Math.PI / 7} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={20} orbitSpeed={0.04} orbitAngle={10 * Math.PI / 7} orbitPlane="xz" />
-      <FloatingKikiLogo orbitRadius={20} orbitSpeed={0.04} orbitAngle={12 * Math.PI / 7} orbitPlane="xz" />
+      {/* 50 small kiki logos bouncing around the screen in different directions */}
+      <FloatingKikiLogo initialPosition={[3, 3, 0]} id={0} />
+      <FloatingKikiLogo initialPosition={[-3, 3, 0]} id={1} />
+      <FloatingKikiLogo initialPosition={[3, -3, 0]} id={2} />
+      <FloatingKikiLogo initialPosition={[-3, -3, 0]} id={3} />
+      <FloatingKikiLogo initialPosition={[4, 0, 0]} id={4} />
+      <FloatingKikiLogo initialPosition={[-4, 0, 0]} id={5} />
+      <FloatingKikiLogo initialPosition={[0, 4, 0]} id={6} />
+      <FloatingKikiLogo initialPosition={[0, -4, 0]} id={7} />
+      <FloatingKikiLogo initialPosition={[5, 2, 0]} id={8} />
+      <FloatingKikiLogo initialPosition={[-5, 2, 0]} id={9} />
+      <FloatingKikiLogo initialPosition={[5, -2, 0]} id={10} />
+      <FloatingKikiLogo initialPosition={[-5, -2, 0]} id={11} />
+      <FloatingKikiLogo initialPosition={[2, 5, 0]} id={12} />
+      <FloatingKikiLogo initialPosition={[-2, 5, 0]} id={13} />
+      <FloatingKikiLogo initialPosition={[2, -5, 0]} id={14} />
+      <FloatingKikiLogo initialPosition={[-2, -5, 0]} id={15} />
+      <FloatingKikiLogo initialPosition={[6, 0, 0]} id={16} />
+      <FloatingKikiLogo initialPosition={[-6, 0, 0]} id={17} />
+      <FloatingKikiLogo initialPosition={[0, 6, 0]} id={18} />
+      <FloatingKikiLogo initialPosition={[0, -6, 0]} id={19} />
+      <FloatingKikiLogo initialPosition={[4, 3, 0]} id={20} />
+      <FloatingKikiLogo initialPosition={[-4, 3, 0]} id={21} />
+      <FloatingKikiLogo initialPosition={[4, -3, 0]} id={22} />
+      <FloatingKikiLogo initialPosition={[-4, -3, 0]} id={23} />
+      <FloatingKikiLogo initialPosition={[3, 4, 0]} id={24} />
+      <FloatingKikiLogo initialPosition={[-3, 4, 0]} id={25} />
+      <FloatingKikiLogo initialPosition={[3, -4, 0]} id={26} />
+      <FloatingKikiLogo initialPosition={[-3, -4, 0]} id={27} />
+      <FloatingKikiLogo initialPosition={[7, 1, 0]} id={28} />
+      <FloatingKikiLogo initialPosition={[-7, 1, 0]} id={29} />
+      <FloatingKikiLogo initialPosition={[7, -1, 0]} id={30} />
+      <FloatingKikiLogo initialPosition={[-7, -1, 0]} id={31} />
+      <FloatingKikiLogo initialPosition={[1, 7, 0]} id={32} />
+      <FloatingKikiLogo initialPosition={[-1, 7, 0]} id={33} />
+      <FloatingKikiLogo initialPosition={[1, -7, 0]} id={34} />
+      <FloatingKikiLogo initialPosition={[-1, -7, 0]} id={35} />
+      <FloatingKikiLogo initialPosition={[5, 4, 0]} id={36} />
+      <FloatingKikiLogo initialPosition={[-5, 4, 0]} id={37} />
+      <FloatingKikiLogo initialPosition={[5, -4, 0]} id={38} />
+      <FloatingKikiLogo initialPosition={[-5, -4, 0]} id={39} />
+      <FloatingKikiLogo initialPosition={[4, 5, 0]} id={40} />
+      <FloatingKikiLogo initialPosition={[-4, 5, 0]} id={41} />
+      <FloatingKikiLogo initialPosition={[4, -5, 0]} id={42} />
+      <FloatingKikiLogo initialPosition={[-4, -5, 0]} id={43} />
+      <FloatingKikiLogo initialPosition={[6, 3, 0]} id={44} />
+      <FloatingKikiLogo initialPosition={[-6, 3, 0]} id={45} />
+      <FloatingKikiLogo initialPosition={[6, -3, 0]} id={46} />
+      <FloatingKikiLogo initialPosition={[-6, -3, 0]} id={47} />
+      <FloatingKikiLogo initialPosition={[3, 6, 0]} id={48} />
+      <FloatingKikiLogo initialPosition={[-3, 6, 0]} id={49} />
       <Environment resolution={256}>
         <group rotation={[-Math.PI / 3, 0, 1]}>
           <Lightformer form="circle" intensity={100} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={2} />
@@ -300,18 +290,24 @@ function KikiLogo() {
   )
 }
 
-// Floating Kiki Logo component - orbiting around center like planets
-function FloatingKikiLogo({ position, orbitRadius, orbitSpeed, orbitAngle, orbitPlane }) {
+// Floating Kiki Logo component - bouncing around the screen
+function FloatingKikiLogo({ initialPosition, id }) {
   const { scene } = useGLTF(MODEL_PATH)
   const { viewport } = useThree()
   const groupRef = useRef()
+  const positionRef = useRef(new THREE.Vector3(...initialPosition))
+  const velocityRef = useRef(new THREE.Vector3(
+    (Math.random() - 0.5) * 0.03, // Random X velocity
+    (Math.random() - 0.5) * 0.03, // Random Y velocity
+    0 // No Z movement
+  ))
   const isMobile = viewport.width < 10
   
   // Use cached scale values or calculate if not ready
   const modelScale = cachedModelScale || 1
   const centerOffset = cachedCenterOffset || new THREE.Vector3(0, 0, 0)
   
-  // Smaller scale for orbiting logos - even smaller
+  // Smaller scale for bouncing logos - even smaller
   const mobileScale = isMobile ? 0.1 : 0.2
   const finalScale = modelScale * 3 * mobileScale
   
@@ -333,35 +329,35 @@ function FloatingKikiLogo({ position, orbitRadius, orbitSpeed, orbitAngle, orbit
     return cloned
   }, [scene])
   
-  // Orbital motion - slow planet-like orbiting
-  useFrame((state) => {
+  // Bouncing motion - different directions, bounce off viewport edges
+  useFrame((state, delta) => {
     if (groupRef.current) {
-      const time = state.clock.elapsedTime
-      // Slow orbital speed
-      const angle = orbitAngle + (time * orbitSpeed)
+      const pos = positionRef.current
+      const vel = velocityRef.current
       
-      // Calculate orbital position based on plane
-      // orbitPlane: 'xy', 'xz', or 'yz'
-      let x = 0, y = 0, z = 0
+      // Update position based on velocity
+      pos.x += vel.x * delta * 10
+      pos.y += vel.y * delta * 10
       
-      if (orbitPlane === 'xy') {
-        // Orbit in XY plane (horizontal circle)
-        x = Math.cos(angle) * orbitRadius
-        y = Math.sin(angle) * orbitRadius
-        z = 0
-      } else if (orbitPlane === 'xz') {
-        // Orbit in XZ plane (front/back circle)
-        x = Math.cos(angle) * orbitRadius
-        y = 0
-        z = Math.sin(angle) * orbitRadius
-      } else if (orbitPlane === 'yz') {
-        // Orbit in YZ plane (vertical circle)
-        x = 0
-        y = Math.cos(angle) * orbitRadius
-        z = Math.sin(angle) * orbitRadius
+      // Viewport boundaries (adjusted for camera view)
+      // Camera is at z=30, fov=17.5, so viewport width/height in world units
+      const boundaryX = viewport.width / 2
+      const boundaryY = viewport.height / 2
+      
+      // Bounce off horizontal edges
+      if (Math.abs(pos.x) > boundaryX) {
+        vel.x *= -1 // Reverse X velocity
+        pos.x = Math.sign(pos.x) * boundaryX // Clamp to boundary
       }
       
-      groupRef.current.position.set(x, y, z)
+      // Bounce off vertical edges
+      if (Math.abs(pos.y) > boundaryY) {
+        vel.y *= -1 // Reverse Y velocity
+        pos.y = Math.sign(pos.y) * boundaryY // Clamp to boundary
+      }
+      
+      // Update the actual position
+      groupRef.current.position.set(pos.x, pos.y, 0)
     }
   })
   
