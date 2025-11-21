@@ -37,6 +37,67 @@ export default function App(props) {
       <directionalLight position={[15, 0, 10]} intensity={1.5} color="#4060ff" />
       <pointLight position={[6, 3, 8]} intensity={2} color="#4060ff" />
       <KikiLogo />
+      {/* 50 small kiki logos orbiting around the big one like planets */}
+      {/* Inner orbit - XY plane (12 logos, evenly spaced) */}
+      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={0} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={Math.PI / 6} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={Math.PI / 3} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={Math.PI / 2} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={2 * Math.PI / 3} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={5 * Math.PI / 6} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={Math.PI} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={7 * Math.PI / 6} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={4 * Math.PI / 3} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={3 * Math.PI / 2} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={5 * Math.PI / 3} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={8} orbitSpeed={0.1} orbitAngle={11 * Math.PI / 6} orbitPlane="xy" />
+      
+      {/* Middle orbit - XZ plane (12 logos, evenly spaced) */}
+      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={0} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={Math.PI / 6} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={Math.PI / 3} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={Math.PI / 2} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={2 * Math.PI / 3} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={5 * Math.PI / 6} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={Math.PI} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={7 * Math.PI / 6} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={4 * Math.PI / 3} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={3 * Math.PI / 2} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={5 * Math.PI / 3} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={12} orbitSpeed={0.08} orbitAngle={11 * Math.PI / 6} orbitPlane="xz" />
+      
+      {/* Outer orbit - YZ plane (12 logos, evenly spaced) */}
+      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={0} orbitPlane="yz" />
+      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={Math.PI / 6} orbitPlane="yz" />
+      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={Math.PI / 3} orbitPlane="yz" />
+      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={Math.PI / 2} orbitPlane="yz" />
+      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={2 * Math.PI / 3} orbitPlane="yz" />
+      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={5 * Math.PI / 6} orbitPlane="yz" />
+      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={Math.PI} orbitPlane="yz" />
+      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={7 * Math.PI / 6} orbitPlane="yz" />
+      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={4 * Math.PI / 3} orbitPlane="yz" />
+      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={3 * Math.PI / 2} orbitPlane="yz" />
+      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={5 * Math.PI / 3} orbitPlane="yz" />
+      <FloatingKikiLogo orbitRadius={16} orbitSpeed={0.06} orbitAngle={11 * Math.PI / 6} orbitPlane="yz" />
+      
+      {/* Additional orbits to reach viewport corners (14 logos) */}
+      {/* Diagonal orbit - XY plane at 45 degrees (7 logos) */}
+      <FloatingKikiLogo orbitRadius={18} orbitSpeed={0.05} orbitAngle={0} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={18} orbitSpeed={0.05} orbitAngle={2 * Math.PI / 7} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={18} orbitSpeed={0.05} orbitAngle={4 * Math.PI / 7} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={18} orbitSpeed={0.05} orbitAngle={6 * Math.PI / 7} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={18} orbitSpeed={0.05} orbitAngle={8 * Math.PI / 7} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={18} orbitSpeed={0.05} orbitAngle={10 * Math.PI / 7} orbitPlane="xy" />
+      <FloatingKikiLogo orbitRadius={18} orbitSpeed={0.05} orbitAngle={12 * Math.PI / 7} orbitPlane="xy" />
+      
+      {/* Corner-reaching orbit - XZ plane (7 logos) */}
+      <FloatingKikiLogo orbitRadius={20} orbitSpeed={0.04} orbitAngle={0} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={20} orbitSpeed={0.04} orbitAngle={2 * Math.PI / 7} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={20} orbitSpeed={0.04} orbitAngle={4 * Math.PI / 7} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={20} orbitSpeed={0.04} orbitAngle={6 * Math.PI / 7} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={20} orbitSpeed={0.04} orbitAngle={8 * Math.PI / 7} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={20} orbitSpeed={0.04} orbitAngle={10 * Math.PI / 7} orbitPlane="xz" />
+      <FloatingKikiLogo orbitRadius={20} orbitSpeed={0.04} orbitAngle={12 * Math.PI / 7} orbitPlane="xz" />
       <Environment resolution={256}>
         <group rotation={[-Math.PI / 3, 0, 1]}>
           <Lightformer form="circle" intensity={100} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={2} />
@@ -229,6 +290,84 @@ function KikiLogo() {
   return (
     <group ref={groupRef} position={[0, 0, 0]} scale={0} rotation={[0, 0, 0]} onClick={handleClick} onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = 'pointer' }} onPointerOut={(e) => { e.stopPropagation(); document.body.style.cursor = 'default' }}>
       <group ref={rotationGroupRef} scale={finalScale}>
+        <group rotation={[-Math.PI / 9, Math.PI / 3, 0]}>
+          <group position={[centerOffset.x, centerOffset.y, centerOffset.z]}>
+            <primitive object={clonedScene} />
+          </group>
+        </group>
+      </group>
+    </group>
+  )
+}
+
+// Floating Kiki Logo component - orbiting around center like planets
+function FloatingKikiLogo({ position, orbitRadius, orbitSpeed, orbitAngle, orbitPlane }) {
+  const { scene } = useGLTF(MODEL_PATH)
+  const { viewport } = useThree()
+  const groupRef = useRef()
+  const isMobile = viewport.width < 10
+  
+  // Use cached scale values or calculate if not ready
+  const modelScale = cachedModelScale || 1
+  const centerOffset = cachedCenterOffset || new THREE.Vector3(0, 0, 0)
+  
+  // Smaller scale for orbiting logos - even smaller
+  const mobileScale = isMobile ? 0.1 : 0.2
+  const finalScale = modelScale * 3 * mobileScale
+  
+  const clonedScene = useMemo(() => {
+    const cloned = scene.clone()
+    cloned.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true
+        child.receiveShadow = true
+        const mat = child.material
+        if (mat && mat.isMeshStandardMaterial) {
+          if (!mat.map && MODEL_COLOR) {
+            mat.color.set(MODEL_COLOR)
+            mat.needsUpdate = true
+          }
+        }
+      }
+    })
+    return cloned
+  }, [scene])
+  
+  // Orbital motion - slow planet-like orbiting
+  useFrame((state) => {
+    if (groupRef.current) {
+      const time = state.clock.elapsedTime
+      // Slow orbital speed
+      const angle = orbitAngle + (time * orbitSpeed)
+      
+      // Calculate orbital position based on plane
+      // orbitPlane: 'xy', 'xz', or 'yz'
+      let x = 0, y = 0, z = 0
+      
+      if (orbitPlane === 'xy') {
+        // Orbit in XY plane (horizontal circle)
+        x = Math.cos(angle) * orbitRadius
+        y = Math.sin(angle) * orbitRadius
+        z = 0
+      } else if (orbitPlane === 'xz') {
+        // Orbit in XZ plane (front/back circle)
+        x = Math.cos(angle) * orbitRadius
+        y = 0
+        z = Math.sin(angle) * orbitRadius
+      } else if (orbitPlane === 'yz') {
+        // Orbit in YZ plane (vertical circle)
+        x = 0
+        y = Math.cos(angle) * orbitRadius
+        z = Math.sin(angle) * orbitRadius
+      }
+      
+      groupRef.current.position.set(x, y, z)
+    }
+  })
+  
+  return (
+    <group ref={groupRef} position={[0, 0, 0]}>
+      <group scale={finalScale}>
         <group rotation={[-Math.PI / 9, Math.PI / 3, 0]}>
           <group position={[centerOffset.x, centerOffset.y, centerOffset.z]}>
             <primitive object={clonedScene} />
