@@ -336,13 +336,13 @@ export default function Page2Home(props) {
         justifyContent: 'center',
         alignItems: 'center',
         gap: '0px',
-        padding: isMobile ? '180px 5px 40px' : '220px 40px 60px',
+        padding: isMobile ? '180px 10px 40px' : '220px 40px 60px',
         minHeight: 'calc(100vh - 120px)',
         position: 'relative',
         zIndex: 20,
         marginTop: 0,
-        marginLeft: isMobile ? '0' : '-100px',
-        marginRight: 'auto',
+        marginLeft: isMobile ? '-30px' : '-100px',
+        marginRight: isMobile ? 'auto' : 'auto',
         backgroundColor: 'transparent',
         pointerEvents: 'auto',
         overflowX: 'visible',
@@ -352,7 +352,7 @@ export default function Page2Home(props) {
         {/* Media Cover */}
         <div style={{
           width: 'auto',
-          maxWidth: isMobile ? '180px' : '650px',
+          maxWidth: isMobile ? '250px' : '650px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -360,8 +360,13 @@ export default function Page2Home(props) {
           zIndex: 20,
           marginRight: '0px',
           marginTop: isMobile ? '15px' : '40px',
-          marginLeft: isMobile ? '5px' : '50px'
-        }}>
+          marginLeft: isMobile ? '0px' : '50px'
+        }}
+        onMouseEnter={() => setIsMediaCoverHovered(true)}
+        onMouseLeave={() => setIsMediaCoverHovered(false)}
+        onTouchStart={() => setIsMediaCoverHovered(true)}
+        onTouchEnd={() => setIsMediaCoverHovered(false)}
+        >
           <img 
             src="/Media Cover.png" 
             alt="Media Cover" 
@@ -371,13 +376,9 @@ export default function Page2Home(props) {
               e.target.style.backgroundColor = '#f0f0f0';
             }}
             onLoad={() => console.log('Media Cover image loaded successfully')}
-            onMouseEnter={() => setIsMediaCoverHovered(true)}
-            onMouseLeave={() => setIsMediaCoverHovered(false)}
-            onTouchStart={() => setIsMediaCoverHovered(true)}
-            onTouchEnd={() => setIsMediaCoverHovered(false)}
             style={{ 
               width: 'auto',
-              maxWidth: isMobile ? '180px' : '650px',
+              maxWidth: isMobile ? '250px' : '650px',
               height: 'auto',
               objectFit: 'contain',
               opacity: 1,
@@ -391,20 +392,39 @@ export default function Page2Home(props) {
               visibility: 'visible'
             }} 
           />
+          {/* White overlay on hover */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'white',
+            opacity: isMediaCoverHovered ? 0.5 : 0,
+            transition: 'opacity 0.3s ease-in-out',
+            pointerEvents: 'none',
+            zIndex: 26,
+            borderRadius: 'inherit'
+          }} />
         </div>
         
         {/* Photography Cover */}
         <div style={{
           width: 'auto',
-          maxWidth: isMobile ? '85px' : '240px',
+          maxWidth: isMobile ? '115px' : '240px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           position: 'relative',
           zIndex: 21,
-          marginLeft: isMobile ? '-70px' : '-250px',
+          marginLeft: isMobile ? '-100px' : '-250px',
           marginTop: isMobile ? '40px' : '120px'
-        }}>
+        }}
+        onMouseEnter={() => setIsPhotographyCoverHovered(true)}
+        onMouseLeave={() => setIsPhotographyCoverHovered(false)}
+        onTouchStart={() => setIsPhotographyCoverHovered(true)}
+        onTouchEnd={() => setIsPhotographyCoverHovered(false)}
+        >
           <img 
             src="/Photography Cover.png" 
             alt="Photography Cover" 
@@ -414,13 +434,9 @@ export default function Page2Home(props) {
               e.target.style.backgroundColor = '#f0f0f0';
             }}
             onLoad={() => console.log('Photography Cover image loaded successfully')}
-            onMouseEnter={() => setIsPhotographyCoverHovered(true)}
-            onMouseLeave={() => setIsPhotographyCoverHovered(false)}
-            onTouchStart={() => setIsPhotographyCoverHovered(true)}
-            onTouchEnd={() => setIsPhotographyCoverHovered(false)}
             style={{ 
               width: 'auto',
-              maxWidth: isMobile ? '85px' : '240px',
+              maxWidth: isMobile ? '115px' : '240px',
               height: 'auto',
               objectFit: 'contain',
               opacity: 1,
@@ -434,20 +450,39 @@ export default function Page2Home(props) {
               visibility: 'visible'
             }} 
           />
+          {/* White overlay on hover */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'white',
+            opacity: isPhotographyCoverHovered ? 0.5 : 0,
+            transition: 'opacity 0.3s ease-in-out',
+            pointerEvents: 'none',
+            zIndex: 26,
+            borderRadius: 'inherit'
+          }} />
         </div>
         
         {/* About Me Cover */}
         <div style={{
           width: 'auto',
-          maxWidth: isMobile ? '78px' : '220px',
+          maxWidth: isMobile ? '105px' : '220px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           position: 'relative',
           zIndex: 22,
-          marginLeft: isMobile ? '-35px' : '-100px',
+          marginLeft: isMobile ? '-50px' : '-100px',
           marginTop: isMobile ? '18px' : '50px'
-        }}>
+        }}
+        onMouseEnter={() => setIsAboutMeCoverHovered(true)}
+        onMouseLeave={() => setIsAboutMeCoverHovered(false)}
+        onTouchStart={() => setIsAboutMeCoverHovered(true)}
+        onTouchEnd={() => setIsAboutMeCoverHovered(false)}
+        >
           <img 
             src="/About Me Cover.png" 
             alt="About Me Cover" 
@@ -457,13 +492,9 @@ export default function Page2Home(props) {
               e.target.style.backgroundColor = '#f0f0f0';
             }}
             onLoad={() => console.log('About Me Cover image loaded successfully')}
-            onMouseEnter={() => setIsAboutMeCoverHovered(true)}
-            onMouseLeave={() => setIsAboutMeCoverHovered(false)}
-            onTouchStart={() => setIsAboutMeCoverHovered(true)}
-            onTouchEnd={() => setIsAboutMeCoverHovered(false)}
             style={{ 
               width: 'auto',
-              maxWidth: isMobile ? '78px' : '220px',
+              maxWidth: isMobile ? '105px' : '220px',
               height: 'auto',
               objectFit: 'contain',
               opacity: 1,
@@ -477,20 +508,39 @@ export default function Page2Home(props) {
               visibility: 'visible'
             }} 
           />
+          {/* White overlay on hover */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'white',
+            opacity: isAboutMeCoverHovered ? 0.5 : 0,
+            transition: 'opacity 0.3s ease-in-out',
+            pointerEvents: 'none',
+            zIndex: 26,
+            borderRadius: 'inherit'
+          }} />
         </div>
         
         {/* Writing Cover */}
         <div style={{
           width: 'auto',
-          maxWidth: isMobile ? '115px' : '330px',
+          maxWidth: isMobile ? '160px' : '330px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           position: 'relative',
           zIndex: 21,
-          marginLeft: isMobile ? '-15px' : '-40px',
+          marginLeft: isMobile ? '-22px' : '-40px',
           marginTop: isMobile ? '28px' : '80px'
-        }}>
+        }}
+        onMouseEnter={() => setIsWritingCoverHovered(true)}
+        onMouseLeave={() => setIsWritingCoverHovered(false)}
+        onTouchStart={() => setIsWritingCoverHovered(true)}
+        onTouchEnd={() => setIsWritingCoverHovered(false)}
+        >
           <img 
             src="/writing cover.png" 
             alt="Writing Cover" 
@@ -500,13 +550,9 @@ export default function Page2Home(props) {
               e.target.style.backgroundColor = '#f0f0f0';
             }}
             onLoad={() => console.log('Writing Cover image loaded successfully')}
-            onMouseEnter={() => setIsWritingCoverHovered(true)}
-            onMouseLeave={() => setIsWritingCoverHovered(false)}
-            onTouchStart={() => setIsWritingCoverHovered(true)}
-            onTouchEnd={() => setIsWritingCoverHovered(false)}
             style={{ 
               width: 'auto',
-              maxWidth: isMobile ? '115px' : '330px',
+              maxWidth: isMobile ? '160px' : '330px',
               height: 'auto',
               objectFit: 'contain',
               opacity: 1,
@@ -520,6 +566,20 @@ export default function Page2Home(props) {
               visibility: 'visible'
             }} 
           />
+          {/* White overlay on hover */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'white',
+            opacity: isWritingCoverHovered ? 0.5 : 0,
+            transition: 'opacity 0.3s ease-in-out',
+            pointerEvents: 'none',
+            zIndex: 26,
+            borderRadius: 'inherit'
+          }} />
         </div>
       </section>
       
