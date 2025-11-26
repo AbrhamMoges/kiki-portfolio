@@ -157,6 +157,10 @@ export default function Page2Home(props) {
   const [isMobile, setIsMobile] = useState(false)
   const [isAboutHovered, setIsAboutHovered] = useState(false)
   const [isContactHovered, setIsContactHovered] = useState(false)
+  const [isMediaCoverHovered, setIsMediaCoverHovered] = useState(false)
+  const [isPhotographyCoverHovered, setIsPhotographyCoverHovered] = useState(false)
+  const [isAboutMeCoverHovered, setIsAboutMeCoverHovered] = useState(false)
+  const [isWritingCoverHovered, setIsWritingCoverHovered] = useState(false)
   
   useEffect(() => {
     // Check if mobile on mount and window resize
@@ -187,12 +191,12 @@ export default function Page2Home(props) {
       }} />
       <div style={{ 
         width: '100%', 
-        minHeight: '300vh', // Make page scrollable
+        minHeight: '100vh', // Make page scrollable
         backgroundColor: 'transparent', 
         display: 'flex', 
         flexDirection: 'column', 
         position: 'relative',
-        zIndex: 1,
+        zIndex: 5,
         boxSizing: 'border-box'
       }}>
       {/* Header section with logo - Fixed in place */}
@@ -319,6 +323,198 @@ export default function Page2Home(props) {
           />
         </div>
       </header>
+      
+      {/* Cover Images Section - Centered in the middle of the page */}
+      <section style={{
+        width: '100%',
+        display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: isMobile ? '40px' : '0px',
+        padding: isMobile ? '180px 20px 40px' : '220px 40px 60px',
+        minHeight: 'calc(100vh - 120px)',
+        position: 'relative',
+        zIndex: 20,
+        marginTop: 0,
+        marginLeft: isMobile ? '0' : '-100px',
+        marginRight: 'auto',
+        backgroundColor: 'transparent',
+        pointerEvents: 'auto'
+      }}>
+        {/* Media Cover */}
+        <div style={{
+          width: isMobile ? '100%' : 'auto',
+          maxWidth: isMobile ? '100%' : '650px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'relative',
+          zIndex: 20,
+          marginRight: isMobile ? '0' : '0px',
+          marginTop: isMobile ? '0' : '40px',
+          marginLeft: isMobile ? '0' : '50px'
+        }}>
+          <img 
+            src="/Media Cover.png" 
+            alt="Media Cover" 
+            onError={(e) => {
+              console.error('Image failed to load:', e.target.src);
+              e.target.style.border = '2px solid red';
+              e.target.style.backgroundColor = '#f0f0f0';
+            }}
+            onLoad={() => console.log('Media Cover image loaded successfully')}
+            onMouseEnter={() => setIsMediaCoverHovered(true)}
+            onMouseLeave={() => setIsMediaCoverHovered(false)}
+            onTouchStart={() => setIsMediaCoverHovered(true)}
+            onTouchEnd={() => setIsMediaCoverHovered(false)}
+            style={{ 
+              width: isMobile ? '100%' : 'auto',
+              maxWidth: '650px',
+              height: 'auto',
+              objectFit: 'contain',
+              opacity: 1,
+              transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
+              transform: `scale(${isMediaCoverHovered ? 1.05 : 1})`,
+              display: 'block',
+              cursor: 'pointer',
+              position: 'relative',
+              zIndex: 25,
+              backgroundColor: 'transparent',
+              visibility: 'visible'
+            }} 
+          />
+        </div>
+        
+        {/* Photography Cover */}
+        <div style={{
+          width: isMobile ? '100%' : 'auto',
+          maxWidth: isMobile ? '100%' : '240px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'relative',
+          zIndex: 21,
+          marginLeft: isMobile ? '0' : '-250px',
+          marginTop: isMobile ? '0' : '120px'
+        }}>
+          <img 
+            src="/Photography Cover.png" 
+            alt="Photography Cover" 
+            onError={(e) => {
+              console.error('Image failed to load:', e.target.src);
+              e.target.style.border = '2px solid red';
+              e.target.style.backgroundColor = '#f0f0f0';
+            }}
+            onLoad={() => console.log('Photography Cover image loaded successfully')}
+            onMouseEnter={() => setIsPhotographyCoverHovered(true)}
+            onMouseLeave={() => setIsPhotographyCoverHovered(false)}
+            onTouchStart={() => setIsPhotographyCoverHovered(true)}
+            onTouchEnd={() => setIsPhotographyCoverHovered(false)}
+            style={{ 
+              width: isMobile ? '100%' : 'auto',
+              maxWidth: '240px',
+              height: 'auto',
+              objectFit: 'contain',
+              opacity: 1,
+              transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
+              transform: `scale(${isPhotographyCoverHovered ? 1.05 : 1})`,
+              display: 'block',
+              cursor: 'pointer',
+              position: 'relative',
+              zIndex: 25,
+              backgroundColor: 'transparent',
+              visibility: 'visible'
+            }} 
+          />
+        </div>
+        
+        {/* About Me Cover */}
+        <div style={{
+          width: isMobile ? '100%' : 'auto',
+          maxWidth: isMobile ? '100%' : '220px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'relative',
+          zIndex: 22,
+          marginLeft: isMobile ? '0' : '-100px',
+          marginTop: isMobile ? '0' : '50px'
+        }}>
+          <img 
+            src="/About Me Cover.png" 
+            alt="About Me Cover" 
+            onError={(e) => {
+              console.error('Image failed to load:', e.target.src);
+              e.target.style.border = '2px solid red';
+              e.target.style.backgroundColor = '#f0f0f0';
+            }}
+            onLoad={() => console.log('About Me Cover image loaded successfully')}
+            onMouseEnter={() => setIsAboutMeCoverHovered(true)}
+            onMouseLeave={() => setIsAboutMeCoverHovered(false)}
+            onTouchStart={() => setIsAboutMeCoverHovered(true)}
+            onTouchEnd={() => setIsAboutMeCoverHovered(false)}
+            style={{ 
+              width: isMobile ? '100%' : 'auto',
+              maxWidth: '220px',
+              height: 'auto',
+              objectFit: 'contain',
+              opacity: 1,
+              transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
+              transform: `scale(${isAboutMeCoverHovered ? 1.05 : 1})`,
+              display: 'block',
+              cursor: 'pointer',
+              position: 'relative',
+              zIndex: 25,
+              backgroundColor: 'transparent',
+              visibility: 'visible'
+            }} 
+          />
+        </div>
+        
+        {/* Writing Cover */}
+        <div style={{
+          width: isMobile ? '100%' : 'auto',
+          maxWidth: isMobile ? '100%' : '330px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'relative',
+          zIndex: 21,
+          marginLeft: isMobile ? '0' : '-40px',
+          marginTop: isMobile ? '0' : '80px'
+        }}>
+          <img 
+            src="/writing cover.png" 
+            alt="Writing Cover" 
+            onError={(e) => {
+              console.error('Image failed to load:', e.target.src);
+              e.target.style.border = '2px solid red';
+              e.target.style.backgroundColor = '#f0f0f0';
+            }}
+            onLoad={() => console.log('Writing Cover image loaded successfully')}
+            onMouseEnter={() => setIsWritingCoverHovered(true)}
+            onMouseLeave={() => setIsWritingCoverHovered(false)}
+            onTouchStart={() => setIsWritingCoverHovered(true)}
+            onTouchEnd={() => setIsWritingCoverHovered(false)}
+            style={{ 
+              width: isMobile ? '100%' : 'auto',
+              maxWidth: '330px',
+              height: 'auto',
+              objectFit: 'contain',
+              opacity: 1,
+              transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
+              transform: `scale(${isWritingCoverHovered ? 1.05 : 1}) rotate(8deg)`,
+              display: 'block',
+              cursor: 'pointer',
+              position: 'relative',
+              zIndex: 25,
+              backgroundColor: 'transparent',
+              visibility: 'visible'
+            }} 
+          />
+        </div>
+      </section>
       
       </div>
     </>

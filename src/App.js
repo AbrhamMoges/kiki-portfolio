@@ -37,57 +37,80 @@ export default function App(props) {
       <directionalLight position={[15, 0, 10]} intensity={1.5} color="#4060ff" />
       <pointLight position={[6, 3, 8]} intensity={2} color="#4060ff" />
       <KikiLogo />
-      {/* 50 small kiki logos bouncing around the screen in different directions */}
-      <FloatingKikiLogo initialPosition={[3, 3, 0]} id={0} />
-      <FloatingKikiLogo initialPosition={[-3, 3, 0]} id={1} />
-      <FloatingKikiLogo initialPosition={[3, -3, 0]} id={2} />
-      <FloatingKikiLogo initialPosition={[-3, -3, 0]} id={3} />
-      <FloatingKikiLogo initialPosition={[4, 0, 0]} id={4} />
-      <FloatingKikiLogo initialPosition={[-4, 0, 0]} id={5} />
-      <FloatingKikiLogo initialPosition={[0, 4, 0]} id={6} />
-      <FloatingKikiLogo initialPosition={[0, -4, 0]} id={7} />
-      <FloatingKikiLogo initialPosition={[5, 2, 0]} id={8} />
-      <FloatingKikiLogo initialPosition={[-5, 2, 0]} id={9} />
-      <FloatingKikiLogo initialPosition={[5, -2, 0]} id={10} />
-      <FloatingKikiLogo initialPosition={[-5, -2, 0]} id={11} />
-      <FloatingKikiLogo initialPosition={[2, 5, 0]} id={12} />
-      <FloatingKikiLogo initialPosition={[-2, 5, 0]} id={13} />
-      <FloatingKikiLogo initialPosition={[2, -5, 0]} id={14} />
-      <FloatingKikiLogo initialPosition={[-2, -5, 0]} id={15} />
-      <FloatingKikiLogo initialPosition={[6, 0, 0]} id={16} />
-      <FloatingKikiLogo initialPosition={[-6, 0, 0]} id={17} />
-      <FloatingKikiLogo initialPosition={[0, 6, 0]} id={18} />
-      <FloatingKikiLogo initialPosition={[0, -6, 0]} id={19} />
-      <FloatingKikiLogo initialPosition={[4, 3, 0]} id={20} />
-      <FloatingKikiLogo initialPosition={[-4, 3, 0]} id={21} />
+      {/* 70 small kiki logos evenly spread across the screen like polka dots */}
+      {/* Grid pattern for even distribution */}
+      <FloatingKikiLogo initialPosition={[-8, 6, 0]} id={0} />
+      <FloatingKikiLogo initialPosition={[-5, 6, 0]} id={1} />
+      <FloatingKikiLogo initialPosition={[-2, 6, 0]} id={2} />
+      <FloatingKikiLogo initialPosition={[1, 6, 0]} id={3} />
+      <FloatingKikiLogo initialPosition={[4, 6, 0]} id={4} />
+      <FloatingKikiLogo initialPosition={[7, 6, 0]} id={5} />
+      <FloatingKikiLogo initialPosition={[-8, 3, 0]} id={6} />
+      <FloatingKikiLogo initialPosition={[-5, 3, 0]} id={7} />
+      <FloatingKikiLogo initialPosition={[-2, 3, 0]} id={8} />
+      <FloatingKikiLogo initialPosition={[1, 3, 0]} id={9} />
+      <FloatingKikiLogo initialPosition={[4, 3, 0]} id={10} />
+      <FloatingKikiLogo initialPosition={[7, 3, 0]} id={11} />
+      <FloatingKikiLogo initialPosition={[-8, 0, 0]} id={12} />
+      <FloatingKikiLogo initialPosition={[-5, 0, 0]} id={13} />
+      <FloatingKikiLogo initialPosition={[-2, 0, 0]} id={14} />
+      <FloatingKikiLogo initialPosition={[1, 0, 0]} id={15} />
+      <FloatingKikiLogo initialPosition={[4, 0, 0]} id={16} />
+      <FloatingKikiLogo initialPosition={[7, 0, 0]} id={17} />
+      <FloatingKikiLogo initialPosition={[-8, -3, 0]} id={18} />
+      <FloatingKikiLogo initialPosition={[-5, -3, 0]} id={19} />
+      <FloatingKikiLogo initialPosition={[-2, -3, 0]} id={20} />
+      <FloatingKikiLogo initialPosition={[1, -3, 0]} id={21} />
       <FloatingKikiLogo initialPosition={[4, -3, 0]} id={22} />
-      <FloatingKikiLogo initialPosition={[-4, -3, 0]} id={23} />
-      <FloatingKikiLogo initialPosition={[3, 4, 0]} id={24} />
-      <FloatingKikiLogo initialPosition={[-3, 4, 0]} id={25} />
-      <FloatingKikiLogo initialPosition={[3, -4, 0]} id={26} />
-      <FloatingKikiLogo initialPosition={[-3, -4, 0]} id={27} />
-      <FloatingKikiLogo initialPosition={[7, 1, 0]} id={28} />
-      <FloatingKikiLogo initialPosition={[-7, 1, 0]} id={29} />
-      <FloatingKikiLogo initialPosition={[7, -1, 0]} id={30} />
-      <FloatingKikiLogo initialPosition={[-7, -1, 0]} id={31} />
-      <FloatingKikiLogo initialPosition={[1, 7, 0]} id={32} />
-      <FloatingKikiLogo initialPosition={[-1, 7, 0]} id={33} />
-      <FloatingKikiLogo initialPosition={[1, -7, 0]} id={34} />
-      <FloatingKikiLogo initialPosition={[-1, -7, 0]} id={35} />
-      <FloatingKikiLogo initialPosition={[5, 4, 0]} id={36} />
-      <FloatingKikiLogo initialPosition={[-5, 4, 0]} id={37} />
-      <FloatingKikiLogo initialPosition={[5, -4, 0]} id={38} />
-      <FloatingKikiLogo initialPosition={[-5, -4, 0]} id={39} />
-      <FloatingKikiLogo initialPosition={[4, 5, 0]} id={40} />
-      <FloatingKikiLogo initialPosition={[-4, 5, 0]} id={41} />
-      <FloatingKikiLogo initialPosition={[4, -5, 0]} id={42} />
-      <FloatingKikiLogo initialPosition={[-4, -5, 0]} id={43} />
-      <FloatingKikiLogo initialPosition={[6, 3, 0]} id={44} />
-      <FloatingKikiLogo initialPosition={[-6, 3, 0]} id={45} />
-      <FloatingKikiLogo initialPosition={[6, -3, 0]} id={46} />
-      <FloatingKikiLogo initialPosition={[-6, -3, 0]} id={47} />
-      <FloatingKikiLogo initialPosition={[3, 6, 0]} id={48} />
-      <FloatingKikiLogo initialPosition={[-3, 6, 0]} id={49} />
+      <FloatingKikiLogo initialPosition={[7, -3, 0]} id={23} />
+      <FloatingKikiLogo initialPosition={[-8, -6, 0]} id={24} />
+      <FloatingKikiLogo initialPosition={[-5, -6, 0]} id={25} />
+      <FloatingKikiLogo initialPosition={[-2, -6, 0]} id={26} />
+      <FloatingKikiLogo initialPosition={[1, -6, 0]} id={27} />
+      <FloatingKikiLogo initialPosition={[4, -6, 0]} id={28} />
+      <FloatingKikiLogo initialPosition={[7, -6, 0]} id={29} />
+      {/* Offset grid for more coverage */}
+      <FloatingKikiLogo initialPosition={[-6.5, 4.5, 0]} id={30} />
+      <FloatingKikiLogo initialPosition={[-3.5, 4.5, 0]} id={31} />
+      <FloatingKikiLogo initialPosition={[-0.5, 4.5, 0]} id={32} />
+      <FloatingKikiLogo initialPosition={[2.5, 4.5, 0]} id={33} />
+      <FloatingKikiLogo initialPosition={[5.5, 4.5, 0]} id={34} />
+      <FloatingKikiLogo initialPosition={[-6.5, 1.5, 0]} id={35} />
+      <FloatingKikiLogo initialPosition={[-3.5, 1.5, 0]} id={36} />
+      <FloatingKikiLogo initialPosition={[-0.5, 1.5, 0]} id={37} />
+      <FloatingKikiLogo initialPosition={[2.5, 1.5, 0]} id={38} />
+      <FloatingKikiLogo initialPosition={[5.5, 1.5, 0]} id={39} />
+      <FloatingKikiLogo initialPosition={[-6.5, -1.5, 0]} id={40} />
+      <FloatingKikiLogo initialPosition={[-3.5, -1.5, 0]} id={41} />
+      <FloatingKikiLogo initialPosition={[-0.5, -1.5, 0]} id={42} />
+      <FloatingKikiLogo initialPosition={[2.5, -1.5, 0]} id={43} />
+      <FloatingKikiLogo initialPosition={[5.5, -1.5, 0]} id={44} />
+      <FloatingKikiLogo initialPosition={[-6.5, -4.5, 0]} id={45} />
+      <FloatingKikiLogo initialPosition={[-3.5, -4.5, 0]} id={46} />
+      <FloatingKikiLogo initialPosition={[-0.5, -4.5, 0]} id={47} />
+      <FloatingKikiLogo initialPosition={[2.5, -4.5, 0]} id={48} />
+      <FloatingKikiLogo initialPosition={[5.5, -4.5, 0]} id={49} />
+      {/* Additional scattered positions for full coverage */}
+      <FloatingKikiLogo initialPosition={[-9, 4, 0]} id={50} />
+      <FloatingKikiLogo initialPosition={[9, 4, 0]} id={51} />
+      <FloatingKikiLogo initialPosition={[-9, -4, 0]} id={52} />
+      <FloatingKikiLogo initialPosition={[9, -4, 0]} id={53} />
+      <FloatingKikiLogo initialPosition={[-4, 7, 0]} id={54} />
+      <FloatingKikiLogo initialPosition={[4, 7, 0]} id={55} />
+      <FloatingKikiLogo initialPosition={[-4, -7, 0]} id={56} />
+      <FloatingKikiLogo initialPosition={[4, -7, 0]} id={57} />
+      <FloatingKikiLogo initialPosition={[0, 7, 0]} id={58} />
+      <FloatingKikiLogo initialPosition={[0, -7, 0]} id={59} />
+      <FloatingKikiLogo initialPosition={[-7, 0, 0]} id={60} />
+      <FloatingKikiLogo initialPosition={[7, 0, 0]} id={61} />
+      <FloatingKikiLogo initialPosition={[-9, 1, 0]} id={62} />
+      <FloatingKikiLogo initialPosition={[9, 1, 0]} id={63} />
+      <FloatingKikiLogo initialPosition={[-9, -1, 0]} id={64} />
+      <FloatingKikiLogo initialPosition={[9, -1, 0]} id={65} />
+      <FloatingKikiLogo initialPosition={[-1, 8, 0]} id={66} />
+      <FloatingKikiLogo initialPosition={[1, 8, 0]} id={67} />
+      <FloatingKikiLogo initialPosition={[-1, -8, 0]} id={68} />
+      <FloatingKikiLogo initialPosition={[1, -8, 0]} id={69} />
       <Environment resolution={256}>
         <group rotation={[-Math.PI / 3, 0, 1]}>
           <Lightformer form="circle" intensity={100} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={2} />
@@ -329,11 +352,39 @@ function FloatingKikiLogo({ initialPosition, id }) {
     return cloned
   }, [scene])
   
-  // Bouncing motion - different directions, bounce off viewport edges
+  // Bouncing motion - different directions, bounce off viewport edges and mouse
   useFrame((state, delta) => {
     if (groupRef.current) {
       const pos = positionRef.current
       const vel = velocityRef.current
+      
+      // Get mouse position in world coordinates
+      const mouseX = state.mouse.x * viewport.width / 2
+      const mouseY = state.mouse.y * viewport.height / 2
+      const mousePos = new THREE.Vector3(mouseX, mouseY, 0)
+      
+      // Calculate distance from logo to mouse
+      const distanceToMouse = pos.distanceTo(mousePos)
+      const mouseRepelRadius = 1.2 // Distance at which mouse repels the logo
+      
+      // Mouse interaction - gentle bounce off mouse cursor
+      if (distanceToMouse < mouseRepelRadius && distanceToMouse > 0) {
+        // Calculate direction away from mouse
+        const direction = new THREE.Vector3()
+        direction.subVectors(pos, mousePos).normalize()
+        
+        // Apply gentle repulsion force (reduced intensity)
+        const repelStrength = (mouseRepelRadius - distanceToMouse) / mouseRepelRadius
+        const repelForce = 0.05 * repelStrength // Reduced from 0.15 to 0.05
+        
+        // Add velocity away from mouse (gentler)
+        vel.x += direction.x * repelForce
+        vel.y += direction.y * repelForce
+        
+        // Also push position away slightly to prevent overlap (reduced)
+        pos.x += direction.x * repelForce * 0.05 // Reduced from 0.1 to 0.05
+        pos.y += direction.y * repelForce * 0.05
+      }
       
       // Update position based on velocity
       pos.x += vel.x * delta * 10
@@ -355,6 +406,10 @@ function FloatingKikiLogo({ initialPosition, id }) {
         vel.y *= -1 // Reverse Y velocity
         pos.y = Math.sign(pos.y) * boundaryY // Clamp to boundary
       }
+      
+      // Damping to prevent infinite acceleration
+      vel.x *= 0.98
+      vel.y *= 0.98
       
       // Update the actual position
       groupRef.current.position.set(pos.x, pos.y, 0)
