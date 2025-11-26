@@ -199,7 +199,9 @@ export default function Page2Home(props) {
         flexDirection: 'column', 
         position: 'relative',
         zIndex: 5,
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        overflowX: 'visible',
+        overflowY: 'visible'
       }}>
       {/* Header section with logo - Fixed in place */}
       <header style={{
@@ -328,13 +330,13 @@ export default function Page2Home(props) {
       
       {/* Cover Images Section - Centered in the middle of the page */}
       <section style={{
-        width: '100%',
+        width: isMobile ? '100%' : '100%',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         gap: '0px',
-        padding: isMobile ? '180px 10px 40px' : '220px 40px 60px',
+        padding: isMobile ? '180px 5px 40px' : '220px 40px 60px',
         minHeight: 'calc(100vh - 120px)',
         position: 'relative',
         zIndex: 20,
@@ -343,22 +345,22 @@ export default function Page2Home(props) {
         marginRight: 'auto',
         backgroundColor: 'transparent',
         pointerEvents: 'auto',
-        overflowX: 'hidden',
-        transform: isMobile ? 'scale(0.35)' : 'none',
-        transformOrigin: 'center center'
+        overflowX: 'visible',
+        overflowY: 'visible',
+        boxSizing: 'border-box'
       }}>
         {/* Media Cover */}
         <div style={{
           width: 'auto',
-          maxWidth: '650px',
+          maxWidth: isMobile ? '180px' : '650px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           position: 'relative',
           zIndex: 20,
           marginRight: '0px',
-          marginTop: '40px',
-          marginLeft: '50px'
+          marginTop: isMobile ? '15px' : '40px',
+          marginLeft: isMobile ? '5px' : '50px'
         }}>
           <img 
             src="/Media Cover.png" 
@@ -375,7 +377,7 @@ export default function Page2Home(props) {
             onTouchEnd={() => setIsMediaCoverHovered(false)}
             style={{ 
               width: 'auto',
-              maxWidth: '650px',
+              maxWidth: isMobile ? '180px' : '650px',
               height: 'auto',
               objectFit: 'contain',
               opacity: 1,
@@ -394,14 +396,14 @@ export default function Page2Home(props) {
         {/* Photography Cover */}
         <div style={{
           width: 'auto',
-          maxWidth: '240px',
+          maxWidth: isMobile ? '85px' : '240px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           position: 'relative',
           zIndex: 21,
-          marginLeft: '-250px',
-          marginTop: '120px'
+          marginLeft: isMobile ? '-70px' : '-250px',
+          marginTop: isMobile ? '40px' : '120px'
         }}>
           <img 
             src="/Photography Cover.png" 
@@ -418,7 +420,7 @@ export default function Page2Home(props) {
             onTouchEnd={() => setIsPhotographyCoverHovered(false)}
             style={{ 
               width: 'auto',
-              maxWidth: '240px',
+              maxWidth: isMobile ? '85px' : '240px',
               height: 'auto',
               objectFit: 'contain',
               opacity: 1,
@@ -437,14 +439,14 @@ export default function Page2Home(props) {
         {/* About Me Cover */}
         <div style={{
           width: 'auto',
-          maxWidth: '220px',
+          maxWidth: isMobile ? '78px' : '220px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           position: 'relative',
           zIndex: 22,
-          marginLeft: '-100px',
-          marginTop: '50px'
+          marginLeft: isMobile ? '-35px' : '-100px',
+          marginTop: isMobile ? '18px' : '50px'
         }}>
           <img 
             src="/About Me Cover.png" 
@@ -461,7 +463,7 @@ export default function Page2Home(props) {
             onTouchEnd={() => setIsAboutMeCoverHovered(false)}
             style={{ 
               width: 'auto',
-              maxWidth: '220px',
+              maxWidth: isMobile ? '78px' : '220px',
               height: 'auto',
               objectFit: 'contain',
               opacity: 1,
@@ -480,14 +482,14 @@ export default function Page2Home(props) {
         {/* Writing Cover */}
         <div style={{
           width: 'auto',
-          maxWidth: '330px',
+          maxWidth: isMobile ? '115px' : '330px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           position: 'relative',
           zIndex: 21,
-          marginLeft: '-40px',
-          marginTop: '80px'
+          marginLeft: isMobile ? '-15px' : '-40px',
+          marginTop: isMobile ? '28px' : '80px'
         }}>
           <img 
             src="/writing cover.png" 
@@ -504,7 +506,7 @@ export default function Page2Home(props) {
             onTouchEnd={() => setIsWritingCoverHovered(false)}
             style={{ 
               width: 'auto',
-              maxWidth: '330px',
+              maxWidth: isMobile ? '115px' : '330px',
               height: 'auto',
               objectFit: 'contain',
               opacity: 1,
