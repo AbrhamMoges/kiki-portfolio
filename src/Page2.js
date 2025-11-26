@@ -334,16 +334,18 @@ export default function Page2Home(props) {
         justifyContent: 'center',
         alignItems: 'center',
         gap: '0px',
-        padding: '220px 40px 60px',
+        padding: isMobile ? '180px 10px 40px' : '220px 40px 60px',
         minHeight: 'calc(100vh - 120px)',
         position: 'relative',
         zIndex: 20,
         marginTop: 0,
-        marginLeft: '-100px',
+        marginLeft: isMobile ? '0' : '-100px',
         marginRight: 'auto',
         backgroundColor: 'transparent',
         pointerEvents: 'auto',
-        overflowX: isMobile ? 'auto' : 'visible'
+        overflowX: 'hidden',
+        transform: isMobile ? 'scale(0.35)' : 'none',
+        transformOrigin: 'center center'
       }}>
         {/* Media Cover */}
         <div style={{
