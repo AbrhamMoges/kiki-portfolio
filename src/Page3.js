@@ -29,12 +29,25 @@ export default function Page3() {
           width: '100%',
           minHeight: '100vh',
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           padding: '40px',
           boxSizing: 'border-box',
         }}
       >
+        <img
+          src="/kiki.png"
+          alt="Kiki"
+          style={{
+            width: 'auto',
+            maxWidth: 'min(360px, 85vw)',
+            height: 'auto',
+            objectFit: 'contain',
+            marginBottom: '32px',
+            display: 'block',
+          }}
+        />
         <p
           style={{
             fontFamily: 'Helvetica, Arial, sans-serif',
