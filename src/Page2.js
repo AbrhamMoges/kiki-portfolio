@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
@@ -153,6 +154,7 @@ function KikiLogoModel({ isMobile, opacity, onHover }) {
 }
 
 export default function Page2Home(props) {
+  const navigate = useNavigate()
   const [opacity, setOpacity] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
   const [isAboutHovered, setIsAboutHovered] = useState(false)
@@ -234,7 +236,7 @@ export default function Page2Home(props) {
             width: isMobile ? '102px' : '152px',
             height: isMobile ? '102px' : '152px',
             position: 'relative',
-            marginTop: '-48px',
+            marginTop: '-10px',
             marginLeft: '-24px',
             cursor: 'pointer'
           }}>
@@ -260,9 +262,9 @@ export default function Page2Home(props) {
           }}
           onLoad={() => console.log('Image loaded successfully')}
           style={{ 
-            maxWidth: isMobile ? '126px' : '176px', 
-            width: isMobile ? '50%' : 'auto',
-            minWidth: isMobile ? '76px' : '150px',
+            maxWidth: isMobile ? '70px' : '95px', 
+            width: isMobile ? '35%' : 'auto',
+            minWidth: isMobile ? '45px' : '80px',
             height: 'auto',
             objectFit: 'contain',
             opacity: opacity,
@@ -295,7 +297,7 @@ export default function Page2Home(props) {
               transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
               transform: `scale(${isAboutHovered ? 1.3 : 1})`,
               display: 'block',
-              marginTop: '-48px',
+              marginTop: '-10px',
               cursor: 'pointer'
             }} 
           />
@@ -321,7 +323,7 @@ export default function Page2Home(props) {
               transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
               transform: `scale(${isContactHovered ? 1.3 : 1})`,
               display: 'block',
-              marginTop: '-48px',
+              marginTop: '-10px',
               cursor: 'pointer'
             }} 
           />
@@ -333,10 +335,10 @@ export default function Page2Home(props) {
         width: isMobile ? '100%' : '100%',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         gap: '0px',
-        padding: isMobile ? '180px 10px 40px' : '220px 40px 60px',
+        padding: isMobile ? '180px 10px 40px 24px' : '220px 40px 60px 60px',
         minHeight: 'calc(100vh - 120px)',
         position: 'relative',
         zIndex: 20,
@@ -349,25 +351,32 @@ export default function Page2Home(props) {
         overflowY: 'visible',
         boxSizing: 'border-box'
       }}>
-        {/* About Me Cover */}
+        {/* About Me Cover - kiki biography 1.png (first, so it stays visible) */}
         <div style={{
           width: 'auto',
           maxWidth: isMobile ? '260px' : '370px',
+          minWidth: isMobile ? '180px' : '280px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           position: 'relative',
           zIndex: 22,
-          marginLeft: isMobile ? '30px' : '50px',
-          marginTop: isMobile ? '18px' : '50px'
+          marginLeft: isMobile ? '80px' : '160px',
+          marginRight: isMobile ? '16px' : '24px',
+          marginTop: isMobile ? '18px' : '50px',
+          flexShrink: 0
         }}
         onMouseEnter={() => setIsAboutMeCoverHovered(true)}
         onMouseLeave={() => setIsAboutMeCoverHovered(false)}
         onTouchStart={() => setIsAboutMeCoverHovered(true)}
         onTouchEnd={() => setIsAboutMeCoverHovered(false)}
+        onClick={() => navigate('/page3')}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === 'Enter' && navigate('/page3')}
         >
           <img 
-            src="/Kiki About me.png" 
+            src="/kiki%20biography%201.png" 
             alt="About Me Cover" 
             onError={(e) => {
               console.error('Image failed to load:', e.target.src);
@@ -382,7 +391,7 @@ export default function Page2Home(props) {
               objectFit: 'contain',
               opacity: 1,
               transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
-              transform: `scale(${isAboutMeCoverHovered ? 1.05 : 1})`,
+              transform: `translateX(80px) scale(${isAboutMeCoverHovered ? 1.05 : 1})`,
               display: 'block',
               cursor: 'pointer',
               position: 'relative',
