@@ -155,8 +155,6 @@ function KikiLogoModel({ isMobile, opacity, onHover }) {
 export default function Page2Home(props) {
   const [opacity, setOpacity] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
-  const [isAboutHovered, setIsAboutHovered] = useState(false)
-  const [isContactHovered, setIsContactHovered] = useState(false)
   
   useEffect(() => {
     // Check if mobile on mount and window resize
@@ -216,7 +214,7 @@ export default function Page2Home(props) {
         zIndex: 10,
         boxSizing: 'border-box'
       }}>
-        {/* Left: KALKIDANE.glb */}
+        {/* Left: Kstaura Logo */}
         <div style={{ 
           flex: 1, 
           display: 'flex', 
@@ -226,12 +224,42 @@ export default function Page2Home(props) {
           opacity: opacity,
           transition: 'opacity 2s ease-in-out'
         }}>
+          <img 
+            src="/Kstaura Black logo.png" 
+            alt="Kstaura Logo" 
+            onError={(e) => {
+              console.error('Image failed to load:', e.target.src);
+              e.target.style.border = '2px solid red';
+            }}
+            onLoad={() => console.log('Image loaded successfully')}
+            style={{ 
+              maxWidth: isMobile ? '70px' : '95px', 
+              width: isMobile ? '35%' : 'auto',
+              minWidth: isMobile ? '45px' : '80px',
+              height: 'auto',
+              objectFit: 'contain',
+              opacity: opacity,
+              transition: 'opacity 2s ease-in-out',
+              display: 'block',
+              marginTop: '-14px'
+            }} 
+          />
+        </div>
+        
+        {/* Center: KALKIDANE.glb */}
+        <div style={{ 
+          flex: 1,
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center',
+          opacity: opacity,
+          transition: 'opacity 2s ease-in-out'
+        }}>
           <div style={{
-            width: isMobile ? '102px' : '152px',
-            height: isMobile ? '102px' : '152px',
+            width: isMobile ? '120px' : '190px',
+            height: isMobile ? '120px' : '190px',
             position: 'relative',
-            marginTop: '-10px',
-            marginLeft: '-24px',
+            marginTop: '-24px',
             cursor: 'pointer'
           }}>
             <Canvas
@@ -245,83 +273,7 @@ export default function Page2Home(props) {
             </Canvas>
           </div>
         </div>
-        
-        {/* Center: Kstaura Logo */}
-        <img 
-          src="/Kstaura Black logo.png" 
-          alt="Kstaura Logo" 
-          onError={(e) => {
-            console.error('Image failed to load:', e.target.src);
-            e.target.style.border = '2px solid red';
-          }}
-          onLoad={() => console.log('Image loaded successfully')}
-          style={{ 
-            maxWidth: isMobile ? '70px' : '95px', 
-            width: isMobile ? '35%' : 'auto',
-            minWidth: isMobile ? '45px' : '80px',
-            height: 'auto',
-            objectFit: 'contain',
-            opacity: opacity,
-            transition: 'opacity 2s ease-in-out',
-            display: 'block'
-          }} 
-        />
-        
-        {/* Right: About.PNG and Contact.PNG */}
-        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: isMobile ? '10px' : '20px', paddingRight: isMobile ? '0px' : '20px' }}>
-          <img 
-            src="/About.PNG" 
-            alt="About" 
-            onError={(e) => {
-              console.error('Image failed to load:', e.target.src);
-              e.target.style.border = '2px solid red';
-            }}
-            onLoad={() => console.log('About image loaded successfully')}
-            onMouseEnter={() => setIsAboutHovered(true)}
-            onMouseLeave={() => setIsAboutHovered(false)}
-            onTouchStart={() => setIsAboutHovered(true)}
-            onTouchEnd={() => setIsAboutHovered(false)}
-            style={{ 
-              maxWidth: isMobile ? '102px' : '152px', 
-              width: isMobile ? '50%' : 'auto',
-              minWidth: isMobile ? '52px' : '102px',
-              height: 'auto',
-              objectFit: 'contain',
-              opacity: opacity,
-              transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
-              transform: `scale(${isAboutHovered ? 1.3 : 1})`,
-              display: 'block',
-              marginTop: '-10px',
-              cursor: 'pointer'
-            }} 
-          />
-          <img 
-            src="/Contact.PNG" 
-            alt="Contact" 
-            onError={(e) => {
-              console.error('Image failed to load:', e.target.src);
-              e.target.style.border = '2px solid red';
-            }}
-            onLoad={() => console.log('Contact image loaded successfully')}
-            onMouseEnter={() => setIsContactHovered(true)}
-            onMouseLeave={() => setIsContactHovered(false)}
-            onTouchStart={() => setIsContactHovered(true)}
-            onTouchEnd={() => setIsContactHovered(false)}
-            style={{ 
-              maxWidth: isMobile ? '102px' : '152px', 
-              width: isMobile ? '50%' : 'auto',
-              minWidth: isMobile ? '52px' : '102px',
-              height: 'auto',
-              objectFit: 'contain',
-              opacity: opacity,
-              transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
-              transform: `scale(${isContactHovered ? 1.3 : 1})`,
-              display: 'block',
-              marginTop: '-10px',
-              cursor: 'pointer'
-            }} 
-          />
-        </div>
+        <div style={{ flex: 1 }} />
       </header>
       
       {/* Middle section: About kiki, Kiki Photography, Newsletter Kiki - large and centered */}

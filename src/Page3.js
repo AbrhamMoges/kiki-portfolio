@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import SharedHeader from './SharedHeader'
 
 export default function Page3() {
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function Page3() {
           zIndex: 0,
         }}
       />
+      <SharedHeader />
       <div
         style={{
           position: 'relative',
@@ -32,7 +34,7 @@ export default function Page3() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '40px',
+          padding: '140px 40px 40px',
           boxSizing: 'border-box',
         }}
       >
