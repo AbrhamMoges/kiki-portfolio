@@ -1,10 +1,13 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import SharedHeader from './SharedHeader'
 
 export default function Page3() {
+  const [opacity, setOpacity] = useState(0)
+
   useEffect(() => {
     const prev = document.body.style.background
     document.body.style.background = '#ffffff'
+    setOpacity(1)
     return () => {
       document.body.style.background = prev || '#151515'
     }
@@ -36,6 +39,8 @@ export default function Page3() {
           justifyContent: 'center',
           padding: '140px 40px 40px',
           boxSizing: 'border-box',
+          opacity,
+          transition: 'opacity 2s ease-in-out',
         }}
       >
         <img
@@ -61,13 +66,35 @@ export default function Page3() {
             textAlign: 'center',
           }}
         >
-          Kalkidane Negewo is an Ethiopian-American creative and researcher born in Dallas, Texas. She holds a degree in Geography & Environmental Science, grounding her work in the intersections of place, resources, and global systems.
-          {' '}
-          She began her career at the final stage of the luxury fashion supply chain, spending three years in e-commerce operations at Bergdorf Goodman. Her work has since expanded upstream, now engaging with the early stages of the fashion supply chain through global trade operations of natural fibers.
-          {' '}
-          Through research, short stories, and video essays, Kalkidane explores fashion as a cultural and economic force—one shaped by geography, labor, and global exchange. Her creative and consulting work is driven by curiosity, systems-thinking, and a commitment to continual growth.
-          {' '}
-          At the core of her work is a guiding belief: Always Have Faith. The dream placed within you is yours to see through.
+          Kalkidane Negewo is an Ethiopian-American creative professional born in Dallas, Texas. She holds a degree in Geography & The Environments, grounding her work in the intersections of place, resources, & global systems.
+        </p>
+        <p
+          style={{
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontSize: 'clamp(14px, 2.5vw, 18px)',
+            lineHeight: 1.6,
+            color: '#000000',
+            margin: '1em 0 0 0',
+            maxWidth: '720px',
+            textAlign: 'center',
+            textIndent: '1.5em',
+          }}
+        >
+          She began her career at the final stage of the luxury fashion supply chain, spending two years in e-commerce operations at Bergdorf Goodman & Neiman Marcus. Her work has since expanded upstream, now engaging with the initial stages of the fashion supply chain through global trade operations of natural fibers. Engaging in research, short stories, & video essays, she explores fashion as a cultural & economic force shaped by geography, labor, & exchanges. Her work is committed to intentionally moving the conversation forward.
+        </p>
+        <p
+          style={{
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontSize: 'clamp(14px, 2.5vw, 18px)',
+            lineHeight: 1.6,
+            color: '#000000',
+            margin: '1em 0 0 0',
+            maxWidth: '720px',
+            textAlign: 'center',
+            textIndent: '1.5em',
+          }}
+        >
+          The core message of Kalkidane's guiding belief: Always Have Faith. The dream placed within you is yours to see through.
         </p>
       </div>
     </>

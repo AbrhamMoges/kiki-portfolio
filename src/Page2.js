@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
@@ -153,6 +154,7 @@ function KikiLogoModel({ isMobile, opacity, onHover }) {
 }
 
 export default function Page2Home(props) {
+  const navigate = useNavigate()
   const [opacity, setOpacity] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
   
@@ -295,69 +297,115 @@ export default function Page2Home(props) {
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           gap: isMobile ? '12px' : '24px',
           width: '100%',
           maxWidth: isMobile ? '100%' : '1200px',
           flex: '1 1 auto'
         }}>
-          <img 
-            src="/About%20kiki.jpg" 
-            alt="About Kiki" 
-            onError={(e) => {
-              console.error('Image failed to load:', e.target.src);
-              e.target.style.border = '2px solid red';
-              e.target.style.backgroundColor = '#f0f0f0';
-            }}
-            style={{ 
+          <div
+            style={{
               flex: '1 1 0',
               minWidth: 0,
-              width: '100%',
-              maxWidth: isMobile ? 'none' : '380px',
-              height: 'auto',
-              maxHeight: isMobile ? '50vh' : '65vh',
-              objectFit: 'contain',
-              display: 'block'
-            }} 
-          />
-          <img 
-            src="/Kiki%20Photography.jpg" 
-            alt="Kiki Photography" 
-            onError={(e) => {
-              console.error('Image failed to load:', e.target.src);
-              e.target.style.border = '2px solid red';
-              e.target.style.backgroundColor = '#f0f0f0';
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              cursor: 'pointer'
             }}
-            style={{ 
-              flex: '1 1 0',
-              minWidth: 0,
+            onClick={() => navigate('/page3')}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && navigate('/page3')}
+          >
+            <img 
+              src="/About%20kiki.jpg" 
+              alt="About Kiki" 
+              onError={(e) => {
+                console.error('Image failed to load:', e.target.src);
+                e.target.style.border = '2px solid red';
+                e.target.style.backgroundColor = '#f0f0f0';
+              }}
+              style={{ 
+                width: '100%',
+                maxWidth: isMobile ? 'none' : '380px',
+                height: 'auto',
+                maxHeight: isMobile ? '50vh' : '65vh',
+                objectFit: 'contain',
+                display: 'block'
+              }} 
+            />
+            <p style={{
+              fontFamily: '"Caveat", cursive',
+              fontSize: isMobile ? '14px' : '16px',
+              fontWeight: 'bold',
+              color: '#000',
+              margin: '8px 0 0 0',
+              alignSelf: 'flex-start',
               width: '100%',
               maxWidth: isMobile ? 'none' : '380px',
-              height: 'auto',
-              maxHeight: isMobile ? '50vh' : '65vh',
-              objectFit: 'contain',
-              display: 'block'
-            }} 
-          />
-          <img 
-            src="/Newsletter%20Kiki.jpg" 
-            alt="Newsletter Kiki" 
-            onError={(e) => {
-              console.error('Image failed to load:', e.target.src);
-              e.target.style.border = '2px solid red';
-              e.target.style.backgroundColor = '#f0f0f0';
-            }}
-            style={{ 
-              flex: '1 1 0',
-              minWidth: 0,
+              textAlign: 'left'
+            }}>About Me</p>
+          </div>
+          <div style={{ flex: '1 1 0', minWidth: 0, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <img 
+              src="/Kiki%20Photography.jpg" 
+              alt="Kiki Photography" 
+              onError={(e) => {
+                console.error('Image failed to load:', e.target.src);
+                e.target.style.border = '2px solid red';
+                e.target.style.backgroundColor = '#f0f0f0';
+              }}
+              style={{ 
+                width: '100%',
+                maxWidth: isMobile ? 'none' : '380px',
+                height: 'auto',
+                maxHeight: isMobile ? '50vh' : '65vh',
+                objectFit: 'contain',
+                display: 'block'
+              }} 
+            />
+            <p style={{
+              fontFamily: '"Caveat", cursive',
+              fontSize: isMobile ? '14px' : '16px',
+              fontWeight: 'bold',
+              color: '#000',
+              margin: '8px 0 0 0',
+              alignSelf: 'flex-start',
               width: '100%',
               maxWidth: isMobile ? 'none' : '380px',
-              height: 'auto',
-              maxHeight: isMobile ? '50vh' : '65vh',
-              objectFit: 'contain',
-              display: 'block'
-            }} 
-          />
+              textAlign: 'left'
+            }}>Media</p>
+          </div>
+          <div style={{ flex: '1 1 0', minWidth: 0, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <img 
+              src="/Newsletter%20Kiki.jpg" 
+              alt="Newsletter Kiki" 
+              onError={(e) => {
+                console.error('Image failed to load:', e.target.src);
+                e.target.style.border = '2px solid red';
+                e.target.style.backgroundColor = '#f0f0f0';
+              }}
+              style={{ 
+                width: '100%',
+                maxWidth: isMobile ? 'none' : '380px',
+                height: 'auto',
+                maxHeight: isMobile ? '50vh' : '65vh',
+                objectFit: 'contain',
+                display: 'block'
+              }} 
+            />
+            <p style={{
+              fontFamily: '"Caveat", cursive',
+              fontSize: isMobile ? '14px' : '16px',
+              fontWeight: 'bold',
+              color: '#000',
+              margin: '8px 0 0 0',
+              alignSelf: 'flex-start',
+              width: '100%',
+              maxWidth: isMobile ? 'none' : '380px',
+              textAlign: 'left'
+            }}>Newsletter</p>
+          </div>
         </div>
       </section>
       
