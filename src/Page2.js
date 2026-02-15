@@ -291,7 +291,9 @@ export default function Page2Home(props) {
         position: 'relative',
         zIndex: 5,
         backgroundColor: 'transparent',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        opacity,
+        transition: 'opacity 2s ease-in-out'
       }}>
         <div style={{
           display: 'flex',
