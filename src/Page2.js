@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { useNavigate } from 'react-router-dom'
 import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
@@ -154,15 +153,10 @@ function KikiLogoModel({ isMobile, opacity, onHover }) {
 }
 
 export default function Page2Home(props) {
-  const navigate = useNavigate()
   const [opacity, setOpacity] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
   const [isAboutHovered, setIsAboutHovered] = useState(false)
   const [isContactHovered, setIsContactHovered] = useState(false)
-  const [isPhotographyCoverHovered, setIsPhotographyCoverHovered] = useState(false)
-  const [isAboutMeCoverHovered, setIsAboutMeCoverHovered] = useState(false)
-  const [isNewsletterCoverHovered, setIsNewsletterCoverHovered] = useState(false)
-  const [isMediaPassCoverHovered, setIsMediaPassCoverHovered] = useState(false)
   
   useEffect(() => {
     // Check if mobile on mount and window resize
@@ -330,264 +324,88 @@ export default function Page2Home(props) {
         </div>
       </header>
       
-      {/* Cover Images Section - Centered in the middle of the page */}
+      {/* Middle section: About kiki, Kiki Photography, Newsletter Kiki - large and centered */}
       <section style={{
-        width: isMobile ? '100%' : '100%',
+        width: '100%',
+        minHeight: isMobile ? 'calc(100vh - 180px)' : 'calc(100vh - 200px)',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
-        gap: '0px',
-        padding: isMobile ? '180px 10px 40px 24px' : '220px 40px 60px 60px',
-        minHeight: 'calc(100vh - 120px)',
+        gap: isMobile ? '12px' : '24px',
+        padding: isMobile ? '120px 16px 40px' : '160px 48px 80px',
         position: 'relative',
-        zIndex: 20,
-        marginTop: 0,
-        marginLeft: isMobile ? '0px' : '0px',
-        marginRight: isMobile ? 'auto' : 'auto',
+        zIndex: 5,
         backgroundColor: 'transparent',
-        pointerEvents: 'auto',
-        overflowX: 'visible',
-        overflowY: 'visible',
         boxSizing: 'border-box'
       }}>
-        {/* About Me Cover - kiki biography 1.png (first, so it stays visible) */}
         <div style={{
-          width: 'auto',
-          maxWidth: isMobile ? '260px' : '370px',
-          minWidth: isMobile ? '180px' : '280px',
           display: 'flex',
+          flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center',
-          position: 'relative',
-          zIndex: 22,
-          marginLeft: isMobile ? '80px' : '160px',
-          marginRight: isMobile ? '16px' : '24px',
-          marginTop: isMobile ? '18px' : '50px',
-          flexShrink: 0
-        }}
-        onMouseEnter={() => setIsAboutMeCoverHovered(true)}
-        onMouseLeave={() => setIsAboutMeCoverHovered(false)}
-        onTouchStart={() => setIsAboutMeCoverHovered(true)}
-        onTouchEnd={() => setIsAboutMeCoverHovered(false)}
-        onClick={() => navigate('/page3')}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => e.key === 'Enter' && navigate('/page3')}
-        >
+          gap: isMobile ? '12px' : '24px',
+          width: '100%',
+          maxWidth: isMobile ? '100%' : '1200px',
+          flex: '1 1 auto'
+        }}>
           <img 
-            src="/kiki%20biography%201.png" 
-            alt="About Me Cover" 
+            src="/About%20kiki.jpg" 
+            alt="About Kiki" 
             onError={(e) => {
               console.error('Image failed to load:', e.target.src);
               e.target.style.border = '2px solid red';
               e.target.style.backgroundColor = '#f0f0f0';
             }}
-            onLoad={() => console.log('About Me Cover image loaded successfully')}
             style={{ 
-              width: 'auto',
-              maxWidth: isMobile ? '260px' : '370px',
+              flex: '1 1 0',
+              minWidth: 0,
+              width: '100%',
+              maxWidth: isMobile ? 'none' : '380px',
               height: 'auto',
+              maxHeight: isMobile ? '50vh' : '65vh',
               objectFit: 'contain',
-              opacity: 1,
-              transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
-              transform: `translateX(80px) scale(${isAboutMeCoverHovered ? 1.05 : 1})`,
-              display: 'block',
-              cursor: 'pointer',
-              position: 'relative',
-              zIndex: 25,
-              backgroundColor: 'transparent',
-              visibility: 'visible'
+              display: 'block'
             }} 
           />
-          {/* White overlay on hover */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'white',
-            opacity: isAboutMeCoverHovered ? 0.5 : 0,
-            transition: 'opacity 0.3s ease-in-out',
-            pointerEvents: 'none',
-            zIndex: 26,
-            borderRadius: 'inherit'
-          }} />
-        </div>
-        
-        {/* Photography Cover */}
-        <div style={{
-          width: 'auto',
-          maxWidth: isMobile ? '120px' : '250px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          position: 'relative',
-          zIndex: 21,
-          marginLeft: isMobile ? '-50px' : '-45px',
-          marginTop: isMobile ? '-56px' : '24px'
-        }}
-        onMouseEnter={() => setIsPhotographyCoverHovered(true)}
-        onMouseLeave={() => setIsPhotographyCoverHovered(false)}
-        onTouchStart={() => setIsPhotographyCoverHovered(true)}
-        onTouchEnd={() => setIsPhotographyCoverHovered(false)}
-        >
           <img 
-            src="/Photography Cover.png" 
-            alt="Photography Cover" 
+            src="/Kiki%20Photography.jpg" 
+            alt="Kiki Photography" 
             onError={(e) => {
               console.error('Image failed to load:', e.target.src);
               e.target.style.border = '2px solid red';
               e.target.style.backgroundColor = '#f0f0f0';
             }}
-            onLoad={() => console.log('Photography Cover image loaded successfully')}
             style={{ 
-              width: 'auto',
-              maxWidth: isMobile ? '120px' : '250px',
+              flex: '1 1 0',
+              minWidth: 0,
+              width: '100%',
+              maxWidth: isMobile ? 'none' : '380px',
               height: 'auto',
+              maxHeight: isMobile ? '50vh' : '65vh',
               objectFit: 'contain',
-              opacity: 1,
-              transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
-              transform: `scale(${isPhotographyCoverHovered ? 1.05 : 1}) rotate(370deg)`,
-              display: 'block',
-              cursor: 'pointer',
-              position: 'relative',
-              zIndex: 25,
-              backgroundColor: 'transparent',
-              visibility: 'visible'
+              display: 'block'
             }} 
           />
-          {/* White overlay on hover */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'white',
-            opacity: isPhotographyCoverHovered ? 0.5 : 0,
-            transition: 'opacity 0.3s ease-in-out',
-            pointerEvents: 'none',
-            zIndex: 26,
-            borderRadius: 'inherit'
-          }} />
-        </div>
-        
-        {/* Newsletter Cover */}
-        <div style={{
-          width: 'auto',
-          maxWidth: isMobile ? '155px' : '305px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          position: 'relative',
-          zIndex: 20,
-          marginLeft: isMobile ? '-60px' : '-55px',
-          marginTop: isMobile ? '-56px' : '24px'
-        }}
-        onMouseEnter={() => setIsNewsletterCoverHovered(true)}
-        onMouseLeave={() => setIsNewsletterCoverHovered(false)}
-        onTouchStart={() => setIsNewsletterCoverHovered(true)}
-        onTouchEnd={() => setIsNewsletterCoverHovered(false)}
-        >
           <img 
-            src="/Newsletter Cover_.png" 
-            alt="Newsletter Cover" 
+            src="/Newsletter%20Kiki.jpg" 
+            alt="Newsletter Kiki" 
             onError={(e) => {
               console.error('Image failed to load:', e.target.src);
               e.target.style.border = '2px solid red';
               e.target.style.backgroundColor = '#f0f0f0';
             }}
-            onLoad={() => console.log('Newsletter Cover image loaded successfully')}
             style={{ 
-              width: 'auto',
-              maxWidth: isMobile ? '155px' : '305px',
+              flex: '1 1 0',
+              minWidth: 0,
+              width: '100%',
+              maxWidth: isMobile ? 'none' : '380px',
               height: 'auto',
+              maxHeight: isMobile ? '50vh' : '65vh',
               objectFit: 'contain',
-              opacity: 1,
-              transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
-              transform: `scale(${isNewsletterCoverHovered ? 1.05 : 1})`,
-              display: 'block',
-              cursor: 'pointer',
-              position: 'relative',
-              zIndex: 25,
-              backgroundColor: 'transparent',
-              visibility: 'visible'
+              display: 'block'
             }} 
           />
-          {/* White overlay on hover */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'white',
-            opacity: isNewsletterCoverHovered ? 0.5 : 0,
-            transition: 'opacity 0.3s ease-in-out',
-            pointerEvents: 'none',
-            zIndex: 26,
-            borderRadius: 'inherit'
-          }} />
-        </div>
-        
-        {/* Media Pass Cover */}
-        <div style={{
-          width: 'auto',
-          maxWidth: isMobile ? '155px' : '305px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          position: 'relative',
-          zIndex: 19,
-          marginLeft: isMobile ? '-105px' : '-85px',
-          marginTop: isMobile ? '-56px' : '24px'
-        }}
-        onMouseEnter={() => setIsMediaPassCoverHovered(true)}
-        onMouseLeave={() => setIsMediaPassCoverHovered(false)}
-        onTouchStart={() => setIsMediaPassCoverHovered(true)}
-        onTouchEnd={() => setIsMediaPassCoverHovered(false)}
-        >
-          <img 
-            src="/Media Pass Cover_.png" 
-            alt="Media Pass Cover" 
-            onError={(e) => {
-              console.error('Image failed to load:', e.target.src);
-              e.target.style.border = '2px solid red';
-              e.target.style.backgroundColor = '#f0f0f0';
-            }}
-            onLoad={() => console.log('Media Pass Cover image loaded successfully')}
-            style={{ 
-              width: 'auto',
-              maxWidth: isMobile ? '155px' : '305px',
-              height: 'auto',
-              objectFit: 'contain',
-              opacity: 1,
-              transition: 'opacity 2s ease-in-out, transform 0.3s ease-in-out',
-              transform: `scale(${isMediaPassCoverHovered ? 1.05 : 1})`,
-              display: 'block',
-              cursor: 'pointer',
-              position: 'relative',
-              zIndex: 25,
-              backgroundColor: 'transparent',
-              visibility: 'visible'
-            }} 
-          />
-          {/* White overlay on hover */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'white',
-            opacity: isMediaPassCoverHovered ? 0.5 : 0,
-            transition: 'opacity 0.3s ease-in-out',
-            pointerEvents: 'none',
-            zIndex: 26,
-            borderRadius: 'inherit'
-          }} />
         </div>
       </section>
       
