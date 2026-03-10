@@ -58,84 +58,9 @@ canvas {
   background: #ffffff;
 }
 
-.galleryBrand {
-  position: fixed;
-  top: 22px;
-  left: 22px;
-  z-index: 12;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 12px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-.galleryBrandLogo {
-  width: 64px;
-  height: 30px;
-  object-fit: contain;
-  display: block;
-}
-
-.galleryBrandMeta {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.galleryBrandTitle {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
-.galleryBrandSub {
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.6);
-}
-
-.galleryNav {
-  position: fixed;
-  top: 22px;
-  right: 22px;
-  z-index: 12;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 12px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-.galleryNavLink {
-  font-size: 13px;
-  letter-spacing: 0.02em;
-  padding: 8px 10px;
-  border-radius: 10px;
-  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
-}
-
-.galleryNavLink:hover {
-  background: rgba(0, 0, 0, 0.05);
-  transform: translateY(-1px);
-}
-
-.galleryNavLink--active {
-  background: rgba(0, 0, 0, 0.06);
-  font-weight: 600;
-}
-
 .galleryMain {
-  padding: 110px 120px 60px;
+  /* Your existing banner/header is fixed, so push content below it. */
+  padding: 160px 48px 72px;
   max-width: 1600px;
   margin: 0 auto;
 }
@@ -243,7 +168,7 @@ canvas {
     column-count: 3;
   }
   .galleryMain {
-    padding: 110px 90px 60px;
+    padding: 150px 28px 64px;
   }
 }
 
@@ -257,22 +182,12 @@ canvas {
     border-radius: 0px;
   }
   .galleryMain {
-    padding: 110px 18px 44px;
-  }
-  .galleryNav {
-    gap: 6px;
+    padding: 140px 16px 52px;
   }
 }
 
 @media (max-width: 520px) {
-  .galleryBrandMeta {
-    display: none;
-  }
-  .galleryBrandLogo {
-    width: 56px;
-  }
-  .galleryNavLink {
-    font-size: 12px;
-    padding: 7px 9px;
+  .galleryMain {
+    padding: 132px 12px 48px;
   }
 }

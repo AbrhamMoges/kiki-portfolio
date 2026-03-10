@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import MasonryGallery from './components/MasonryGallery'
 import Lightbox from './components/Lightbox'
 import { GALLERY_ITEMS } from './gallery/galleryData'
+import SharedHeader from './SharedHeader'
 
 export default function Media() {
   const [opacity, setOpacity] = useState(0)
@@ -45,27 +46,8 @@ export default function Media() {
           zIndex: 0,
         }}
       />
+      <SharedHeader />
       <div className="galleryShell" style={{ opacity, transition: 'opacity 400ms ease' }}>
-        <aside className="galleryBrand" aria-label="Brand">
-          <img className="galleryBrandLogo" src="/Kstaura Black logo.png" alt="Kstaura" />
-          <div className="galleryBrandMeta">
-            <div className="galleryBrandTitle">Media</div>
-            <div className="galleryBrandSub">Photography gallery</div>
-          </div>
-        </aside>
-
-        <aside className="galleryNav" aria-label="Navigation">
-          <a className="galleryNavLink" href="/page2">
-            Home
-          </a>
-          <a className="galleryNavLink" href="/page3">
-            About
-          </a>
-          <a className="galleryNavLink galleryNavLink--active" href="/media">
-            Media
-          </a>
-        </aside>
-
         <main className="galleryMain">
           <MasonryGallery
             items={items}

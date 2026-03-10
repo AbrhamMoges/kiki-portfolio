@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
@@ -69,6 +70,7 @@ function KalkidaneModel({ isMobile, opacity }) {
 export default function SharedHeader() {
   const [opacity, setOpacity] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
@@ -106,6 +108,16 @@ export default function SharedHeader() {
           paddingLeft: '0px',
           opacity,
           transition: 'opacity 2s ease-in-out'
+          cursor: 'pointer',
+        }}
+        onClick={() => navigate('/page2')}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            navigate('/page2')
+          }
         }}
       >
         <img
@@ -124,7 +136,7 @@ export default function SharedHeader() {
             opacity,
             transition: 'opacity 2s ease-in-out',
             display: 'block',
-            marginTop: '-14px'
+            marginTop: '-14px',
           }}
         />
       </div>
