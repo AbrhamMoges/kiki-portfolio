@@ -4,6 +4,7 @@ import './styles.css'
 import App from './App'
 import Page2Home from './Page2'
 import Page3 from './Page3'
+import Media from './Media'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -11,6 +12,7 @@ createRoot(document.getElementById('root')).render(
       <Route path="/" element={<App />} />
       <Route path="/page2" element={<Page2Home />} />
       <Route path="/page3" element={<Page3 />} />
+      <Route path="/media" element={<Media />} />
     </Routes>
   </BrowserRouter>
 )

@@ -157,6 +157,7 @@ export default function Page2Home(props) {
   const navigate = useNavigate()
   const [opacity, setOpacity] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const [mediaHover, setMediaHover] = useState(false)
   
   useEffect(() => {
     // Check if mobile on mount and window resize
@@ -348,7 +349,25 @@ export default function Page2Home(props) {
               textAlign: 'left'
             }}>About Me</p>
           </div>
-          <div style={{ flex: '1 1 0', minWidth: 0, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div
+            style={{
+              flex: '1 1 0',
+              minWidth: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              cursor: 'pointer',
+              transform: mediaHover ? 'scale(1.03)' : 'scale(1)',
+              transition: 'transform 0.2s ease',
+              opacity: mediaHover ? 0.9 : 1
+            }}
+            onClick={() => navigate('/media')}
+            onMouseEnter={() => setMediaHover(true)}
+            onMouseLeave={() => setMediaHover(false)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && navigate('/media')}
+          >
             <img 
               src="/Kiki%20Photography.jpg" 
               alt="Kiki Photography" 
