@@ -158,6 +158,7 @@ export default function Page2Home(props) {
   const [opacity, setOpacity] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
   const [mediaHover, setMediaHover] = useState(false)
+  const [aboutHover, setAboutHover] = useState(false)
   
   useEffect(() => {
     // Check if mobile on mount and window resize
@@ -313,9 +314,14 @@ export default function Page2Home(props) {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              transform: aboutHover ? 'scale(1.03)' : 'scale(1)',
+              transition: 'transform 0.2s ease',
+              opacity: aboutHover ? 0.9 : 1
             }}
             onClick={() => navigate('/page3')}
+            onMouseEnter={() => setAboutHover(true)}
+            onMouseLeave={() => setAboutHover(false)}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => e.key === 'Enter' && navigate('/page3')}

@@ -107,7 +107,7 @@ export default function SharedHeader() {
           alignItems: 'center',
           paddingLeft: '0px',
           opacity,
-          transition: 'opacity 2s ease-in-out'
+          transition: 'opacity 2s ease-in-out',
           cursor: 'pointer',
         }}
         onClick={() => navigate('/page2')}
