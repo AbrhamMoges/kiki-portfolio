@@ -70,6 +70,7 @@ function KalkidaneModel({ isMobile, opacity }) {
 export default function SharedHeader() {
   const [opacity, setOpacity] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const [isLogoHovered, setIsLogoHovered] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -110,13 +111,15 @@ export default function SharedHeader() {
           transition: 'opacity 2s ease-in-out',
           cursor: 'pointer',
         }}
-        onClick={() => navigate('/page2')}
+        onClick={() => navigate('/')}
+        onMouseEnter={() => setIsLogoHovered(true)}
+        onMouseLeave={() => setIsLogoHovered(false)}
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault()
-            navigate('/page2')
+            navigate('/')
           }
         }}
       >
@@ -134,7 +137,8 @@ export default function SharedHeader() {
             height: 'auto',
             objectFit: 'contain',
             opacity,
-            transition: 'opacity 2s ease-in-out',
+            transition: 'opacity 2s ease-in-out, transform 0.2s ease',
+            transform: isLogoHovered ? 'scale(1.08)' : 'scale(1)',
             display: 'block',
             marginTop: '-14px',
           }}
