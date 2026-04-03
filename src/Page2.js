@@ -280,7 +280,7 @@ export default function Page2Home(props) {
         <div style={{ flex: 1 }} />
       </header>
       
-      {/* Middle section: About kiki, Kiki Photography, Newsletter Kiki - large and centered */}
+      {/* Middle section: About kiki, Kiki Photography, Digital Journal - large and centered */}
       <section style={{
         width: '100%',
         minHeight: isMobile ? 'calc(100vh - 180px)' : 'calc(100vh - 200px)',
@@ -406,7 +406,7 @@ export default function Page2Home(props) {
           <div style={{ flex: '1 1 0', minWidth: 0, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <img 
               src="/Newsletter%20Kiki.jpg" 
-              alt="Newsletter Kiki" 
+              alt="Digital Journal" 
               onError={(e) => {
                 console.error('Image failed to load:', e.target.src);
                 e.target.style.border = '2px solid red';
@@ -431,7 +431,7 @@ export default function Page2Home(props) {
               width: '100%',
               maxWidth: isMobile ? 'none' : '380px',
               textAlign: 'left'
-            }}>Newsletter</p>
+            }}>Digital Journal</p>
           </div>
         </div>
       </section>
