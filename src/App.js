@@ -58,9 +58,14 @@ export default function App(props) {
         width: '100vw',
         minHeight: '100vh',
         height: '100dvh',
-        overflow: 'hidden',
+        overflow: 'auto',
         backgroundColor: '#ffffff',
         zIndex: 1,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '16px',
+        boxSizing: 'border-box',
       }}
     >
       <video
@@ -72,16 +77,12 @@ export default function App(props) {
         onEnded={goHome}
         onClick={goHome}
         style={{
-          position: 'absolute',
-          left: '50%',
-          top: '50%',
-          /* Full-bleed: cover viewport (vw/vh so sizing isn’t tied to flex/% quirks) */
-          minWidth: '100vw',
-          minHeight: 'max(100vh, 100dvh)',
-          width: 'auto',
+          /* Large but contained — no CSS scale blur */
+          width: '100%',
+          maxWidth: 'min(1200px, 94vw)',
           height: 'auto',
-          transform: 'translate(-50%, -50%) scale(1.22)',
-          objectFit: 'cover',
+          maxHeight: 'min(675px, 82vh)',
+          objectFit: 'contain',
           objectPosition: 'center center',
           display: 'block',
           cursor: 'pointer',

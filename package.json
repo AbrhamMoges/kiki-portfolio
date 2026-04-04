@@ -26,8 +26,8 @@
     "postinstall-postinstall": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "dev": "react-scripts start",
+    "start": "WATCHPACK_POLLING=true CHOKIDAR_USEPOLLING=true react-scripts start",
+    "dev": "WATCHPACK_POLLING=true CHOKIDAR_USEPOLLING=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "postinstall": "patch-package",
