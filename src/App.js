@@ -1,9 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-
-const SPLASH_BASE = 'Splash Page annimation'
-const mp4Src = `/${encodeURIComponent(SPLASH_BASE)}.mp4`
-const movSrc = `/${encodeURIComponent(SPLASH_BASE)}.mov`
+// Splash video is bundled from here (not public/). After changing Kstaura Splash Annimation.mov, re-encode to MP4 and replace this file.
+import splashMp4 from './assets/splash-kstaura.mp4'
 
 export default function App(props) {
   const videoRef = useRef(null)
@@ -13,15 +11,23 @@ export default function App(props) {
   useEffect(() => {
     const el = videoRef.current
     if (!el) return
+
     const tryPlay = () => {
       el.play().catch(() => {})
     }
+
     el.addEventListener('loadeddata', tryPlay)
+    el.addEventListener('canplay', tryPlay)
+    el.addEventListener('canplaythrough', tryPlay)
     tryPlay()
-    return () => el.removeEventListener('loadeddata', tryPlay)
+
+    return () => {
+      el.removeEventListener('loadeddata', tryPlay)
+      el.removeEventListener('canplay', tryPlay)
+      el.removeEventListener('canplaythrough', tryPlay)
+    }
   }, [])
 
-  // If autoplay is blocked, `ended` may never fire — still advance after known duration.
   useEffect(() => {
     const el = videoRef.current
     if (!el) return
@@ -49,6 +55,10 @@ export default function App(props) {
     navigate('/page2')
   }
 
+  const handleVideoError = (e) => {
+    console.error('Splash video failed to load:', e?.currentTarget?.error, splashMp4)
+  }
+
   return (
     <div
       {...props}
@@ -70,14 +80,15 @@ export default function App(props) {
     >
       <video
         ref={videoRef}
+        src={splashMp4}
         autoPlay
         muted
         playsInline
         preload="auto"
         onEnded={goHome}
         onClick={goHome}
+        onError={handleVideoError}
         style={{
-          /* Large but contained — no CSS scale blur */
           width: '100%',
           maxWidth: 'min(1200px, 94vw)',
           height: 'auto',
@@ -87,11 +98,7 @@ export default function App(props) {
           display: 'block',
           cursor: 'pointer',
         }}
-      >
-        <source src={mp4Src} type="video/mp4" />
-        <source src={movSrc} type="video/quicktime" />
-        Your browser does not support this video.
-      </video>
+      />
     </div>
   )
 }

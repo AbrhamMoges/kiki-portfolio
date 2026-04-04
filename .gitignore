@@ -1,2 +1,5 @@
 node_modules
 build
+.DS_Store
+# ProRes source is >100MB — keep MP4 in repo; encode locally when .mov changes
+public/Kstaura Splash Annimation.mov
