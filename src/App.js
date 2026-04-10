@@ -1,12 +1,28 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 // Splash video is bundled from here (not public/). After changing Kstaura Splash Annimation.mov, re-encode to MP4 and replace this file.
+// For maximum clarity, export at 1920×1080 (or higher) H.264 with a higher bitrate — enlarging a small file in the browser will always look soft.
 import splashMp4 from './assets/splash-kstaura.mp4'
+
+const PUBLIC_SPLASH_MP4 = `${process.env.PUBLIC_URL || ''}/kstaura-splash.mp4`
 
 export default function App(props) {
   const videoRef = useRef(null)
   const navigate = useNavigate()
   const hasNavigatedRef = useRef(false)
+  const [videoSrc, setVideoSrc] = useState(splashMp4)
+  const [videoAspect, setVideoAspect] = useState('16 / 9')
+
+  // Safari / iOS: autoplay only works if muted is applied in the DOM; attribute alone is not always enough.
+  useEffect(() => {
+    const el = videoRef.current
+    if (!el) return
+    el.muted = true
+    el.defaultMuted = true
+    el.setAttribute('muted', '')
+    el.setAttribute('playsinline', '')
+    el.setAttribute('webkit-playsinline', '')
+  }, [videoSrc])
 
   useEffect(() => {
     const el = videoRef.current
@@ -26,13 +42,16 @@ export default function App(props) {
       el.removeEventListener('canplay', tryPlay)
       el.removeEventListener('canplaythrough', tryPlay)
     }
-  }, [])
+  }, [videoSrc])
 
   useEffect(() => {
     const el = videoRef.current
     if (!el) return
     let id
     const onMeta = () => {
+      if (el.videoWidth > 0 && el.videoHeight > 0) {
+        setVideoAspect(`${el.videoWidth} / ${el.videoHeight}`)
+      }
       const d = el.duration
       if (!Number.isFinite(d) || d <= 0) return
       id = window.setTimeout(() => {
@@ -47,7 +66,7 @@ export default function App(props) {
       window.clearTimeout(id)
       el.removeEventListener('loadedmetadata', onMeta)
     }
-  }, [navigate])
+  }, [navigate, videoSrc])
 
   const goHome = () => {
     if (hasNavigatedRef.current) return
@@ -56,31 +75,20 @@ export default function App(props) {
   }
 
   const handleVideoError = (e) => {
-    console.error('Splash video failed to load:', e?.currentTarget?.error, splashMp4)
+    const err = e?.currentTarget?.error
+    console.error('Splash video failed to load:', err, videoSrc)
+    if (videoSrc === splashMp4 && PUBLIC_SPLASH_MP4) {
+      setVideoSrc(PUBLIC_SPLASH_MP4)
+    }
   }
 
   return (
-    <div
-      {...props}
-      style={{
-        position: 'fixed',
-        inset: 0,
-        width: '100vw',
-        minHeight: '100vh',
-        height: '100dvh',
-        overflow: 'auto',
-        backgroundColor: '#ffffff',
-        zIndex: 1,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '16px',
-        boxSizing: 'border-box',
-      }}
-    >
+    <div {...props} className="splashRoot">
       <video
+        key={videoSrc}
         ref={videoRef}
-        src={splashMp4}
+        className="splashVideo"
+        src={videoSrc}
         autoPlay
         muted
         playsInline
@@ -88,16 +96,7 @@ export default function App(props) {
         onEnded={goHome}
         onClick={goHome}
         onError={handleVideoError}
-        style={{
-          width: '100%',
-          maxWidth: 'min(1200px, 94vw)',
-          height: 'auto',
-          maxHeight: 'min(675px, 82vh)',
-          objectFit: 'contain',
-          objectPosition: 'center center',
-          display: 'block',
-          cursor: 'pointer',
-        }}
+        style={{ aspectRatio: videoAspect }}
       />
     </div>
   )

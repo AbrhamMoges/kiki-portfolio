@@ -131,9 +131,9 @@ export default function SharedHeader() {
             e.target.style.border = '2px solid red'
           }}
           style={{
-            maxWidth: isMobile ? '70px' : '95px',
-            width: isMobile ? '35%' : 'auto',
-            minWidth: isMobile ? '45px' : '80px',
+            maxWidth: isMobile ? '100px' : '132px',
+            width: isMobile ? '48%' : 'auto',
+            minWidth: isMobile ? '64px' : '108px',
             height: 'auto',
             objectFit: 'contain',
             opacity,
