@@ -29,7 +29,59 @@ export default function Page2Home(props) {
       document.title = prevTitle
     }
   }, [])
-  
+
+  // Identical image box for About / Multimedia / Digital Journal (fixed frame on desktop).
+  const homeColumnContent = isMobile
+    ? { width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }
+    : {
+        width: '100%',
+        maxWidth: 'min(520px, calc((100vw - 96px) / 3 - 12px))',
+        alignSelf: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'stretch',
+      }
+
+  const homeFrameStyle = isMobile
+    ? { width: '100%' }
+    : {
+        width: '100%',
+        height: 'min(580px, 60vh)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+      }
+
+  const homeImgInFrame = isMobile
+    ? {
+        width: '100%',
+        height: 'auto',
+        maxHeight: 'none',
+        objectFit: 'contain',
+        display: 'block',
+      }
+    : {
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+        objectPosition: 'center center',
+        display: 'block',
+      }
+
+  const homeCaptionStyle = {
+    fontFamily: '"Caveat", cursive',
+    fontSize: isMobile ? 'clamp(18px, 4.8vw, 22px)' : '16px',
+    fontWeight: 'bold',
+    color: '#000',
+    margin: '10px 0 0 0',
+    padding: 0,
+    width: '100%',
+    maxWidth: '100%',
+    textAlign: 'left',
+    boxSizing: 'border-box',
+  }
+
   return (
     <>
       {/* Fixed background */}
@@ -98,8 +150,8 @@ export default function Page2Home(props) {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: isMobile ? 'stretch' : 'center',
-        gap: isMobile ? '12px' : '24px',
-        padding: isMobile ? '120px 20px 48px' : '160px 48px 80px',
+        gap: isMobile ? '12px' : '16px',
+        padding: isMobile ? '120px 20px 48px' : '160px 28px 80px',
         position: 'relative',
         zIndex: 5,
         backgroundColor: 'transparent',
@@ -111,20 +163,21 @@ export default function Page2Home(props) {
           display: 'flex',
           flexDirection: isMobile ? 'column' : 'row',
           justifyContent: 'center',
-          alignItems: isMobile ? 'stretch' : 'flex-start',
-          gap: isMobile ? 'clamp(28px, 8vw, 44px)' : '24px',
+          alignItems: 'stretch',
+          gap: isMobile ? 'clamp(28px, 8vw, 44px)' : '14px',
           width: '100%',
-          maxWidth: isMobile ? 'min(100%, 520px)' : '1200px',
+          maxWidth: isMobile ? 'min(100%, 520px)' : 'none',
           margin: isMobile ? '0 auto' : undefined,
-          flex: '1 1 auto'
+          flex: '1 1 auto',
         }}>
           <div
             style={{
-              flex: isMobile ? '0 0 auto' : '1 1 0',
+              flex: isMobile ? '0 0 auto' : '0 0 auto',
+              width: isMobile ? '100%' : 'auto',
               minWidth: 0,
               display: 'flex',
               flexDirection: 'column',
-              alignItems: isMobile ? 'stretch' : 'center',
+              alignItems: 'stretch',
               cursor: 'pointer',
               transform: aboutHover ? 'scale(1.03)' : 'scale(1)',
               transition: 'transform 0.2s ease',
@@ -137,42 +190,30 @@ export default function Page2Home(props) {
             tabIndex={0}
             onKeyDown={(e) => e.key === 'Enter' && navigate('/page3')}
           >
-            <img 
-              src={HOME_IMG_ABOUT} 
-              alt="About Kiki" 
-              onError={(e) => {
-                console.error('Image failed to load:', e.target.src);
-                e.target.style.border = '2px solid red';
-                e.target.style.backgroundColor = '#f0f0f0';
-              }}
-              style={{ 
-                width: '100%',
-                maxWidth: isMobile ? '100%' : '380px',
-                height: 'auto',
-                maxHeight: isMobile ? 'none' : '65vh',
-                objectFit: 'contain',
-                display: 'block'
-              }} 
-            />
-            <p style={{
-              fontFamily: '"Caveat", cursive',
-              fontSize: isMobile ? 'clamp(18px, 4.8vw, 22px)' : '16px',
-              fontWeight: 'bold',
-              color: '#000',
-              margin: '10px 0 0 0',
-              alignSelf: 'flex-start',
-              width: '100%',
-              maxWidth: isMobile ? '100%' : '380px',
-              textAlign: 'left',
-            }}>About Me</p>
+            <div style={homeColumnContent}>
+              <div style={homeFrameStyle}>
+                <img 
+                  src={HOME_IMG_ABOUT} 
+                  alt="About Kiki" 
+                  onError={(e) => {
+                    console.error('Image failed to load:', e.target.src);
+                    e.target.style.border = '2px solid red';
+                    e.target.style.backgroundColor = '#f0f0f0';
+                  }}
+                  style={homeImgInFrame}
+                />
+              </div>
+              <p style={homeCaptionStyle}>About Me</p>
+            </div>
           </div>
           <div
             style={{
-              flex: isMobile ? '0 0 auto' : '1 1 0',
+              flex: isMobile ? '0 0 auto' : '0 0 auto',
+              width: isMobile ? '100%' : 'auto',
               minWidth: 0,
               display: 'flex',
               flexDirection: 'column',
-              alignItems: isMobile ? 'stretch' : 'center',
+              alignItems: 'stretch',
               cursor: 'pointer',
               transform: mediaHover ? 'scale(1.03)' : 'scale(1)',
               transition: 'transform 0.2s ease',
@@ -185,67 +226,48 @@ export default function Page2Home(props) {
             tabIndex={0}
             onKeyDown={(e) => e.key === 'Enter' && navigate('/media')}
           >
-            <img 
-              src={HOME_IMG_MEDIA} 
-              alt="Multimedia" 
-              onError={(e) => {
-                console.error('Image failed to load:', e.target.src);
-                e.target.style.border = '2px solid red';
-                e.target.style.backgroundColor = '#f0f0f0';
-              }}
-              style={{ 
-                width: '100%',
-                maxWidth: isMobile ? '100%' : '380px',
-                height: 'auto',
-                maxHeight: isMobile ? 'none' : '65vh',
-                objectFit: 'contain',
-                display: 'block'
-              }} 
-            />
-            <p style={{
-              fontFamily: '"Caveat", cursive',
-              fontSize: isMobile ? 'clamp(18px, 4.8vw, 22px)' : '16px',
-              fontWeight: 'bold',
-              color: '#000',
-              margin: '10px 0 0 0',
-              alignSelf: 'flex-start',
-              width: '100%',
-              maxWidth: isMobile ? '100%' : '380px',
-              textAlign: 'left',
-            }}>Multimedia</p>
+            <div style={homeColumnContent}>
+              <div style={homeFrameStyle}>
+                <img 
+                  src={HOME_IMG_MEDIA} 
+                  alt="Multimedia" 
+                  onError={(e) => {
+                    console.error('Image failed to load:', e.target.src);
+                    e.target.style.border = '2px solid red';
+                    e.target.style.backgroundColor = '#f0f0f0';
+                  }}
+                  style={homeImgInFrame}
+                />
+              </div>
+              <p style={homeCaptionStyle}>Multimedia</p>
+            </div>
           </div>
           <div
             id="home-digital-journal"
-            style={{ flex: isMobile ? '0 0 auto' : '1 1 0', minWidth: 0, display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'stretch' : 'center' }}
+            style={{
+              flex: isMobile ? '0 0 auto' : '0 0 auto',
+              width: isMobile ? '100%' : 'auto',
+              minWidth: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'stretch',
+            }}
           >
-            <img 
-              src={HOME_IMG_JOURNAL} 
-              alt="Digital Journal" 
-              onError={(e) => {
-                console.error('Image failed to load:', e.target.src);
-                e.target.style.border = '2px solid red';
-                e.target.style.backgroundColor = '#f0f0f0';
-              }}
-              style={{ 
-                width: '100%',
-                maxWidth: isMobile ? '100%' : '380px',
-                height: 'auto',
-                maxHeight: isMobile ? 'none' : '65vh',
-                objectFit: 'contain',
-                display: 'block'
-              }} 
-            />
-            <p style={{
-              fontFamily: '"Caveat", cursive',
-              fontSize: isMobile ? 'clamp(18px, 4.8vw, 22px)' : '16px',
-              fontWeight: 'bold',
-              color: '#000',
-              margin: '10px 0 0 0',
-              alignSelf: 'flex-start',
-              width: '100%',
-              maxWidth: isMobile ? '100%' : '380px',
-              textAlign: 'left',
-            }}>Digital Journal</p>
+            <div style={homeColumnContent}>
+              <div style={homeFrameStyle}>
+                <img 
+                  src={HOME_IMG_JOURNAL} 
+                  alt="Digital Journal" 
+                  onError={(e) => {
+                    console.error('Image failed to load:', e.target.src);
+                    e.target.style.border = '2px solid red';
+                    e.target.style.backgroundColor = '#f0f0f0';
+                  }}
+                  style={homeImgInFrame}
+                />
+              </div>
+              <p style={homeCaptionStyle}>Digital Journal</p>
+            </div>
           </div>
         </div>
       </section>
