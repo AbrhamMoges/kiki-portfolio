@@ -57,7 +57,7 @@ export default function App(props) {
       id = window.setTimeout(() => {
         if (!hasNavigatedRef.current) {
           hasNavigatedRef.current = true
-          navigate('/page2')
+          navigate('/home')
         }
       }, (d + 0.35) * 1000)
     }
@@ -71,7 +71,7 @@ export default function App(props) {
   const goHome = () => {
     if (hasNavigatedRef.current) return
     hasNavigatedRef.current = true
-    navigate('/page2')
+    navigate('/home')
   }
 
   const handleVideoError = (e) => {

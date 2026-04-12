@@ -89,6 +89,100 @@ canvas {
   }
 }
 
+/* Hamburger (Home / About / Media — not splash)
+   Use margin (not transform) so fixed menu panel can align to viewport edges. */
+.page2HamburgerWrap {
+  min-height: 44px;
+  margin-left: -40px;
+  margin-top: -6px;
+}
+
+.page2HamburgerBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  line-height: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page2HamburgerBtn:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+/* Same size/offset as former top-left header logo */
+.page2NavLogoImg {
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin-top: -12px;
+}
+
+@media (max-width: 767px) {
+  .page2NavLogoImg {
+    max-width: 114px;
+    width: 52%;
+    min-width: 72px;
+  }
+}
+
+@media (min-width: 768px) {
+  .page2NavLogoImg {
+    max-width: 150px;
+    min-width: 118px;
+    width: auto;
+  }
+}
+
+.page2MenuPanel {
+  /* position / top / left / width set inline in NavHamburger for viewport insets */
+  position: fixed;
+  z-index: 100;
+  min-width: min(200px, calc(100vw - 48px));
+  max-width: min(280px, calc(100vw - 48px));
+  background: #ffffff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.14);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 8px 0;
+  box-sizing: border-box;
+}
+
+.page2MenuItem {
+  display: block;
+  width: 100%;
+  padding: 14px 20px;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(17px, 4vw, 20px);
+  font-weight: 700;
+  color: #000;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page2MenuItem:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.page2MenuItem:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: -2px;
+}
+
+@media (max-width: 768px) {
+  .page2MenuPanel {
+    min-width: min(220px, calc(100vw - 48px));
+  }
+}
+
 /* Media gallery (masonry + lightbox) */
 .galleryShell {
   position: relative;
