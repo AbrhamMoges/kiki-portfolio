@@ -1,12 +1,29 @@
 /**
- * Site-wide footer (not on splash). Layout: location · spacer · email · copyright.
+ * Site-wide footer (not on splash). Layout: location · socials · email · copyright.
  */
 export default function SiteFooter() {
   return (
     <footer className="siteFooter" role="contentinfo">
       <div className="siteFooterInner">
         <span className="siteFooterCell">Dallas Tx</span>
-        <span className="siteFooterCell siteFooterCell--empty" aria-hidden="true" />
+        <div className="siteFooterCell siteFooterSocial">
+          <a
+            className="siteFooterLink"
+            href="https://www.youtube.com/@kstaura"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            www.youtube.com/@kstaura
+          </a>
+          <a
+            className="siteFooterLink"
+            href="https://substack.com/kstaura"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            substack.com/kstaura
+          </a>
+        </div>
         <a
           className="siteFooterCell siteFooterMail"
           href="mailto:kalkidane.negewo@gmail.com"

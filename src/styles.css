@@ -250,8 +250,21 @@ canvas {
   word-break: break-word;
 }
 
-.siteFooterCell--empty {
-  min-height: 1em;
+.siteFooterSocial {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(10px, 2vw, 18px);
+}
+
+.siteFooterLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.siteFooterLink:hover {
+  text-decoration: underline;
 }
 
 .siteFooterMail {
@@ -270,10 +283,6 @@ canvas {
 @media (max-width: 767px) {
   .siteFooterInner {
     grid-template-columns: 1fr;
-  }
-
-  .siteFooterCell--empty {
-    display: none;
   }
 
   .siteFooterCell--legal {
