@@ -3,6 +3,7 @@ import MasonryGallery from './components/MasonryGallery'
 import Lightbox from './components/Lightbox'
 import { GALLERY_ITEMS } from './gallery/galleryData'
 import SharedHeader from './SharedHeader'
+import SiteFooter from './SiteFooter'
 
 export default function Media() {
   const [opacity, setOpacity] = useState(0)
@@ -46,17 +47,20 @@ export default function Media() {
           zIndex: 0,
         }}
       />
-      <SharedHeader />
-      <div className="galleryShell" style={{ opacity, transition: 'opacity 400ms ease' }}>
-        <main className="galleryMain">
-          <MasonryGallery
-            items={items}
-            onSelect={(idx, rect) => {
-              setActiveIndex(idx)
-              setOriginRect(rect)
-            }}
-          />
-        </main>
+      <div className="pageWithFooter" style={{ position: 'relative', zIndex: 1, minHeight: '100vh' }}>
+        <SharedHeader />
+        <div className="galleryShell" style={{ opacity, transition: 'opacity 400ms ease', flex: 1, minHeight: 0 }}>
+          <main className="galleryMain">
+            <MasonryGallery
+              items={items}
+              onSelect={(idx, rect) => {
+                setActiveIndex(idx)
+                setOriginRect(rect)
+              }}
+            />
+          </main>
+        </div>
+        <SiteFooter />
       </div>
 
       <Lightbox

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import NavHamburger, { HOME_IMG_ABOUT, HOME_IMG_MEDIA, HOME_IMG_JOURNAL } from './NavHamburger'
 import HeaderKalkidane from './HeaderKalkidane'
+import SiteFooter from './SiteFooter'
 
 export default function Page2Home(props) {
   const navigate = useNavigate()
@@ -97,9 +98,11 @@ export default function Page2Home(props) {
         zIndex: 0,
         pointerEvents: 'none'
       }} />
-      <div style={{ 
+      <div
+        className="pageWithFooter"
+        style={{ 
         width: '100%', 
-        minHeight: '100vh', // Make page scrollable
+        minHeight: '100vh',
         backgroundColor: 'transparent', 
         display: 'flex', 
         flexDirection: 'column', 
@@ -108,7 +111,8 @@ export default function Page2Home(props) {
         boxSizing: 'border-box',
         overflowX: 'visible',
         overflowY: 'visible'
-      }}>
+      }}
+      >
       {/* Header section with logo - Fixed in place */}
       <header style={{
         width: '100%',
@@ -145,6 +149,7 @@ export default function Page2Home(props) {
       {/* Middle section: About kiki, Multimedia, Digital Journal - large and centered */}
       <section style={{
         width: '100%',
+        flex: 1,
         minHeight: isMobile ? 'auto' : 'calc(100vh - 200px)',
         display: 'flex',
         flexDirection: 'row',
@@ -271,6 +276,8 @@ export default function Page2Home(props) {
           </div>
         </div>
       </section>
+
+      <SiteFooter />
       
       </div>
     </>
