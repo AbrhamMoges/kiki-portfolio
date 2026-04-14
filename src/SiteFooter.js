@@ -1,6 +1,6 @@
 /**
- * Site-wide footer (not on splash). Layout: location · socials · email · copyright.
- * Mobile: * + brand row, four-column row, scrolls with page (not fixed).
+ * Site-wide footer (not on splash). Social icons left, copyright right.
+ * Mobile: * + brand row, scrolls with page (not fixed).
  */
 export default function SiteFooter() {
   return (
@@ -12,31 +12,29 @@ export default function SiteFooter() {
         <span className="siteFooterBrandName">Kstaura</span>
       </div>
       <div className="siteFooterInner">
-        <span className="siteFooterCell">Dallas Tx</span>
-        <div className="siteFooterCell siteFooterSocial">
+        <div className="siteFooterSocialIcons">
           <a
-            className="siteFooterLink"
+            className="siteFooterIconLink"
             href="https://www.youtube.com/@kstaura"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="YouTube"
           >
-            youtube.com/@kstaura
+            <img className="siteFooterIconImg" src="/youtube.png" alt="" width={28} height={28} draggable={false} />
           </a>
           <a
-            className="siteFooterLink"
+            className="siteFooterIconLink"
             href="https://substack.com/kstaura"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Substack"
           >
-            substack.com/kstaura
+            <img className="siteFooterIconImg" src="/Substack.png" alt="" width={28} height={28} draggable={false} />
+          </a>
+          <a className="siteFooterIconLink" href="mailto:kalkidane.negewo@gmail.com" aria-label="Email">
+            <img className="siteFooterIconImg" src="/Mail%20.png" alt="" width={28} height={28} draggable={false} />
           </a>
         </div>
-        <a
-          className="siteFooterCell siteFooterMail"
-          href="mailto:kalkidane.negewo@gmail.com"
-        >
-          Kalkidane.negewo@gmail.com
-        </a>
         <div className="siteFooterCell siteFooterCell--legal">
           <span>© 2026 All rights reserved.</span>
         </div>
