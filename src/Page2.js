@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import NavHamburger, { HOME_IMG_ABOUT, HOME_IMG_MEDIA, HOME_IMG_JOURNAL } from './NavHamburger'
-import HeaderKalkidane from './HeaderKalkidane'
+import { HOME_IMG_ABOUT, HOME_IMG_MEDIA, HOME_IMG_JOURNAL } from './NavHamburger'
+import SharedHeader from './SharedHeader'
 import SiteFooter from './SiteFooter'
 
 export default function Page2Home(props) {
@@ -109,39 +109,8 @@ export default function Page2Home(props) {
         overflowY: 'visible'
       }}
       >
-      {/* Header section with logo - Fixed in place */}
-      <header style={{
-        width: '100%',
-        padding: isMobile ? '0px 20px' : '0px 40px',
-        paddingTop: isMobile ? '0px' : '0px',
-        marginTop: isMobile ? '-24px' : '-24px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: 'white',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 10,
-        boxSizing: 'border-box',
-        overflow: 'visible',
-      }}>
-        <NavHamburger opacity={opacity} />
+      <SharedHeader opacity={opacity} />
 
-        <HeaderKalkidane isMobile={isMobile} opacity={opacity} />
-
-        <div
-          aria-hidden
-          style={{
-            flex: 1,
-            minWidth: 0,
-            opacity,
-            transition: 'opacity 2s ease-in-out',
-          }}
-        />
-      </header>
-      
       {/* Middle section: About kiki, Multimedia, Digital Journal - large and centered */}
       <section style={{
         width: '100%',
@@ -158,8 +127,9 @@ export default function Page2Home(props) {
         backgroundColor: 'transparent',
         boxSizing: 'border-box',
         opacity,
-        transition: 'opacity 2s ease-in-out'
-      }}>
+        transition: 'opacity 5s ease 0.5s',
+      }}
+      >
         <div style={{
           display: 'flex',
           flexDirection: isMobile ? 'column' : 'row',

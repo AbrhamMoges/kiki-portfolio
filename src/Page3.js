@@ -50,7 +50,7 @@ export default function Page3() {
             padding: '140px 40px 40px',
             boxSizing: 'border-box',
             opacity,
-            transition: 'opacity 2s ease-in-out',
+            transition: 'opacity 5s ease 0.5s',
           }}
         >
           <img

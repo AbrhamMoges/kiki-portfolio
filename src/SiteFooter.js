@@ -1,9 +1,16 @@
 /**
  * Site-wide footer (not on splash). Layout: location · socials · email · copyright.
+ * Mobile: * + brand row, four-column row, scrolls with page (not fixed).
  */
 export default function SiteFooter() {
   return (
     <footer className="siteFooter" role="contentinfo">
+      <div className="siteFooterMobileTop">
+        <span className="siteFooterMark" aria-hidden="true">
+          *
+        </span>
+        <span className="siteFooterBrandName">Kstaura</span>
+      </div>
       <div className="siteFooterInner">
         <span className="siteFooterCell">Dallas Tx</span>
         <div className="siteFooterCell siteFooterSocial">
@@ -13,7 +20,7 @@ export default function SiteFooter() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            www.youtube.com/@kstaura
+            youtube.com/@kstaura
           </a>
           <a
             className="siteFooterLink"

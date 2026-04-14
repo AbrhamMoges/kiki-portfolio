@@ -10,7 +10,7 @@ export const HOME_IMG_JOURNAL = '/New%20Digital%20Journal.jpg'
  */
 const VIEWPORT_EDGE = 16
 
-export default function NavHamburger({ opacity = 1 }) {
+export default function NavHamburger() {
   const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
   const [panelStyle, setPanelStyle] = useState({ top: 0, left: VIEWPORT_EDGE, width: 280 })
@@ -87,8 +87,6 @@ export default function NavHamburger({ opacity = 1 }) {
         justifyContent: 'flex-start',
         alignItems: 'center',
         position: 'relative',
-        opacity,
-        transition: 'opacity 2s ease-in-out',
       }}
     >
       <button
@@ -105,6 +103,8 @@ export default function NavHamburger({ opacity = 1 }) {
           alt=""
           className="page2NavLogoImg"
           draggable={false}
+          loading="eager"
+          fetchPriority="high"
           onError={(e) => {
             console.error('Image failed to load:', e.target.src)
             e.target.style.border = '2px solid red'

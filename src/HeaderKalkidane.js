@@ -87,7 +87,7 @@ function KalkidaneModel({ isMobile, hoverActive }) {
 }
 
 /** Same center Kalkidane block as Home — use on every page with this header (not splash). */
-export default function HeaderKalkidane({ isMobile, opacity }) {
+export default function HeaderKalkidane({ isMobile }) {
   const navigate = useNavigate()
   const [hoverActive, setHoverActive] = useState(false)
 
@@ -103,8 +103,6 @@ export default function HeaderKalkidane({ isMobile, opacity }) {
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft: isMobile ? '48px' : '80px',
-        opacity,
-        transition: 'opacity 2s ease-in-out',
         overflow: 'visible',
         minWidth: 0,
       }}

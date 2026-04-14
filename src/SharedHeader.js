@@ -4,21 +4,26 @@ import HeaderKalkidane from './HeaderKalkidane'
 
 /**
  * Same header bar as Home (logo menu — Kalkidane — spacer). Not used on splash.
+ * Optional `opacity` ties the whole header fade to the page (e.g. Home section fade).
  */
-export default function SharedHeader() {
-  const [opacity, setOpacity] = useState(0)
+export default function SharedHeader({ opacity: opacityProp }) {
+  const [internalOpacity, setInternalOpacity] = useState(0)
+  const opacity = opacityProp !== undefined ? opacityProp : internalOpacity
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
     checkMobile()
     window.addEventListener('resize', checkMobile)
-    setOpacity(1)
+    if (opacityProp === undefined) {
+      setInternalOpacity(1)
+    }
     return () => window.removeEventListener('resize', checkMobile)
-  }, [])
+  }, [opacityProp])
 
   return (
     <header
+      className="headerBarFade"
       style={{
         width: '100%',
         padding: isMobile ? '0px 20px' : '0px 40px',
@@ -35,19 +40,18 @@ export default function SharedHeader() {
         zIndex: 10,
         boxSizing: 'border-box',
         overflow: 'visible',
+        opacity,
       }}
     >
-      <NavHamburger opacity={opacity} />
+      <NavHamburger />
 
-      <HeaderKalkidane isMobile={isMobile} opacity={opacity} />
+      <HeaderKalkidane isMobile={isMobile} />
 
       <div
         aria-hidden
         style={{
           flex: 1,
           minWidth: 0,
-          opacity,
-          transition: 'opacity 2s ease-in-out',
         }}
       />
     </header>
