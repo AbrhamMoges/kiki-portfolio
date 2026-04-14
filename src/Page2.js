@@ -22,12 +22,8 @@ export default function Page2Home(props) {
     // Fade in animation on mount
     setOpacity(1)
 
-    const prevTitle = document.title
-    document.title = 'Home'
-    
     return () => {
       window.removeEventListener('resize', checkMobile)
-      document.title = prevTitle
     }
   }, [])
 
