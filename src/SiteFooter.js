@@ -31,6 +31,31 @@ export default function SiteFooter() {
           >
             <img className="siteFooterIconImg" src="/Substack.png" alt="" width={28} height={28} draggable={false} />
           </a>
+          <a
+            className="siteFooterIconLink"
+            href="https://www.instagram.com/kstaura/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <img
+              className="siteFooterIconImg siteFooterIconImg--instagram"
+              src="/IG%20icon.png?v=2"
+              alt=""
+              width={32}
+              height={32}
+              draggable={false}
+            />
+          </a>
+          <a
+            className="siteFooterIconLink"
+            href="https://x.com/kstaura"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Twitter"
+          >
+            <img className="siteFooterIconImg" src="/twitter%20lcon.png" alt="" width={28} height={28} draggable={false} />
+          </a>
           <a className="siteFooterIconLink" href="mailto:kalkidane.negewo@gmail.com" aria-label="Email">
             <img className="siteFooterIconImg" src="/Mail%20.png" alt="" width={28} height={28} draggable={false} />
           </a>

@@ -312,6 +312,11 @@ canvas {
   display: block;
 }
 
+.siteFooterIconImg--instagram {
+  width: clamp(24px, 6vw, 32px);
+  height: clamp(24px, 6vw, 32px);
+}
+
 .siteFooterCell {
   min-width: 0;
   word-break: break-word;

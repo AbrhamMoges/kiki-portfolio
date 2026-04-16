@@ -76,7 +76,7 @@ export default function Page3() {
               textAlign: 'center',
             }}
           >
-            Kalkidane Negewo is an Ethiopian-American creative professional born in Dallas, Texas. She holds a degree in Geography & The Environments, grounding her work in the intersections of place, resources, & global systems.
+            Kalkidane Negewo
           </p>
           <p
             style={{
@@ -90,7 +90,7 @@ export default function Page3() {
               textIndent: '1.5em',
             }}
           >
-            She began her career at the final stage of the luxury fashion supply chain, spending two years in e-commerce operations at Bergdorf Goodman & Neiman Marcus. Her work has since expanded upstream, now engaging with the initial stages of the fashion supply chain through global trade operations of natural fibers. Engaging in research, short stories, & video essays, she explores fashion as a cultural & economic force shaped by geography, labor, & exchanges. Her work is committed to intentionally moving the conversation forward.
+            An Ethiopian, born in Dallas, Texas. She graduated in Geography & The Environments, grounding her work in the intersections of place, resources, & global systems.
           </p>
           <p
             style={{
@@ -104,7 +104,23 @@ export default function Page3() {
               textIndent: '1.5em',
             }}
           >
-            The core message of Kalkidane's guiding belief: Always Have Faith. The dream placed within you is yours to see through.
+            She began her career at the final stage of the luxury fashion supply chain, spending two years in e-commerce operations at Bergdorf Goodman & Neiman Marcus. Her work has since expanded upstream, working in the initial stages of the fashion supply chain & global trade of natural fibers. Through different creative systems, she explores fashion as part of the cultural & economic landscape. Her work is commited to intentionally moves the conversation forward.
+          </p>
+          <p
+            style={{
+              fontFamily: 'Helvetica, Arial, sans-serif',
+              fontSize: 'clamp(14px, 2.5vw, 18px)',
+              lineHeight: 1.6,
+              color: '#000000',
+              margin: '1em 0 0 0',
+              maxWidth: '720px',
+              textAlign: 'center',
+              textIndent: '1.5em',
+            }}
+          >
+            The core message of Kalkidane's guiding belief is: Always Believe.
+            <br />
+            The dream placed within you is yours to see through.
           </p>
         </div>
         <SiteFooter />
