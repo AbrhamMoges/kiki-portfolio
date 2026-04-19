@@ -5,6 +5,9 @@ import App from './App'
 import Page2Home from './Page2'
 import Page3 from './Page3'
 import Media from './Media'
+import DigitalJournal from './DigitalJournal'
+import SeeBothSidesChanel from './SeeBothSidesChanel'
+import CostOfSustainabilityFashion from './CostOfSustainabilityFashion'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -14,6 +17,12 @@ createRoot(document.getElementById('root')).render(
       <Route path="/page2" element={<Navigate to="/home" replace />} />
       <Route path="/page3" element={<Page3 />} />
       <Route path="/media" element={<Media />} />
+      <Route path="/digital-journal" element={<DigitalJournal />} />
+      <Route path="/i-see-both-sides-like-chanel" element={<SeeBothSidesChanel />} />
+      <Route
+        path="/the-cost-of-sustainability-in-the-world-of-fast-fashion"
+        element={<CostOfSustainabilityFashion />}
+      />
     </Routes>
   </BrowserRouter>
 )

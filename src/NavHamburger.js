@@ -71,10 +71,7 @@ export default function NavHamburger() {
 
   const goDigitalJournal = () => {
     setMenuOpen(false)
-    navigate('/home')
-    setTimeout(() => {
-      document.getElementById('home-digital-journal')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 80)
+    navigate('/digital-journal')
   }
 
   return (

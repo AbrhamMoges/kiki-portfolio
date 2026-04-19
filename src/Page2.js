@@ -10,6 +10,7 @@ export default function Page2Home(props) {
   const [isMobile, setIsMobile] = useState(false)
   const [mediaHover, setMediaHover] = useState(false)
   const [aboutHover, setAboutHover] = useState(false)
+  const [journalHover, setJournalHover] = useState(false)
 
   useEffect(() => {
     // Check if mobile on mount and window resize
@@ -222,7 +223,17 @@ export default function Page2Home(props) {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'stretch',
+              cursor: 'pointer',
+              transform: journalHover ? 'scale(1.03)' : 'scale(1)',
+              transition: 'transform 0.2s ease',
+              opacity: journalHover ? 0.9 : 1,
             }}
+            onClick={() => navigate('/digital-journal')}
+            onMouseEnter={() => setJournalHover(true)}
+            onMouseLeave={() => setJournalHover(false)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && navigate('/digital-journal')}
           >
             <div style={homeColumnContent}>
               <div style={homeFrameStyle}>
