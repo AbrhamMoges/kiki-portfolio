@@ -1,5 +1,10 @@
 node_modules
 build
 .DS_Store
+
+# Env with API keys — keep local only
+.env.development
+.env.local
+.env.*.local
 # ProRes source is >100MB — keep MP4 in repo; encode locally when .mov changes
 public/Kstaura Splash Annimation.mov

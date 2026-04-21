@@ -10,6 +10,7 @@
     "@react-three/fiber": "8.13.4",
     "@react-three/postprocessing": "2.15.11",
     "@react-three/rapier": "1.1.0",
+    "@supabase/supabase-js": "^2.104.0",
     "@types/three": "0.164.0",
     "@use-gesture/core": "10.2.24",
     "@use-gesture/react": "10.2.24",
@@ -20,11 +21,16 @@
     "react-pdf": "^10.4.1",
     "react-router-dom": "^7.9.5",
     "react-scripts": "5.0.1",
+    "resend": "^6.12.2",
     "three": "0.164.1"
   },
   "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
     "patch-package": "^8.0.0",
-    "postinstall-postinstall": "^2.1.0"
+    "postinstall-postinstall": "^2.1.0",
+    "typescript": "^4.9.5"
   },
   "scripts": {
     "start": "WATCHPACK_POLLING=true CHOKIDAR_USEPOLLING=true react-scripts start",

@@ -83,21 +83,23 @@ export default function App(props) {
   }
 
   return (
-    <div {...props} className="splashRoot">
-      <video
-        key={videoSrc}
-        ref={videoRef}
-        className="splashVideo"
-        src={videoSrc}
-        autoPlay
-        muted
-        playsInline
-        preload="auto"
-        onEnded={goHome}
-        onClick={goHome}
-        onError={handleVideoError}
-        style={{ aspectRatio: videoAspect }}
-      />
-    </div>
+    <>
+      <div {...props} className="splashRoot">
+        <video
+          key={videoSrc}
+          ref={videoRef}
+          className="splashVideo"
+          src={videoSrc}
+          autoPlay
+          muted
+          playsInline
+          preload="auto"
+          onEnded={goHome}
+          onClick={goHome}
+          onError={handleVideoError}
+          style={{ aspectRatio: videoAspect }}
+        />
+      </div>
+    </>
   )
 }
