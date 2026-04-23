@@ -1,25 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import SharedHeader from './SharedHeader'
 import SiteFooter from './SiteFooter'
-import ChanelPdfViewer from './ChanelPdfViewer'
-
-function pdfPublicUrl(filename) {
-  const base = process.env.PUBLIC_URL || ''
-  return `${base}/${encodeURIComponent(filename)}`
-}
 
 /**
- * Shared layout for Digital Journal PDF essays (react-pdf viewer, header, footer).
+ * Same shell as journal PDF essays (white page, Caveat title, header/footer)
+ * but body content is HTML — no nested PDF scroll areas.
  */
-export default function JournalPdfArticlePage({ title, pdfFileName }) {
-  const [opacity, setOpacity] = useState(0)
-
+export default function JournalTextArticlePage({ title, children }) {
   useEffect(() => {
     const prev = document.body.style.background
     document.body.style.background = '#ffffff'
-    setOpacity(1)
+    document.documentElement.classList.add('journalArticleHideScrollbars')
     return () => {
       document.body.style.background = prev || '#151515'
+      document.documentElement.classList.remove('journalArticleHideScrollbars')
     }
   }, [])
 
@@ -46,22 +40,26 @@ export default function JournalPdfArticlePage({ title, pdfFileName }) {
           display: 'flex',
           flexDirection: 'column',
           boxSizing: 'border-box',
+          overflowX: 'hidden',
         }}
       >
-        <SharedHeader />
+        <SharedHeader opacity={1} />
         <main
           style={{
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'stretch',
-            padding: '140px 24px 48px',
+            paddingLeft: 24,
+            paddingRight: 24,
+            paddingBottom: 48,
+            /* Fixed header + 3D logo (~228px) sits above flow — keep title clear */
+            paddingTop: 'max(260px, calc(env(safe-area-inset-top, 0px) + 220px))',
             boxSizing: 'border-box',
-            opacity,
-            transition: 'opacity 5s ease 0.5s',
             width: '100%',
+            maxWidth: '100%',
             margin: '0 auto',
-            minHeight: 0,
+            overflowX: 'hidden',
           }}
         >
           <div style={{ textAlign: 'center', flexShrink: 0 }}>
@@ -79,31 +77,18 @@ export default function JournalPdfArticlePage({ title, pdfFileName }) {
               {title}
             </h1>
           </div>
-          <div
+          <article
+            className="journalTextArticleBody"
             style={{
-              flex: 1,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '100%',
-              minHeight: 0,
-              marginTop: '28px',
+              width: 'min(92vw, 820px)',
+              maxWidth: '100%',
+              margin: '28px auto 0',
+              boxSizing: 'border-box',
+              overflowX: 'hidden',
             }}
           >
-            <div
-              style={{
-                width: 'min(92vw, 820px)',
-                maxWidth: '100%',
-                maxHeight: 'min(calc(100vh - 320px), 90vh)',
-                margin: '0 auto',
-                overflow: 'auto',
-                backgroundColor: 'transparent',
-                WebkitOverflowScrolling: 'touch',
-              }}
-            >
-              <ChanelPdfViewer fileUrl={pdfPublicUrl(pdfFileName)} />
-            </div>
-          </div>
+            {children}
+          </article>
         </main>
         <SiteFooter />
       </div>

@@ -4,6 +4,50 @@
   box-sizing: border-box;
 }
 
+/* Journal text articles: hide default scrollbars (PDF viewer had nested bars); scroll still works */
+html.journalArticleHideScrollbars {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html.journalArticleHideScrollbars::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.journalTextArticleBody {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #111;
+  text-align: left;
+}
+
+.journalTextArticleBody p {
+  margin: 0 0 1.15em;
+}
+
+.journalTextArticleBody p:last-child {
+  margin-bottom: 0;
+}
+
+.journalTextArticleMeta {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #111;
+  text-align: center;
+  margin: 0 0 0.35em;
+}
+
+.journalTextArticleBody .journalTextArticleMeta {
+  text-align: center;
+}
+
+.journalTextArticleBody .journalTextArticleMeta + .journalTextArticleMeta {
+  margin-bottom: 1.25em;
+}
+
 html,
 body,
 #root,
@@ -503,19 +547,4 @@ canvas {
   .galleryMain {
     padding: 132px 12px 48px;
   }
-}
-
-/* Chanel essay PDF (react-pdf canvas) — no plugin borders */
-.chanelPdfPage {
-  margin: 0;
-  padding: 0;
-  border: none;
-  box-shadow: none;
-}
-
-.chanelPdfPage .react-pdf__Page__canvas {
-  display: block;
-  margin: 0 auto;
-  border: none;
-  box-shadow: none;
 }

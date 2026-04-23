@@ -9,7 +9,7 @@ export default function SiteFooter() {
         <span className="siteFooterMark" aria-hidden="true">
           *
         </span>
-        <span className="siteFooterBrandName">Kstaura</span>
+        <span className="siteFooterBrandName">kstaura</span>
       </div>
       <div className="siteFooterInner">
         <div className="siteFooterSocialIcons">
