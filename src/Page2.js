@@ -244,12 +244,12 @@ export default function Page2Home(props) {
               transition: 'transform 0.2s ease',
               opacity: mediaHover ? 0.9 : 1
             }}
-            onClick={() => navigate('/media')}
+            onClick={() => navigate('/multimedia')}
             onMouseEnter={() => setMediaHover(true)}
             onMouseLeave={() => setMediaHover(false)}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && navigate('/media')}
+            onKeyDown={(e) => e.key === 'Enter' && navigate('/multimedia')}
           >
             <div style={homeColumnContent}>
               <div style={homeFrameStyle}>

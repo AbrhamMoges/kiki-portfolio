@@ -50,6 +50,9 @@ export default function Media() {
       <div className="pageWithFooter" style={{ position: 'relative', zIndex: 1, minHeight: '100vh' }}>
         <SharedHeader />
         <div className="galleryShell" style={{ opacity, transition: 'opacity 400ms ease', flex: 1, minHeight: 0 }}>
+          <h1 style={{ fontFamily: '"Caveat", cursive', fontWeight: 'bold', fontSize: 'clamp(28px, 5vw, 48px)', color: '#000', textAlign: 'center', margin: '40px 0 16px' }}>
+            Photography
+          </h1>
           <main className="galleryMain">
             <MasonryGallery
               items={items}
