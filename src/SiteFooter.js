@@ -24,7 +24,7 @@ export default function SiteFooter() {
           </a>
           <a
             className="siteFooterIconLink"
-            href="https://substack.com/kstaura"
+            href="https://substack.com/@kstaura"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Substack"

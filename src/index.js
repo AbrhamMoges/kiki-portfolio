@@ -8,7 +8,6 @@ import Media from './Media'
 import DigitalJournal from './DigitalJournal'
 import SeeBothSidesChanel from './SeeBothSidesChanel'
 import CostOfSustainabilityFashion from './CostOfSustainabilityFashion'
-import MultimediaLanding from './MultimediaLanding'
 import Videography from './Videography'
 
 createRoot(document.getElementById('root')).render(
@@ -18,7 +17,6 @@ createRoot(document.getElementById('root')).render(
       <Route path="/home" element={<Page2Home />} />
       <Route path="/page2" element={<Navigate to="/home" replace />} />
       <Route path="/page3" element={<Page3 />} />
-      <Route path="/multimedia" element={<MultimediaLanding />} />
       <Route path="/videography" element={<Videography />} />
       <Route path="/media" element={<Media />} />
       <Route path="/digital-journal" element={<DigitalJournal />} />

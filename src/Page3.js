@@ -76,7 +76,7 @@ export default function Page3() {
               textAlign: 'center',
             }}
           >
-            Kalkidane Negewo
+            <strong>Kalkidane Negewo</strong>
           </p>
           <p
             style={{
@@ -104,7 +104,7 @@ export default function Page3() {
               textIndent: '1.5em',
             }}
           >
-            She began her career at the final stage of the luxury fashion supply chain, spending two years in e-commerce operations at Bergdorf Goodman & Neiman Marcus. Her work has since expanded upstream, working in the initial stages of the fashion supply chain & global trade of natural fibers. Through different creative systems, she explores fashion as part of the cultural & economic landscape. Her work is commited to intentionally moves the conversation forward.
+            She began her career at the final stage of the luxury fashion supply chain, spending two years in e-commerce operations at Bergdorf Goodman & Neiman Marcus. Her work has since expanded upstream, working in the initial stages of the fashion supply chain & global trade of natural fibers. Through different creative systems, she explores fashion as part of the cultural & economic landscape. Her work is committed to intentionally moving the conversation forward.
           </p>
           <p
             style={{
@@ -118,7 +118,8 @@ export default function Page3() {
               textIndent: '1.5em',
             }}
           >
-            The core message of Kalkidane's guiding belief is: Always Believe.
+            The core message of Kalkidane&apos;s guiding belief:{' '}
+            <strong>Always Believe</strong>.
             <br />
             The dream placed within you is yours to see through.
           </p>
