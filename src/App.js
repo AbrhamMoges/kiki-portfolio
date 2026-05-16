@@ -12,7 +12,7 @@ export default function App(props) {
   const hasNavigatedRef = useRef(false)
   const [videoSrc, setVideoSrc] = useState(splashMp4)
   const [videoAspect, setVideoAspect] = useState('16 / 9')
-  const [autoplayBlocked, setAutoplayBlocked] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
 
   // Safari / iOS: autoplay only works if muted is applied in the DOM; attribute alone is not always enough.
   useEffect(() => {
@@ -30,11 +30,7 @@ export default function App(props) {
     if (!el) return
 
     const tryPlay = () => {
-      el.play().then(() => {
-        setAutoplayBlocked(false)
-      }).catch(() => {
-        setAutoplayBlocked(true)
-      })
+      el.play().catch(() => {})
     }
 
     el.addEventListener('loadeddata', tryPlay)
@@ -87,12 +83,6 @@ export default function App(props) {
     }
   }
 
-  const handleTap = () => {
-    const el = videoRef.current
-    if (!el) return
-    el.play().then(() => setAutoplayBlocked(false)).catch(() => {})
-  }
-
   return (
     <>
       <div {...props} className="splashRoot">
@@ -105,28 +95,18 @@ export default function App(props) {
           muted
           playsInline
           preload="auto"
+          onPlay={() => setIsPlaying(true)}
           onEnded={goHome}
           onClick={goHome}
           onError={handleVideoError}
           style={{ aspectRatio: videoAspect }}
         />
-        {autoplayBlocked && (
-          <div
-            onClick={handleTap}
-            style={{
-              position: 'fixed', inset: 0, zIndex: 10,
-              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-              background: '#000', cursor: 'pointer',
-            }}
-          >
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-              <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.15)" />
-              <polygon points="32,24 32,56 60,40" fill="white" />
-            </svg>
-            <p style={{ color: 'white', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '13px', letterSpacing: '0.15em', marginTop: '20px', textTransform: 'uppercase' }}>
-              Tap to play
-            </p>
-          </div>
+        {!isPlaying && (
+          <div style={{
+            position: 'fixed', inset: 0, zIndex: 10,
+            background: '#000',
+            pointerEvents: 'none',
+          }} />
         )}
       </div>
     </>

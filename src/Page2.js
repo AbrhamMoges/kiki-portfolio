@@ -3,18 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import { HOME_IMG_ABOUT, HOME_IMG_MEDIA, HOME_IMG_JOURNAL } from './NavHamburger'
 import SharedHeader from './SharedHeader'
 import SiteFooter from './SiteFooter'
-import { supabase } from './lib/supabase'
 
 export default function Page2Home(props) {
   const navigate = useNavigate()
   const [opacity, setOpacity] = useState(0)
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
   const [mediaHover, setMediaHover] = useState(false)
   const [aboutHover, setAboutHover] = useState(false)
   const [journalHover, setJournalHover] = useState(false)
-  const [email, setEmail] = useState('')
-  const [showPopup, setShowPopup] = useState(true)
-  const [message, setMessage] = useState('')
 
   useEffect(() => {
     // Check if mobile on mount and window resize
@@ -84,57 +80,8 @@ export default function Page2Home(props) {
     boxSizing: 'border-box',
   }
 
-  const handleSubscribe = async () => {
-    if (!email) {
-      setMessage('Please enter your email.')
-      return
-    }
-
-    const { error } = await supabase
-      .from('subscribers')
-      .insert([{ email }])
-
-    if (error) {
-      console.log('ERROR:', error)
-      setMessage('That email may already be subscribed.')
-      return
-    }
-
-    setMessage('Subscribed successfully!')
-    setEmail('')
-
-    setTimeout(() => {
-      setShowPopup(false)
-      setMessage('')
-    }, 1200)
-  }
-
   return (
     <>
-      {showPopup && !isMobile && (
-        <div style={popupOverlay}>
-          <div style={popupBox}>
-            <h2 style={{ margin: '0 0 10px', fontFamily: 'inherit' }}>Stay Updated</h2>
-            <p style={{ margin: '0 0 12px' }}>
-              Enter your email to get updates when new videos or articles are posted.
-            </p>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={popupInput}
-            />
-            <button type="button" onClick={handleSubscribe} style={popupButton}>
-              Subscribe
-            </button>
-            <button type="button" onClick={() => setShowPopup(false)} style={closeButton}>
-              Close
-            </button>
-            {message && <p style={{ marginTop: 10, marginBottom: 0 }}>{message}</p>}
-          </div>
-        </div>
-      )}
       {/* Fixed background */}
       <div style={{
         position: 'fixed',
@@ -307,26 +254,6 @@ export default function Page2Home(props) {
         </div>
       </section>
 
-      {isMobile && showPopup && (
-        <div style={{ padding: '32px 24px 16px', backgroundColor: '#fff' }}>
-          <h2 style={{ margin: '0 0 8px', fontFamily: 'inherit', fontSize: '18px', textAlign: 'center' }}>Stay Updated</h2>
-          <p style={{ margin: '0 0 12px', fontSize: '14px', textAlign: 'center', color: '#444' }}>
-            Enter your email to get updates when new videos or articles are posted.
-          </p>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            style={popupInput}
-          />
-          <button type="button" onClick={handleSubscribe} style={popupButton}>
-            Subscribe
-          </button>
-          {message && <p style={{ marginTop: 10, marginBottom: 0, textAlign: 'center' }}>{message}</p>}
-        </div>
-      )}
-
       <SiteFooter />
 
       </div>
@@ -334,55 +261,4 @@ export default function Page2Home(props) {
   )
 }
 
-const popupOverlay = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  backgroundColor: 'rgba(0, 0, 0, 0.65)',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  zIndex: 9999,
-}
-
-const popupBox = {
-  background: '#fff',
-  padding: '24px',
-  borderRadius: '12px',
-  width: '90%',
-  maxWidth: '400px',
-  textAlign: 'center',
-  boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
-}
-
-const popupInput = {
-  width: '100%',
-  padding: '12px',
-  marginBottom: '12px',
-  borderRadius: '8px',
-  border: '1px solid #ccc',
-  fontSize: '16px',
-}
-
-const popupButton = {
-  width: '100%',
-  padding: '12px',
-  backgroundColor: '#000',
-  color: '#fff',
-  border: 'none',
-  borderRadius: '8px',
-  cursor: 'pointer',
-  fontSize: '16px',
-  marginBottom: '10px',
-}
-
-const closeButton = {
-  background: 'transparent',
-  border: 'none',
-  color: '#666',
-  cursor: 'pointer',
-  fontSize: '14px',
-}
 

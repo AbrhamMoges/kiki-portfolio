@@ -123,22 +123,31 @@ export default function Page3() {
             <br />
             The dream placed within you is yours to see through.
           </p>
-          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: '24px', marginTop: '60px' }}>
-            <a href="https://www.youtube.com/@kstaura" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-              <img src="/youtube.png" alt="YouTube" width={44} height={44} draggable={false} />
-            </a>
-            <a href="https://substack.com/@kstaura" target="_blank" rel="noopener noreferrer" aria-label="Substack">
-              <img src="/Substack.png" alt="Substack" width={44} height={44} draggable={false} />
-            </a>
-            <a href="https://www.instagram.com/kstaura/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <img src="/IG%20icon.png?v=2" alt="Instagram" width={48} height={48} draggable={false} />
-            </a>
-            <a href="https://x.com/kstaura" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-              <img src="/twitter%20lcon.png" alt="Twitter" width={44} height={44} draggable={false} />
-            </a>
-            <a href="mailto:kalkidane.negewo@gmail.com" aria-label="Email">
-              <img src="/Mail%20.png" alt="Email" width={44} height={44} draggable={false} />
-            </a>
+          <div style={{ textAlign: 'center', marginTop: '60px' }}>
+            <img src="/contact-artwork.png" alt="Contact" style={{ height: '160px', width: 'auto', mixBlendMode: 'multiply' }} />
+          </div>
+          <p style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', fontSize: '13px', fontWeight: 'bold', color: '#000', margin: '20px 0 24px', textAlign: 'center', width: '100%', maxWidth: '720px' }}>
+            General Inquiries
+          </p>
+          <div style={{
+            display: 'flex', flexDirection: 'row', flexWrap: 'wrap',
+            justifyContent: 'center', gap: '40px',
+            marginBottom: '60px', padding: '0',
+            maxWidth: '720px', width: '100%',
+          }}>
+            {[
+              { label: 'Instagram', value: '@Kstaura', href: 'https://www.instagram.com/kstaura/' },
+              { label: 'Twitter', value: '@Kstaura', href: 'https://x.com/kstaura' },
+              { label: 'Substack', value: '@Kstaura', href: 'https://substack.com/@kstaura' },
+              { label: 'Email', value: 'kalkidane.negewo@gmail.com', href: 'mailto:kalkidane.negewo@gmail.com' },
+            ].map(({ label, value, href }) => (
+              <div key={label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <span style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', fontSize: '13px', color: '#000', marginBottom: '4px' }}>{label}</span>
+                <a href={href} target={href.startsWith('mailto') ? undefined : '_blank'} rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                  <span style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', fontSize: '13px', fontWeight: 'bold', color: '#000',  }}>{value}</span>
+                </a>
+              </div>
+            ))}
           </div>
         </div>
         <SiteFooter />
