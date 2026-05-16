@@ -228,7 +228,7 @@ export default function Page2Home(props) {
                   style={homeImgInFrame}
                 />
               </div>
-              <p style={homeCaptionStyle}>About Me</p>
+              <img src="/about-artwork.png" alt="About Me" style={{ margin: '-16px 0 0 0', height: isMobile ? '100px' : '80px', width: 'auto', maxWidth: '100%', display: 'block', objectFit: 'contain', objectPosition: 'left center', mixBlendMode: 'multiply' }} />
             </div>
           </div>
           <div
@@ -264,7 +264,7 @@ export default function Page2Home(props) {
                   style={homeImgInFrame}
                 />
               </div>
-              <p style={homeCaptionStyle}>Multimedia</p>
+              <img src="/multimedia-artwork.png" alt="Multimedia" style={{ margin: '-16px 0 0 0', height: isMobile ? '100px' : '80px', width: 'auto', maxWidth: '100%', display: 'block', objectFit: 'contain', objectPosition: 'left center', mixBlendMode: 'multiply' }} />
             </div>
           </div>
           <div
@@ -301,7 +301,7 @@ export default function Page2Home(props) {
                   style={homeImgInFrame}
                 />
               </div>
-              <p style={homeCaptionStyle}>Digital Journal</p>
+              <img src="/blog-artwork.png" alt="Digital Journal" style={{ margin: '-16px 0 0 0', height: isMobile ? '100px' : '80px', width: 'auto', maxWidth: '100%', display: 'block', objectFit: 'contain', objectPosition: 'left center', mixBlendMode: 'multiply' }} />
             </div>
           </div>
         </div>

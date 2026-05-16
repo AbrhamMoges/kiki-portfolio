@@ -123,6 +123,23 @@ export default function Page3() {
             <br />
             The dream placed within you is yours to see through.
           </p>
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: '24px', marginTop: '60px' }}>
+            <a href="https://www.youtube.com/@kstaura" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <img src="/youtube.png" alt="YouTube" width={44} height={44} draggable={false} />
+            </a>
+            <a href="https://substack.com/@kstaura" target="_blank" rel="noopener noreferrer" aria-label="Substack">
+              <img src="/Substack.png" alt="Substack" width={44} height={44} draggable={false} />
+            </a>
+            <a href="https://www.instagram.com/kstaura/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <img src="/IG%20icon.png?v=2" alt="Instagram" width={48} height={48} draggable={false} />
+            </a>
+            <a href="https://x.com/kstaura" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <img src="/twitter%20lcon.png" alt="Twitter" width={44} height={44} draggable={false} />
+            </a>
+            <a href="mailto:kalkidane.negewo@gmail.com" aria-label="Email">
+              <img src="/Mail%20.png" alt="Email" width={44} height={44} draggable={false} />
+            </a>
+          </div>
         </div>
         <SiteFooter />
       </div>
