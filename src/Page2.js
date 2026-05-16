@@ -111,7 +111,7 @@ export default function Page2Home(props) {
 
   return (
     <>
-      {showPopup && (
+      {showPopup && !isMobile && (
         <div style={popupOverlay}>
           <div style={popupBox}>
             <h2 style={{ margin: '0 0 10px', fontFamily: 'inherit' }}>Stay Updated</h2>
@@ -307,8 +307,28 @@ export default function Page2Home(props) {
         </div>
       </section>
 
+      {isMobile && showPopup && (
+        <div style={{ padding: '32px 24px 16px', backgroundColor: '#fff' }}>
+          <h2 style={{ margin: '0 0 8px', fontFamily: 'inherit', fontSize: '18px', textAlign: 'center' }}>Stay Updated</h2>
+          <p style={{ margin: '0 0 12px', fontSize: '14px', textAlign: 'center', color: '#444' }}>
+            Enter your email to get updates when new videos or articles are posted.
+          </p>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={popupInput}
+          />
+          <button type="button" onClick={handleSubscribe} style={popupButton}>
+            Subscribe
+          </button>
+          {message && <p style={{ marginTop: 10, marginBottom: 0, textAlign: 'center' }}>{message}</p>}
+        </div>
+      )}
+
       <SiteFooter />
-      
+
       </div>
     </>
   )
