@@ -122,7 +122,7 @@ export default function NavHamburger() {
           }}
         >
           <button type="button" className="page2MenuItem" onClick={goHomePage}>
-            Home
+            <img src="/home-artwork.png" alt="Home" style={{ height: '48px', width: 'auto', mixBlendMode: 'multiply', display: 'block' }} />
           </button>
           <button
             type="button"
@@ -132,7 +132,7 @@ export default function NavHamburger() {
               navigate('/page3')
             }}
           >
-            About Me
+            <img src="/about-artwork.png" alt="About Me" style={{ height: '48px', width: 'auto', mixBlendMode: 'multiply', display: 'block' }} />
           </button>
           <button
             type="button"
@@ -142,10 +142,10 @@ export default function NavHamburger() {
               navigate('/media')
             }}
           >
-            Media
+            <img src="/multimedia-artwork.png" alt="Media" style={{ height: '48px', width: 'auto', mixBlendMode: 'multiply', display: 'block' }} />
           </button>
           <button type="button" className="page2MenuItem" onClick={goDigitalJournal}>
-            Digital Journal
+            <img src="/blog-artwork.png" alt="Digital Journal" style={{ height: '48px', width: 'auto', mixBlendMode: 'multiply', display: 'block' }} />
           </button>
         </nav>
       ) : null}
