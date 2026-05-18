@@ -105,11 +105,11 @@ canvas {
   display: block;
   cursor: pointer;
   background-color: transparent;
-  width: 100%;
-  height: 100%;
-  max-width: 100vw;
-  max-height: 100dvh;
-  object-fit: cover;
+  width: auto;
+  height: auto;
+  max-width: min(1920px, 98vw);
+  max-height: min(1080px, 92dvh);
+  object-fit: contain;
   object-position: center center;
   transform: translateZ(0);
   backface-visibility: hidden;

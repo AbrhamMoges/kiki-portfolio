@@ -139,7 +139,7 @@ export default function Page3() {
               { label: 'Instagram', value: '@kstaura', href: 'https://www.instagram.com/kstaura/' },
               { label: 'Twitter', value: '@kstaura', href: 'https://x.com/kstaura' },
               { label: 'Substack', value: '@kstaura', href: 'https://substack.com/@kstaura' },
-              { label: 'TikTok', value: '@kstaura', href: 'https://www.tiktok.com/@kstaura' },
+              { label: 'TikTok', value: '@kikidouluhmeh', href: 'https://www.tiktok.com/@kikidouluhmeh' },
               { label: 'Email', value: 'kalkidane.negewo@gmail.com', href: 'mailto:kalkidane.negewo@gmail.com' },
             ].map(({ label, value, href }) => (
               <div key={label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
