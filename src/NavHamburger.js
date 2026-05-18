@@ -129,7 +129,7 @@ export default function NavHamburger() {
             className="page2MenuItem"
             onClick={() => {
               setMenuOpen(false)
-              navigate('/page3')
+              navigate('/about')
             }}
           >
             <img src="/about-artwork.png" alt="About Me" style={{ height: '96px', width: 'auto', mixBlendMode: 'multiply', display: 'block' }} />

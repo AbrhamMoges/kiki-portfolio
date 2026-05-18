@@ -155,12 +155,12 @@ export default function Page2Home(props) {
               transition: 'transform 0.2s ease',
               opacity: aboutHover ? 0.9 : 1
             }}
-            onClick={() => navigate('/page3')}
+            onClick={() => navigate('/about')}
             onMouseEnter={() => setAboutHover(true)}
             onMouseLeave={() => setAboutHover(false)}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && navigate('/page3')}
+            onKeyDown={(e) => e.key === 'Enter' && navigate('/about')}
           >
             <div style={homeColumnContent}>
               <div style={homeFrameStyle}>

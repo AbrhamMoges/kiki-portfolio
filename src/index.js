@@ -16,7 +16,8 @@ createRoot(document.getElementById('root')).render(
       <Route path="/" element={<App />} />
       <Route path="/home" element={<Page2Home />} />
       <Route path="/page2" element={<Navigate to="/home" replace />} />
-      <Route path="/page3" element={<Page3 />} />
+      <Route path="/about" element={<Page3 />} />
+      <Route path="/page3" element={<Navigate to="/about" replace />} />
       <Route path="/videography" element={<Videography />} />
       <Route path="/media" element={<Media />} />
       <Route path="/digital-journal" element={<DigitalJournal />} />
