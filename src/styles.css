@@ -98,30 +98,23 @@ canvas {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
-    max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  padding: 0;
 }
 
 .splashVideo {
   display: block;
   cursor: pointer;
   background-color: transparent;
-  width: auto;
-  height: auto;
-  max-width: min(1920px, 96vw);
-  max-height: min(1080px, 85dvh);
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  max-height: 100dvh;
+  object-fit: cover;
   object-position: center center;
   transform: translateZ(0);
   backface-visibility: hidden;
 }
 
-/* Mobile: still vertically centered, but slightly above true center (browser chrome / thumb reach) */
-@media (max-width: 768px) {
-  .splashVideo {
-    transform: translateY(-8vh) translateZ(0);
-  }
-}
 
 /* Same dramatic entrance as the former Kalkidane-only canvas fade: 5s, 0.5s delay, ease */
 .headerBarFade {

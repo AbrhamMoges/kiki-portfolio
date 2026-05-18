@@ -248,7 +248,7 @@ export default function Page2Home(props) {
                   style={homeImgInFrame}
                 />
               </div>
-              <img src="/blog-artwork.png" alt="Digital Journal" style={{ margin: '-16px 0 0 0', height: isMobile ? '100px' : '80px', width: 'auto', maxWidth: '100%', display: 'block', objectFit: 'contain', objectPosition: 'left center', mixBlendMode: 'multiply' }} />
+              <img src="/digital-journal-artwork.png" alt="Digital Journal" style={{ margin: '-16px 0 0 0', height: isMobile ? '100px' : '80px', width: 'auto', maxWidth: '100%', display: 'block', objectFit: 'contain', objectPosition: 'left center', mixBlendMode: 'multiply' }} />
             </div>
           </div>
         </div>

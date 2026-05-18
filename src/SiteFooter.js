@@ -57,9 +57,6 @@ export default function SiteFooter() {
             <a className="siteFooterIconLink" href="https://www.youtube.com/@kstaura" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
               <img className="siteFooterIconImg" src="/youtube.png" alt="" width={28} height={28} draggable={false} />
             </a>
-            <a className="siteFooterIconLink" href="https://substack.com/@kstaura" target="_blank" rel="noopener noreferrer" aria-label="Substack">
-              <img className="siteFooterIconImg" src="/Substack.png" alt="" width={28} height={28} draggable={false} />
-            </a>
             <a className="siteFooterIconLink" href="https://www.instagram.com/kstaura/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <img className="siteFooterIconImg siteFooterIconImg--instagram" src="/IG%20icon.png?v=2" alt="" width={32} height={32} draggable={false} />
             </a>
