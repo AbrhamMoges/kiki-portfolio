@@ -63,7 +63,7 @@ export default function Media() {
           <div style={{ textAlign: 'center', margin: '80px 0 40px' }}>
             <img src="/video-artwork.png" alt="Videos" style={{ height: '320px', width: 'auto', mixBlendMode: 'multiply' }} />
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto 40px', padding: '0 20px', maxWidth: '900px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 auto 40px', padding: '0 20px', maxWidth: '900px', width: '100%' }}>
             <a
               href="https://www.youtube.com/watch?v=DW1SckzGBg8"
               target="_blank"
@@ -86,8 +86,13 @@ export default function Media() {
                 </svg>
               </div>
             </a>
+            <div style={{ width: '100%', marginTop: '12px', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '13px', color: '#000', lineHeight: 1.7 }}>
+              <div><strong>Hunchos" Music Video</strong></div>
+              <div>Director: Kalkidane Negewo</div>
+              <div>Videographer: RyanTheCrashDummy</div>
+            </div>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto 40px', padding: '0 20px', maxWidth: '900px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 auto 40px', padding: '0 20px', maxWidth: '900px', width: '100%' }}>
             <a
               href="https://youtu.be/tdeDJqS11ew"
               target="_blank"
@@ -110,8 +115,12 @@ export default function Media() {
                 </svg>
               </div>
             </a>
+            <div style={{ width: '100%', marginTop: '12px', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '13px', color: '#000', lineHeight: 1.7 }}>
+              <div><strong>International Women's Day</strong></div>
+              <div>Shot &amp; Edit: Kalkidane Negewo</div>
+            </div>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto 40px', padding: '0 20px', maxWidth: '900px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 auto 40px', padding: '0 20px', maxWidth: '900px', width: '100%' }}>
             <a
               href="https://youtu.be/M4m-bnWGuDw"
               target="_blank"
@@ -130,8 +139,12 @@ export default function Media() {
                 </svg>
               </div>
             </a>
+            <div style={{ width: '100%', marginTop: '12px', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '13px', color: '#000', lineHeight: 1.7 }}>
+              <div><strong>Ethiopian New Year</strong></div>
+              <div>Director: Kalkidane Negewo</div>
+            </div>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto 80px', padding: '0 20px', maxWidth: '900px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 auto 80px', padding: '0 20px', maxWidth: '900px' }}>
             <a
               href="https://youtu.be/wSbTQ6Jtp2Q"
               target="_blank"
@@ -150,6 +163,10 @@ export default function Media() {
                 </svg>
               </div>
             </a>
+            <div style={{ width: '100%', marginTop: '12px', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '13px', color: '#000', lineHeight: 1.7 }}>
+              <div><strong>Black History Month</strong></div>
+              <div>Edit: Kalkidane Negewo</div>
+            </div>
           </div>
         </div>
         <SiteFooter />

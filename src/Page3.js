@@ -127,7 +127,7 @@ export default function Page3() {
             <img src="/contact-artwork.png" alt="Contact" style={{ height: '160px', width: 'auto', mixBlendMode: 'multiply' }} />
           </div>
           <p style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', fontSize: '13px', fontWeight: 'bold', color: '#000', margin: '20px 0 24px', textAlign: 'center', width: '100%', maxWidth: '720px' }}>
-            General Inquiries
+            General Inquiries — @kstaura
           </p>
           <div style={{
             display: 'flex', flexDirection: 'row', flexWrap: 'wrap',
@@ -140,7 +140,8 @@ export default function Page3() {
               { label: 'Twitter', value: '@kstaura', href: 'https://x.com/kstaura' },
               { label: 'Substack', value: '@kstaura', href: 'https://substack.com/@kstaura' },
               { label: 'TikTok', value: '@kikidouluhmeh', href: 'https://www.tiktok.com/@kikidouluhmeh' },
-              { label: 'Email', value: 'kalkidane.negewo@gmail.com', href: 'mailto:kalkidane.negewo@gmail.com' },
+              { label: 'YouTube', value: '@kstaura', href: 'https://www.youtube.com/@kstaura' },
+              { label: 'Email', value: 'kstaura.info@gmail.com', href: 'mailto:kstaura.info@gmail.com' },
             ].map(({ label, value, href }) => (
               <div key={label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <span style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', fontSize: '13px', color: '#000', marginBottom: '4px' }}>{label}</span>

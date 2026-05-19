@@ -63,7 +63,7 @@ export default function SiteFooter() {
             <a className="siteFooterIconLink" href="https://x.com/kstaura" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
               <img className="siteFooterIconImg" src="/twitter%20lcon.png" alt="" width={28} height={28} draggable={false} />
             </a>
-            <a className="siteFooterIconLink" href="mailto:kalkidane.negewo@gmail.com" aria-label="Email">
+            <a className="siteFooterIconLink" href="mailto:kstaura.info@gmail.com" aria-label="Email">
               <img className="siteFooterIconImg" src="/Mail%20.png" alt="" width={28} height={28} draggable={false} />
             </a>
           </div>
