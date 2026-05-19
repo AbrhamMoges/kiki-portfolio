@@ -5,7 +5,7 @@ import JournalTextArticlePage from './JournalTextArticlePage'
  */
 export default function SeeBothSidesChanel() {
   return (
-    <JournalTextArticlePage title="I See Both Sides, Like Chanel">
+    <JournalTextArticlePage title="I See Both Sides, Like Chanel" titleFont='"Helvetica Neue", Helvetica, Arial, sans-serif'>
       <p className="journalTextArticleMeta">By: Kalkidane Negewo</p>
       <p className="journalTextArticleMeta">July 2024</p>
       <p>

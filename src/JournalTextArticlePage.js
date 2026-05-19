@@ -6,7 +6,7 @@ import SiteFooter from './SiteFooter'
  * Same shell as journal PDF essays (white page, Caveat title, header/footer)
  * but body content is HTML — no nested PDF scroll areas.
  */
-export default function JournalTextArticlePage({ title, children }) {
+export default function JournalTextArticlePage({ title, titleFont, children }) {
   useEffect(() => {
     const prev = document.body.style.background
     document.body.style.background = '#ffffff'
@@ -65,7 +65,7 @@ export default function JournalTextArticlePage({ title, children }) {
           <div style={{ textAlign: 'center', flexShrink: 0 }}>
             <h1
               style={{
-                fontFamily: '"Caveat", cursive',
+                fontFamily: titleFont || '"Caveat", cursive',
                 fontSize: 'clamp(26px, 5vw, 34px)',
                 fontWeight: 'bold',
                 color: '#000',

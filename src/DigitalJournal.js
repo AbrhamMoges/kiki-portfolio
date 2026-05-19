@@ -238,6 +238,9 @@ export default function DigitalJournal() {
                         </div>
                       </div>
                     </div>
+                    <div style={{ width: '100%', marginTop: '12px', fontFamily: item.href === CHANEL_ESSAY_PATH ? '"Helvetica Neue", Helvetica, Arial, sans-serif' : 'Helvetica, Arial, sans-serif', fontSize: '13px', color: '#000', lineHeight: 1.7 }}>
+                      <div><strong>{item.title}</strong></div>
+                    </div>
                   </div>
                 )
               })}

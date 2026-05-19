@@ -6,7 +6,7 @@ import JournalTextArticlePage from './JournalTextArticlePage'
  */
 export default function CostOfSustainabilityFashion() {
   return (
-    <JournalTextArticlePage title="The Cost of Sustainability in the World of Fast Fashion">
+    <JournalTextArticlePage title="The Cost of Sustainability in the World of Fast Fashion" titleFont='"Helvetica Neue", Helvetica, Arial, sans-serif'>
       <p className="journalTextArticleMeta">By: Kalkidane Negewo</p>
       <p className="journalTextArticleMeta">October 2024</p>
       <p>
