@@ -9,14 +9,14 @@ export const SUSTAINABILITY_ESSAY_PATH =
 
 const JOURNAL_ITEMS = [
   {
-    file: 'I See Both Sides, Like Chanel.jpg',
-    title: 'I See Both Sides, Like Chanel',
-    href: CHANEL_ESSAY_PATH,
-  },
-  {
     file: 'The Cost of Sustainability in the World of Fast Fashion.jpg',
     title: 'The Cost of Sustainability in the World of Fast Fashion',
     href: SUSTAINABILITY_ESSAY_PATH,
+  },
+  {
+    file: 'I See Both Sides, Like Chanel.jpg',
+    title: 'I See Both Sides, Like Chanel',
+    href: CHANEL_ESSAY_PATH,
   },
 ]
 
