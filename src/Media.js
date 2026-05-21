@@ -116,6 +116,19 @@ export default function Media() {
               <div>Shot &amp; Edit: Kalkidane Negewo</div>
             </div>
           </div>
+          {/* Elonte Kairos */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 auto 80px', padding: '0 20px', maxWidth: '900px', width: '100%' }}>
+            <video
+              controls
+              style={{ width: '100%', aspectRatio: '16/9', display: 'block', backgroundColor: '#000' }}
+            >
+              <source src="/elonte-kairos.mov" type="video/mp4" />
+            </video>
+            <div style={{ width: '100%', marginTop: '12px', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '13px', color: '#000', lineHeight: 1.7 }}>
+              <div>Photography Assistant: Kalkidane Negewo</div>
+              <div>Videography: Anthony Ferrell</div>
+            </div>
+          </div>
         </div>
         <SiteFooter />
       </div>

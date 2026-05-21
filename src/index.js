@@ -9,6 +9,7 @@ import DigitalJournal from './DigitalJournal'
 import SeeBothSidesChanel from './SeeBothSidesChanel'
 import CostOfSustainabilityFashion from './CostOfSustainabilityFashion'
 import Videography from './Videography'
+import GlobalInfluenceSoccerFashion from './GlobalInfluenceSoccerFashion'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -25,6 +26,10 @@ createRoot(document.getElementById('root')).render(
       <Route
         path="/the-cost-of-sustainability-in-the-world-of-fast-fashion"
         element={<CostOfSustainabilityFashion />}
+      />
+      <Route
+        path="/the-global-influence-of-soccer-and-fashion"
+        element={<GlobalInfluenceSoccerFashion />}
       />
     </Routes>
   </BrowserRouter>

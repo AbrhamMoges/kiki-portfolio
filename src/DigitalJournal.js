@@ -4,14 +4,20 @@ import SharedHeader from './SharedHeader'
 import SiteFooter from './SiteFooter'
 
 export const CHANEL_ESSAY_PATH = '/i-see-both-sides-like-chanel'
-export const SUSTAINABILITY_ESSAY_PATH =
-  '/the-cost-of-sustainability-in-the-world-of-fast-fashion'
+export const SUSTAINABILITY_ESSAY_PATH = '/the-cost-of-sustainability-in-the-world-of-fast-fashion'
+export const SOCCER_FASHION_PATH = '/the-global-influence-of-soccer-and-fashion'
 
 const JOURNAL_ITEMS = [
   {
     file: 'The Cost of Sustainability in the World of Fast Fashion.jpg',
     title: 'The Cost of Sustainability in the World of Fast Fashion',
     href: SUSTAINABILITY_ESSAY_PATH,
+  },
+  {
+    file: 'The Global Influence of Soccer & Fashion.jpg',
+    title: 'The Global Influence of Soccer & Fashion',
+    href: SOCCER_FASHION_PATH,
+    crop: true,
   },
   {
     file: 'I See Both Sides, Like Chanel.jpg',
@@ -177,8 +183,19 @@ export default function DigitalJournal() {
                     <div style={journalFrameStyle}>
                       <div
                         style={{
-                          ...journalImageWrapStyle,
+                          ...(item.crop
+                            ? {
+                                position: 'relative',
+                                width: isMobile ? '100%' : 'calc(min(580px, 60vh) * 0.754)',
+                                height: isMobile ? 'auto' : 'min(580px, 60vh)',
+                                overflow: 'hidden',
+                                display: 'block',
+                                margin: '0 auto',
+                              }
+                            : { ...journalImageWrapStyle }),
                           cursor: hasLink ? 'pointer' : undefined,
+                          transform: hovered ? 'scale(1.04)' : 'scale(1)',
+                          transition: 'transform 0.2s ease',
                         }}
                         onMouseEnter={() => setHoverIndex(index)}
                         onMouseLeave={() => setHoverIndex(null)}
@@ -200,45 +217,19 @@ export default function DigitalJournal() {
                         <img
                           src={journalImageSrc(item.file)}
                           alt=""
-                          style={journalImgInFrame}
+                          style={item.crop
+                            ? { width: '100%', height: isMobile ? 'auto' : 'min(580px, 60vh)', objectFit: 'cover', objectPosition: 'center', display: 'block' }
+                            : journalImgInFrame}
                           draggable={false}
                         />
-                        <div
-                          aria-hidden={!hovered}
-                          style={{
-                            position: 'absolute',
-                            left: 0,
-                            right: 0,
-                            top: 0,
-                            bottom: 0,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            padding: 'clamp(12px, 3vw, 28px)',
-                            boxSizing: 'border-box',
-                            backgroundColor: 'rgba(0, 0, 0, 0.52)',
-                            opacity: hovered ? 1 : 0,
-                            transition: 'opacity 0.3s ease',
-                            pointerEvents: 'none',
-                            textAlign: 'center',
-                          }}
-                        >
-                          <span
-                            style={{
-                              color: '#ffffff',
-                              fontFamily: 'Helvetica, Arial, sans-serif',
-                              fontSize: 'clamp(13px, 2.1vw, 18px)',
-                              fontWeight: 500,
-                              lineHeight: 1.45,
-                              maxWidth: '100%',
-                            }}
-                          >
-                            {item.title}
-                          </span>
-                        </div>
                       </div>
                     </div>
-                    <div style={{ width: '100%', marginTop: '12px', fontFamily: item.href === CHANEL_ESSAY_PATH ? '"Helvetica Neue", Helvetica, Arial, sans-serif' : 'Helvetica, Arial, sans-serif', fontSize: '13px', color: '#000', lineHeight: 1.7 }}>
+                    <div style={{
+                      width: (item.crop || item.href === CHANEL_ESSAY_PATH) && !isMobile ? 'calc(min(580px, 60vh) * 0.754)' : '100%',
+                      margin: (item.crop || item.href === CHANEL_ESSAY_PATH) && !isMobile ? '12px auto 0' : '12px 0 0',
+                      fontFamily: item.href === CHANEL_ESSAY_PATH ? '"Helvetica Neue", Helvetica, Arial, sans-serif' : 'Helvetica, Arial, sans-serif',
+                      fontSize: '13px', color: '#000', lineHeight: 1.7,
+                    }}>
                       <div><strong>{item.title}</strong></div>
                     </div>
                   </div>
